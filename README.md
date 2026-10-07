@@ -10,7 +10,7 @@ C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS
 - 👤 Google hesabıyla giriş; save farklı cihazlarda senkron
 - 🕵️‍♂️ Noir teması, yağmur/pencere/ofis arkaplan, maskot ipuçları
 - 📱 Mobil ve masaüstü uyumlu arayüz
-- ✔️ Tüm soruların kod örnekleri ve çıktıları `dotnet` ile doğrulandı (46 KOD TAMAMLA sorusu her push'ta CI'da otomatik yeniden doğrulanır)
+- ✔️ 46 KOD TAMAMLA sorusu her push'ta CI'da derlenip doğrulanır; diğer sorular elle gözden geçirilmiştir
 - 📦 PWA: `sw.js` ile çevrimdışı önbellek
 
 ## Proje Yapısı
@@ -56,13 +56,13 @@ firestore.rules         # Firestore güvenlik kuralları
 # KOD TAMAMLA sorularını dotnet ile derle ve çıktıları karşılaştır
 python scripts/validate_questions.py
 
-# Biçim kontrolü
-npx prettier --check .
+# Biçim kontrolü (CI'daki komutun aynısı)
+npx prettier --check "**/*.{html,css,md,yml,yaml}" "app.js" "sw.js" "sw-register.js" "firebase-config.js"
 ```
 
 CI her push/PR'da bu iki adımı koşar.
 
-> Not: Script şu an yalnızca KOD TAMAMLA tipindeki 46 soruyu derler (`satirlar` + `kabul` + `cikti` alanları makine-okunurdur); çoktan seçmeli ve nüanslı sorular dotnet ile elle doğrulanmıştır.
+> Not: Script şu an yalnızca KOD TAMAMLA tipindeki 46 soruyu derler (`satirlar` + `kabul` + `cikti` alanları makine-okunurdur); çoktan seçmeli ve nüanslı sorular elle gözden geçirilmiştir.
 
 ## Katkı
 
@@ -70,4 +70,5 @@ CI her push/PR'da bu iki adımı koşar.
 
 ## Kayıtlar / Lisans
 
-Ders içeriği: tr.wikibooks _C#_ kaynaklarından (CC BY-SA 4.0) esintilidir. Proje kodu: MIT.
+- Proje kodu (`index.html`, `app.js`, `style.css`, `sw.js` vb.): MIT (`LICENSE`).
+- Soru verisi (`data.js`): tr.wikibooks _C#_ kaynaklarından (CC BY-SA 4.0) esinli hazırlanmıştır; içerik lisansı ayrıca `LICENSE-CONTENT.md`'de belirtilmiştir.
