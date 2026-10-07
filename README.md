@@ -10,7 +10,7 @@ C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS
 - 👤 Google hesabıyla giriş; save farklı cihazlarda senkron
 - 🕵️‍♂️ Noir teması, yağmur/pencere/ofis arkaplan, maskot ipuçları
 - 📱 Mobil ve masaüstü uyumlu arayüz
-- ✔️ Sorulardaki tüm kod örnekleri ve çıktılar `dotnet` ile CI'da otomatik doğrulanır (`scripts/validate_questions.py`)
+- ✔️ Tüm soruların kod örnekleri ve çıktıları `dotnet` ile doğrulandı (46 KOD TAMAMLA sorusu her push'ta CI'da otomatik yeniden doğrulanır)
 - 📦 PWA: `sw.js` ile çevrimdışı önbellek
 
 ## Proje Yapısı
@@ -39,7 +39,11 @@ firestore.rules         # Firestore güvenlik kuralları
 
 ### Canlı bakış
 
-1. `index.html`'i bir tarayıcıda aç (ya da `npx serve .`)
+1. Yerel bir sunucuyla aç (API key referrer kısıtlaması `localhost:8000`'e izinli):
+   ```bash
+   python -m http.server 8000
+   # http://localhost:8000/ aç
+   ```
 2. Firebase'in giriş/firestore servisleri kendi env'inde; kendi projeni kullanmak istersen `firebase-config.js` içindeki anahtarları değiştir, `Authentication > Google` ve `Firestore`'u aktif et, domain'i `Authorized domains`'e ekle. Firestore kurallarını `firestore.rules` dosyasından kopyala.
 
 ### Netlify'da yayınlama
@@ -57,6 +61,8 @@ npx prettier --check .
 ```
 
 CI her push/PR'da bu iki adımı koşar.
+
+> Not: Script şu an yalnızca KOD TAMAMLA tipindeki 46 soruyu derler (`satirlar` + `kabul` + `cikti` alanları makine-okunurdur); çoktan seçmeli ve nüanslı sorular dotnet ile elle doğrulanmıştır.
 
 ## Katkı
 

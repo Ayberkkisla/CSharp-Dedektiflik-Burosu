@@ -7,6 +7,7 @@ Kullanım: python scripts/validate_questions.py
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -70,34 +71,42 @@ def normalize(s):
 def main():
     questions = load_questions()
     print(f"{len(questions)} soru bulundu")
+
+    # Derlemeyi geçici bir klasörde yap; repodaki Program.cs kirlenmesin.
+    tmp = tempfile.mkdtemp(prefix="cnoir-validate-")
+    proj = os.path.join(tmp, "validator")
+    shutil.copytree(PROJ, proj)
     failures = []
-    for ders_n, soru in questions:
-        try:
-            body = build_program(soru)
-        except RuntimeError as e:
-            failures.append((ders_n, soru.get("id"), str(e)))
-            continue
-        program = WRAPPER.format(body=body)
-        prog_path = os.path.join(PROJ, "Program.cs")
-        with open(prog_path, "w", encoding="utf-8", newline="\n") as f:
-            f.write(program)
-        proc = subprocess.run(
-            ["dotnet", "run", "--project", PROJ, "--nologo", "-v", "q"],
-            capture_output=True, text=True, encoding="utf-8", errors="replace",
-            timeout=180,
-        )
-        if proc.returncode != 0:
-            failures.append((ders_n, soru.get("id"), "DERLEME HATASI: " + proc.stderr.strip().split("\n")[0][:200]))
-            continue
-        if normalize(proc.stdout) != normalize(soru["cikti"]):
-            failures.append((ders_n, soru.get("id"), f"çıktı uyuşmuyor:\nbeklenen: {soru['cikti']!r}\nalınan: {proc.stdout!r}"))
+    try:
+        for ders_n, soru in questions:
+            try:
+                body = build_program(soru)
+            except RuntimeError as e:
+                failures.append((ders_n, soru.get("id"), str(e)))
+                continue
+            program = WRAPPER.format(body=body)
+            prog_path = os.path.join(proj, "Program.cs")
+            with open(prog_path, "w", encoding="utf-8", newline="\n") as f:
+                f.write(program)
+            proc = subprocess.run(
+                ["dotnet", "run", "--project", proj, "--nologo", "-v", "q"],
+                capture_output=True, text=True, encoding="utf-8", errors="replace",
+                timeout=180,
+            )
+            if proc.returncode != 0:
+                failures.append((ders_n, soru.get("id"), "DERLEME HATASI: " + proc.stderr.strip().split("\n")[0][:200]))
+                continue
+            if normalize(proc.stdout) != normalize(soru["cikti"]):
+                failures.append((ders_n, soru.get("id"), f"çıktı uyuşmuyor:\nbeklenen: {soru['cikti']!r}\nalınan: {proc.stdout!r}"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
     if failures:
         print(f"\n{len(failures)} SORUN:")
         for d, i, msg in failures:
             print(f"  ders {d}, id {i}: {msg}")
         sys.exit(1)
-    print("Tüm sorular dotnet ile doğrulandı.")
+    print("46 KOD TAMAMLA sorusu dotnet ile doğrulandı (geçici klasörde, repo kirletilmeden).")
 
 
 if __name__ == "__main__":
