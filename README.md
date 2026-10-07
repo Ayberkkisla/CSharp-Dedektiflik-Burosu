@@ -13,6 +13,16 @@ C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS
 - ✔️ 46 KOD TAMAMLA sorusu her push'ta CI'da derlenip doğrulanır; diğer sorular elle gözden geçirilmiştir
 - 📦 PWA: `sw.js` ile çevrimdışı önbellek
 
+## Ekran Görüntüleri
+
+| Dosya Arşivi / Rehber                                  | Vaka Açılışı                                          |
+| ------------------------------------------------------ | ----------------------------------------------------- |
+| ![Giriş rehberi](docs/screenshots/01-giris-rehber.png) | ![Vaka açılışı](docs/screenshots/02-vaka-acilisi.png) |
+
+| Başvuru Kartı                                           | Kanıt Sorusu                                          |
+| ------------------------------------------------------- | ----------------------------------------------------- |
+| ![Başvuru kartı](docs/screenshots/03-basvuru-karti.png) | ![Kanıt sorusu](docs/screenshots/04-kanit-sorusu.png) |
+
 ## Proje Yapısı
 
 ```
