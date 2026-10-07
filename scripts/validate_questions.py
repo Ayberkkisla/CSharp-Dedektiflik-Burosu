@@ -106,7 +106,7 @@ def main():
         for d, i, msg in failures:
             print(f"  ders {d}, id {i}: {msg}")
         sys.exit(1)
-    print("46 KOD TAMAMLA sorusu dotnet ile doğrulandı (geçici klasörde, repo kirletilmeden).")
+    print(f"{len(questions)} KOD TAMAMLA sorusu dotnet ile doğrulandı (geçici klasörde, repo kirletilmeden).")
 
 
 if __name__ == "__main__":

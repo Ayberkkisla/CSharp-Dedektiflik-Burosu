@@ -10,8 +10,8 @@
 - Erişilebilirlik: `aria-live` maskot balonunda, `:focus-visible` odak stili.
 - İçerik düzeltmesi: `style.css` içine sızmış kullanılmayan `NL_S` fonksiyonu kaldırıldı.
 - `favicon.svg` eklendi.
-- Google API key sızıntısı bildirimi sonrası key rotate edildi; yeni key `firebase-config.js` ve eski kopyaya işlendi. API key'e Google Cloud'da kısıtlamalar uygulandı: yalnızca `Identity Toolkit API` + `Cloud Firestore API`, referrer kısıtlamaları `csharpdedektiflik.netlify.app/*`, `localhost:8000/*` ve `csharp-dedektiflik-3bcc0.firebaseapp.com/*`.
+- Google API key sızıntısı bildirimi sonrası key rotate edildi; yeni key `firebase-config.js` ve eski kopyaya işlendi. API key'e Google Cloud'da kısıtlamalar uygulandı: yalnızca `Identity Toolkit API` + `Cloud Firestore API` + `Token Service API`, referrer kısıtlamaları `csharpdedektiflik.netlify.app/*`, `localhost:8000/*` ve `csharp-dedektiflik-3bcc0.firebaseapp.com/*`.
 - Netlify deploy logları doğrulandı; her push'ta otomatik deploy aktif.
 - `sw.js`: network-first stratejiye geçti; yalnızca başarılı (`res.ok`) GET yanıtları önbelleğe alınıyor, `skipWaiting`+`clients.claim()` ve cache `v2` ile deploy sonrası eski `app.js`/`data.js` sunulmuyor.
 - `validate_questions.py`: derleme geçici klasörde yapılıyor, repodaki `tools/validator/Program.cs` kirlenmiyor.
-- README: doğrulama iddiası netleştirildi — tüm sorular dotnet ile doğrulandı, 46 KOD TAMAMLA sorusu ayrıca CI'da otomatik doğrulanıyor; yerel test `python -m http.server 8000` ile sabitlendi (API key referrer kısıtlaması `localhost:8000`'e izinli).
+- README: doğrulama iddiası netleştirildi — 46 KOD TAMAMLA sorusu ayrıca CI'da otomatik doğrulanıyor, diğer sorular elle gözden geçirilmiştir; yerel test `python -m http.server 8000` ile sabitlendi (API key referrer kısıtlaması `localhost:8000`'e izinli).
