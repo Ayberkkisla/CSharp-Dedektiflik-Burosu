@@ -4,7 +4,7 @@ C# programlama öğrenmek için tek dosyalık bir HTML/JS oyunu. Dedektif Nokta'
 
 ## Özellikler
 
-- 🎮 Birleşik senaryo tabanlı ilerlemeli 23 dosya (vak'a)
+- 🎮 Birleşik senaryo tabanlı ilerlemeli 23 dosya (vaka)
 - ✅ Soru kartları, kanıt sorusu, kod tamamlama, yapboz, boss dosya ve ekstralar
 - 🔥 Günlük seri ve XP sistemi (`localStorage` + Firestore)
 - 👤 Google hesabıyla giriş; save farklı cihazlarda senkron
