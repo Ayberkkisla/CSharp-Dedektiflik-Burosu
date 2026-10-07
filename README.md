@@ -1,6 +1,6 @@
 # C# Dedektiflik Bürosu — Dedektif Nokta
 
-C# programlama öğrenmek için tek dosyalık bir HTML/JS oyunu. Dedektif Nokta'nın masasında C#'ın temellerini 23 vakada çözersin: konsol, döngüler, metotlar, koleksiyonlar, stringler, OOP ve daha fazlası.
+C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS oyunu. Dedektif Nokta'nın masasında C#'ın temellerini 23 vakada çözersin: konsol, döngüler, metotlar, koleksiyonlar, stringler, OOP ve daha fazlası.
 
 ## Özellikler
 
@@ -8,38 +8,60 @@ C# programlama öğrenmek için tek dosyalık bir HTML/JS oyunu. Dedektif Nokta'
 - ✅ Soru kartları, kanıt sorusu, kod tamamlama, yapboz, boss dosya ve ekstralar
 - 🔥 Günlük seri ve XP sistemi (`localStorage` + Firestore)
 - 👤 Google hesabıyla giriş; save farklı cihazlarda senkron
-- 🕵️‍♂️ Noir teması, yagmur/pencere/ofis arkaplan, maskot ipuçları
+- 🕵️‍♂️ Noir teması, yağmur/pencere/ofis arkaplan, maskot ipuçları
 - 📱 Mobil ve masaüstü uyumlu arayüz
-- ✔️ Sorulardaki tüm kod örnekleri ve çıktılar `dotnet` ile derlenip doğrulandı
+- ✔️ Sorulardaki tüm kod örnekleri ve çıktılar `dotnet` ile CI'da otomatik doğrulanır (`scripts/validate_questions.py`)
+- 📦 PWA: `sw.js` ile çevrimdışı önbellek
+
+## Proje Yapısı
+
+```
+index.html              # Sayfa iskeleti
+style.css               # Tüm stiller
+app.js                  # Oyun mantığı
+data.js                 # DERSLER + KODTAMAMLALAR soru verisi
+firebase-config.js      # Firebase bağlantısı
+sw.js, sw-register.js   # Service worker (çevrimdışı)
+scripts/validate_questions.py  # dotnet doğrulama script'i
+tools/validator/        # .NET doğrulama projesi
+firestore.rules         # Firestore güvenlik kuralları
+.github/workflows/ci.yml       # CI: dotnet doğrulama + Prettier
+```
 
 ## Teknolojiler
 
-- HTML / CSS / JavaScript (frameworksüz, tek dosyada)
+- HTML / CSS / JavaScript (frameworksüz)
 - Firebase Authentication (Google) + Cloud Firestore
-- Netlify üzerinde yayınlanabilir
+- .NET 10 SDK (içerik doğrulama)
+- Netlify üzerinde yayınlanabilir (`netlify.toml`)
 
 ## Kurulum
 
 ### Canlı bakış
-1. Siteyi yerelde aç: `index.html`'i bir tarayıcıda sürükle-bırak
-2. Firebase'in giriş/firestore servisleri kullanıcı kendi env'indedir; kendi firebase projenle çalışmak istersen `index.html` içindeki firebaseConfig bölümünü kendi proje anahtarıyla değiştir, `Authentication > Google` ve `Firestore`'u aktif et, domain'i `Authorized domains`'e ekle.
+
+1. `index.html`'i bir tarayıcıda aç (ya da `npx serve .`)
+2. Firebase'in giriş/firestore servisleri kendi env'inde; kendi projeni kullanmak istersen `firebase-config.js` içindeki anahtarları değiştir, `Authentication > Google` ve `Firestore`'u aktif et, domain'i `Authorized domains`'e ekle. Firestore kurallarını `firestore.rules` dosyasından kopyala.
 
 ### Netlify'da yayınlama
-1. `index.html`'i ve (gerekiyorsa) `google5af49ed490352552.html`'i aynı klasöre koy
-2. Netlify'da klasötü sürükle veya GitHub'dan import et
 
-### Firestore kuralları
-```js
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /kayitlar/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
-    }
-  }
-}
+1. Klasörü Netlify'a sürükle veya GitHub'dan import et (`netlify.toml` hazır).
+
+## Testler ve doğrulama
+
+```bash
+# KOD TAMAMLA sorularını dotnet ile derle ve çıktıları karşılaştır
+python scripts/validate_questions.py
+
+# Biçim kontrolü
+npx prettier --check .
 ```
+
+CI her push/PR'da bu iki adımı koşar.
+
+## Katkı
+
+`CONTRIBUTING.md` dosyasına bak. İçerik önerileri için issue şablonunu kullan.
 
 ## Kayıtlar / Lisans
 
-Ders içeriği: tr.wikibooks *C#* kaynaklarından (CC BY-SA 4.0) esintilidir. Proje kodu: MIT.
+Ders içeriği: tr.wikibooks _C#_ kaynaklarından (CC BY-SA 4.0) esintilidir. Proje kodu: MIT.
