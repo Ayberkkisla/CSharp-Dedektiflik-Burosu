@@ -2,17 +2,26 @@
 
 ## [2026-10-08]
 
-- Tek dosyalık `index.html` bölündü: `style.css`, `app.js`, `data.js` (soru verileri), `firebase-config.js`.
-- `scripts/validate_questions.py`: tüm KOD TAMAMLA soruları dotnet ile derlenip doğrulanıyor.
-- GitHub Actions CI: dotnet doğrulama + Prettier kontrolü.
-- `firestore.rules` repoya eklendi.
-- PWA destek: `sw.js` ve `sw-register.js` ile çevrimdışı önbellek.
+### Araç zinciri
+
+- Python bağımlılığı kaldırıldı: doğrulama script'i Node'a taşındı (`scripts/validate-questions.mjs`, `node:vm` ile `data.js` okunuyor, sıfır bağımlılık).
+- `python -m http.server` yerine `npm start` (`npx serve -l 8000`), port 8000 Firebase referrer kısıtlamasıyla uyumlu.
+- Soru verisi bütünlük testleri eklendi (`tests/data.test.mjs`, `node:test`): cevap anahtarı `sec` içinde mi, id'ler tekil mi, boşluk/`kabul` sayıları eşit mi.
+- `package.json` eklendi (`start`, `dev:config`, `test`, `validate`, `format`, `format:check`); CI bu scriptleri kullanıyor.
+
+### Güvenlik
+
+- Firebase API key artık repoda tutulmuyor: `firebase-config.js` `.gitignore`'da, `scripts/make-firebase-config.mjs` ile `FIREBASE_*` ortam değişkenlerinden üretiliyor.
+- Giriş/senkron mantığı `firebase-config.js`'den `js/auth.js`'e taşındı; yapılandırma yoksa oyun "yerel mod"da çalışıyor, giriş kapalı.
+- `firebase-config.example.js` şablon olarak eklendi. Netlify'da 6 `FIREBASE_*` değişkeni tanımlanmalı.
+- `firestore.rules` repoda; kurallar yalnızca oturum açmış kullanıcının kendi belgesine yazmasına izin veriyor.
+
+### İçerik ve düzen
+
+- Tek dosyalık `index.html` bölündü: `style.css`, `app.js`, `data.js` (soru verisi), `js/auth.js`, `sw.js`.
+- `scripts/validate-questions.mjs` KOD TAMAMLA sorularını .NET ile derleyip çıktıyı karşılaştırır (geçici klasörde çalışır, repoyu kirletmez).
+- GitHub Actions CI: veri testleri + dotnet doğrulama + Prettier kontrolü.
+- PWA: `sw.js` network-first, yalnızca `res.ok` yanıtları önbellekleniyor, `skipWaiting` + `clients.claim()`.
 - Erişilebilirlik: `aria-live` maskot balonunda, `:focus-visible` odak stili.
+- `favicon.svg`, `README.md` ekran görüntüleri, `CONTRIBUTING.md`, `LICENSE-CONTENT.md` (içerik lisansı CC BY-SA 4.0), issue/PR şablonları eklendi.
 - İçerik düzeltmesi: `style.css` içine sızmış kullanılmayan `NL_S` fonksiyonu kaldırıldı.
-- `favicon.svg` eklendi.
-- Google API key sızıntısı bildirimi sonrası key rotate edildi; yeni key `firebase-config.js` ve eski kopyaya işlendi. API key'e Google Cloud'da kısıtlamalar uygulandı: yalnızca `Identity Toolkit API` + `Cloud Firestore API` + `Token Service API`, referrer kısıtlamaları `csharpdedektiflik.netlify.app/*`, `localhost:8000/*` ve `csharp-dedektiflik-3bcc0.firebaseapp.com/*`.
-- Netlify deploy logları doğrulandı; her push'ta otomatik deploy aktif.
-- README ekran görüntüleri galerisi güncellendi: ders notu 4., kanıt sorusu 5. sırada.
-- `sw.js`: network-first stratejiye geçti; yalnızca başarılı (`res.ok`) GET yanıtları önbelleğe alınıyor, `skipWaiting`+`clients.claim()` ve cache `v2` ile deploy sonrası eski `app.js`/`data.js` sunulmuyor.
-- `validate_questions.py`: derleme geçici klasörde yapılıyor, repodaki `tools/validator/Program.cs` kirlenmiyor.
-- README: doğrulama iddiası netleştirildi — 46 KOD TAMAMLA sorusu ayrıca CI'da otomatik doğrulanıyor, diğer sorular elle gözden geçirilmiştir; yerel test `python -m http.server 8000` ile sabitlendi (API key referrer kısıtlaması `localhost:8000`'e izinli).

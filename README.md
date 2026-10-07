@@ -36,7 +36,11 @@ app.js                  # Oyun mantığı
 data.js                 # DERSLER + KODTAMAMLALAR soru verisi
 firebase-config.js      # Firebase bağlantısı
 sw.js, sw-register.js   # Service worker (çevrimdışı)
-scripts/validate_questions.py  # dotnet doğrulama script'i
+scripts/validate-questions.mjs # dotnet doğrulama (Node)
+scripts/make-firebase-config.mjs # ortam değişkenlerinden config üretir
+tests/data.test.mjs           # soru verisi bütünlük testleri
+js/auth.js                    # Firebase giriş + kayıt senkronu
+firebase-config.example.js    # config şablonu (gerçek dosya repoda yok)
 tools/validator/        # .NET doğrulama projesi
 firestore.rules         # Firestore güvenlik kuralları
 .github/workflows/ci.yml       # CI: dotnet doğrulama + Prettier
@@ -51,32 +55,52 @@ firestore.rules         # Firestore güvenlik kuralları
 
 ## Kurulum
 
-### Canlı bakış
+```bash
+npm install          # bağımlılık yok, sadece geliştirme araçları için
+npm start            # http://localhost:8000
+```
 
-1. Yerel bir sunucuyla aç (API key referrer kısıtlaması `localhost:8000`'e izinli):
-   ```bash
-   python -m http.server 8000
-   # http://localhost:8000/ aç
-   ```
-2. Firebase'in giriş/firestore servisleri kendi env'inde; kendi projeni kullanmak istersen `firebase-config.js` içindeki anahtarları değiştir, `Authentication > Google` ve `Firestore`'u aktif et, domain'i `Authorized domains`'e ekle. Firestore kurallarını `firestore.rules` dosyasından kopyala.
+> Port 8000 şart: Firebase API key referrer kısıtlaması `localhost:8000`'e izin veriyor.
+> Başka port kullanırsan Google girişi `Referer denied` hatası verir.
+
+### Firebase yapılandırması
+
+Gerçek `firebase-config.js` **repoda tutulmaz**; ortam değişkenlerinden üretilir.
+
+```bash
+# .env dosyası oluştur (gitignore'da), sonra:
+npm run dev:config
+```
+
+Gerekli değişkenler: `FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_STORAGE_BUCKET`, `FIREBASE_MESSAGING_SENDER_ID`, `FIREBASE_APP_ID`.
+
+Değişkenler tanımlı değilse site **yapılandırmasız modda** açılır: oyun tam çalışır, giriş ve cihazlar arası senkron kapalı olur.
+
+Kendi Firebase projeni kullanacaksan: `Authentication > Google` ve `Firestore`'u aktif et, domain'i `Authorized domains`'e ekle, kuralları `firestore.rules` dosyasından kopyala.
 
 ### Netlify'da yayınlama
 
-1. Klasörü Netlify'a sürükle veya GitHub'dan import et (`netlify.toml` hazır).
+1. Klasörü Netlify'a sürükle veya GitHub'dan import et
+2. **Site configuration > Environment variables** bölümüne yukarıdaki 6 değişkeni ekle
+3. `netlify.toml` build sırasında `firebase-config.js`'i otomatik üretir
 
 ## Testler ve doğrulama
 
 ```bash
-# KOD TAMAMLA sorularını dotnet ile derle ve çıktıları karşılaştır
-python scripts/validate_questions.py
-
-# Biçim kontrolü (CI'daki komutun aynısı)
-npx prettier --check "**/*.{html,css,md,yml,yaml}" "app.js" "sw.js" "sw-register.js" "firebase-config.js"
+npm test             # soru verisi bütünlüğü (cevap anahtarı, id tekliği, boşluk/kabul eşitliği)
+npm run validate     # KOD TAMAMLA sorularını .NET ile derleyip çıktıları karşılaştırır
+npm run format:check # biçim kontrolü
 ```
 
-CI her push/PR'da bu iki adımı koşar.
+CI her push/PR'da bu üç adımı koşar.
 
-> Not: Script şu an yalnızca KOD TAMAMLA tipindeki 46 soruyu derler (`satirlar` + `kabul` + `cikti` alanları makine-okunurdur); çoktan seçmeli ve nüanslı sorular elle gözden geçirilmiştir.
+### Bilinen eksik
+
+Vaka 20 ("Beceri Temelli Soru 2") şu an yalnızca 2 KOD TAMAMLA sorusu içeriyor; çoktan seçmeli sorusu ve boss sorusu yok. Bu durum `tests/data.test.mjs` içinde açıkça işaretli ve düzeltildiğinde test güncellenir.
+
+### Doğrulama kapsamı
+
+`npm run validate` yalnızca KOD TAMAMLA tipindeki soruları derler (`satirlar` + `kabul` + `cikti` alanları makine-okunurdur); çoktan seçmeli ve nüanslı soruların doğruluğu `npm test` ile yapısal olarak, içerik olarak ise elle kontrol edilir.
 
 ## Katkı
 
@@ -84,5 +108,5 @@ CI her push/PR'da bu iki adımı koşar.
 
 ## Kayıtlar / Lisans
 
-- Proje kodu (`index.html`, `app.js`, `style.css`, `sw.js` vb.): MIT (`LICENSE`).
+- Proje kodu (`index.html`, `app.js`, `js/auth.js`, `style.css`, `sw.js` vb.): MIT (`LICENSE`).
 - Soru verisi (`data.js`): tr.wikibooks _C#_ kaynaklarından (CC BY-SA 4.0) esinli hazırlanmıştır; içerik lisansı ayrıca `LICENSE-CONTENT.md`'de belirtilmiştir.

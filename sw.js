@@ -6,6 +6,7 @@ const ASSETS = [
   "./app.js",
   "./data.js",
   "./firebase-config.js",
+  "./js/auth.js",
 ];
 
 self.addEventListener("install", (e) => {

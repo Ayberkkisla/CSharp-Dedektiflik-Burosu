@@ -1,0 +1,15 @@
+{
+  "name": "csharp-dedektiflik-buyrosu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "C# ogrenmek icin tarayicida calisan dedektiflik oyunu (framework yok)",
+  "type": "module",
+  "scripts": {
+    "start": "npx --yes serve -l 8000 .",
+    "dev:config": "node scripts/make-firebase-config.mjs",
+    "validate": "node scripts/validate-questions.mjs",
+    "test": "node --test tests/data.test.mjs",
+    "format": "npx --yes prettier --write .",
+    "format:check": "npx --yes prettier --check \"**/*.{html,css,md,yml,yaml}\" \"app.js\" \"js/auth.js\" \"sw.js\" \"sw-register.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"package.json\""
+  }
+}
