@@ -19,9 +19,13 @@ C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS
 | ------------------------------------------------------ | ----------------------------------------------------- |
 | ![Giriş rehberi](docs/screenshots/01-giris-rehber.png) | ![Vaka açılışı](docs/screenshots/02-vaka-acilisi.png) |
 
-| Başvuru Kartı                                           | Kanıt Sorusu                                          |
-| ------------------------------------------------------- | ----------------------------------------------------- |
-| ![Başvuru kartı](docs/screenshots/03-basvuru-karti.png) | ![Kanıt sorusu](docs/screenshots/04-kanit-sorusu.png) |
+| Başvuru Kartı                                           | Ders Notu                                       |
+| ------------------------------------------------------- | ----------------------------------------------- |
+| ![Başvuru kartı](docs/screenshots/03-basvuru-karti.png) | ![Ders notu](docs/screenshots/04-ders-notu.png) |
+
+| Kanıt Sorusu                                          |
+| ----------------------------------------------------- |
+| ![Kanıt sorusu](docs/screenshots/05-kanit-sorusu.png) |
 
 ## Proje Yapısı
 
