@@ -10,6 +10,7 @@ C# programlama öğrenmek için tek dosyalık bir HTML/JS oyunu. Dedektif Nokta'
 - 👤 Google hesabıyla giriş; save farklı cihazlarda senkron
 - 🕵️‍♂️ Noir teması, yagmur/pencere/ofis arkaplan, maskot ipuçları
 - 📱 Mobil ve masaüstü uyumlu arayüz
+- ✔️ Sorulardaki tüm kod örnekleri ve çıktılar `dotnet` ile derlenip doğrulandı
 
 ## Teknolojiler
 
