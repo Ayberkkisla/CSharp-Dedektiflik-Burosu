@@ -1,10 +1,8 @@
+data.js
+tools/
 node_modules/
 dist/
-tools/
 netlify.toml
 package-lock.json
 firebase-config.js
-.env
-.env.*
-.githooks/
 google5af49ed490352552.html

@@ -3,18 +3,10 @@ node_modules/
 Thumbs.db
 *.log
 
-# Gizli degerler: asla commitlenmez
+# Firebase yapilandirmasi: repoda tutulmaz
 .env
-.env.*
 firebase-config.js
-service-account.json
-*-service-account.json
-netlify.toml.local
 
-# Git hook betikleri (npm run install:hooks bunlari -f ile ekler)
-.githooks/
-
-# Yayin ve derleme ciktilari
 dist/
 bin/
 obj/
