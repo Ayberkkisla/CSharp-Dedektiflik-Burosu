@@ -1,6 +1,6 @@
 # C# Dedektiflik Bürosu — Dedektif Nokta
 
-C# programlama öğrenmek için tarayıcı tabanlı, senaryo odanlı bir HTML/JS oyunu. Dedektif Nokta'nın masasında C#'ın temellerini 23 vakada çözersin: konsol, döngüler, metotlar, koleksiyonlar, stringler, OOP ve daha fazlası.
+C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS oyunu. Dedektif Nokta'nın masasında C#'ın temellerini 23 vakada çözersin: konsol, döngüler, metotlar, koleksiyonlar, stringler, OOP ve daha fazlası.
 
 ## Özellikler
 
