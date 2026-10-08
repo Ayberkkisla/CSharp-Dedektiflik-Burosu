@@ -1,6 +1,9 @@
 [build]
-  publish = "."
-  command = "node scripts/make-firebase-config.mjs"
+  publish = "dist"
+  command = "node scripts/make-firebase-config.mjs && node scripts/build-site.mjs"
 
 [build.environment]
   NODE_VERSION = "20"
+  # firebase-config.js tarayiciya inmesi gereken Firebase config'idir; secret degildir.
+  # Tarama bu dosyayi atlar, degerler loglarda maskeli kalir.
+  SECRETS_SCAN_OMIT_PATHS = "firebase-config.js"

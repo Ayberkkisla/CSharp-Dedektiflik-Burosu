@@ -30,20 +30,27 @@ C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS
 ## Proje Yapısı
 
 ```
-index.html              # Sayfa iskeleti
-style.css               # Tüm stiller
-app.js                  # Oyun mantığı
-data.js                 # DERSLER + KODTAMAMLALAR soru verisi
-firebase-config.js      # Firebase bağlantısı
-sw.js, sw-register.js   # Service worker (çevrimdışı)
-scripts/validate-questions.mjs # dotnet doğrulama (Node)
-scripts/make-firebase-config.mjs # ortam değişkenlerinden config üretir
-tests/data.test.mjs           # soru verisi bütünlük testleri
+index.html                    # Sayfa iskeleti
+style.css                     # Tüm stiller
+app.js                        # Oyun mantığı
+data.js                       # DERSLER + KODTAMAMLALAR soru verisi
 js/auth.js                    # Firebase giriş + kayıt senkronu
-firebase-config.example.js    # config şablonu (gerçek dosya repoda yok)
-tools/validator/        # .NET doğrulama projesi
-firestore.rules         # Firestore güvenlik kuralları
-.github/workflows/ci.yml       # CI: dotnet doğrulama + Prettier
+sw.js, sw-register.js         # Service worker (çevrimdışı)
+firebase-config.example.js    # Firebase config şablonu (gerçek dosya repoda yok)
+scripts/
+  make-firebase-config.mjs    # FIREBASE_* env → firebase-config.js
+  build-site.mjs              # dist/ altına yalnızca gereken dosyalar
+  check-secrets.mjs           # gizli değer taraması (git guard)
+  validate-questions.mjs      # KOD TAMAMLA sorularını .NET ile doğrular
+  install-hooks.mjs           # core.hooksPath ayarlar (pre-commit/pre-push)
+tests/
+  data.test.mjs               # soru verisi bütünlüğü
+  security.test.mjs           # gizli değer denetimini sınar
+tools/validator/              # .NET doğrulama projesi
+.githooks/                    # pre-commit / pre-push
+firestore.rules               # Firestore güvenlik kuralları
+netlify.toml                  # build + publish + gizli tarama ayarı
+.github/workflows/ci.yml      # CI: security + veri + dotnet + biçim
 ```
 
 ## Teknolojiler
@@ -82,17 +89,51 @@ Kendi Firebase projeni kullanacaksan: `Authentication > Google` ve `Firestore`'u
 
 1. Klasörü Netlify'a sürükle veya GitHub'dan import et
 2. **Site configuration > Environment variables** bölümüne yukarıdaki 6 değişkeni ekle
-3. `netlify.toml` build sırasında `firebase-config.js`'i otomatik üretir
+   - **Contains secret values** işaretle: değerler loglarda maskelenir
+3. Deploy otomatik çalışır: `netlify.toml` sırasıyla
+   - `scripts/make-firebase-config.mjs` → `firebase-config.js` üretir (ortam değişkenlerinden)
+   - `scripts/build-site.mjs` → yalnızca gereken dosyaları `dist/` altına kopyalar
+   - Netlify `dist/` klasörünü yayınlar; `tools/`, `tests/`, `docs/`, `.github/` canlıya çıkmaz
+
+`SECRETS_SCAN_OMIT_PATHS = "firebase-config.js"` ayarı, Firebase config'inin tarayıcıya inmesi
+gerektiği için tarama dışında tutulmasını sağlar. Firebase web API key'i zaten herkese açıktır
+(tarayıcıdan okunabilir); asıl koruma Google Cloud kısıtlamaları ve `firestore.rules` ile sağlanır.
+
+## Güvenlik
+
+Gizli değerlerin repoya girmesini dört katman engeller:
+
+| Katman                  | Ne yapar                                                                                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.gitignore`            | `.env*`, `firebase-config.js`, `service-account.json`, `dist/` ignore edilir                                                                        |
+| `npm run check:secrets` | İçerik taraması (API key, private key, Telegram/GitHub/AWS/OpenAI token) + `.gitignore` kuralları doğrulaması + git'e girmiş yasaklı dosya kontrolü |
+| Git hook'ları           | `npm run install:hooks` sonrası `pre-commit` ve `pre-push` otomatik çalışır                                                                         |
+| GitHub Actions          | `security` job'ı her push'ta `check:secrets`'i koşar, key varsa kırmızıya döner                                                                     |
+
+Bir kez kur, sonra otomatik çalışır:
+
+```bash
+npm run install:hooks
+```
+
+Firebase API key'i istisnadır: tarayıcıda çalışan uygulamanın config'i olmak zorundadır, bu
+yüzden repo'da **tutulmaz** (build sırasında ortam değişkenlerinden üretilir), GitHub'a hiç
+girmez. Saldırgan key'i GitHub'dan alamaz; Google Cloud'daki API + referrer kısıtlamaları
+ve `firestore.rules` (kullanıcı yalnızca kendi belgesine yazabilir) çalınsa bile veri
+sızmasını engeller.
+
+Sızan bir değeri geçmişten temizlemek için: `python -m git_filter_repo --replace-text <dosya> --force`
 
 ## Testler ve doğrulama
 
 ```bash
-npm test             # soru verisi bütünlüğü (cevap anahtarı, id tekliği, boşluk/kabul eşitliği)
-npm run validate     # KOD TAMAMLA sorularını .NET ile derleyip çıktıları karşılaştırır
-npm run format:check # biçim kontrolü
+npm test              # veri bütünlüğü + güvenlik denetimi testleri
+npm run check:secrets # gizli değer taraması
+npm run validate      # KOD TAMAMLA sorularını .NET ile derleyip çıktıları karşılaştırır
+npm run format:check  # biçim kontrolü
 ```
 
-CI her push/PR'da bu üç adımı koşar.
+CI her push/PR'da `security`, `data-tests`, `dotnet-validate`, `format` işlerini koşar.
 
 ### Doğrulama kapsamı
 

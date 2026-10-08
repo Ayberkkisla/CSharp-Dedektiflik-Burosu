@@ -1,0 +1,12 @@
+#!/bin/sh
+# Gizli deger commit/push edilmeden once denetlenir.
+# Kurulum: npm run install:hooks  (core.hooksPath=./.githooks)
+set -e
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-push: node bulunamadi, gizli deger denetimi atlandi."
+  exit 0
+fi
+
+echo "pre-push: gizli deger taramasi..."
+node scripts/check-secrets.mjs

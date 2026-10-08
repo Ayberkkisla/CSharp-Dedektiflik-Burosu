@@ -8,7 +8,10 @@
     "start": "npx --yes serve -l 8000 .",
     "dev:config": "node scripts/make-firebase-config.mjs",
     "validate": "node scripts/validate-questions.mjs",
-    "test": "node --test tests/data.test.mjs",
+    "test": "node --test tests/data.test.mjs tests/security.test.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "build": "node scripts/make-firebase-config.mjs && node scripts/build-site.mjs",
+    "install:hooks": "node scripts/install-hooks.mjs",
     "format": "npx --yes prettier --write .",
     "format:check": "npx --yes prettier --check \"**/*.{html,css,md,yml,yaml}\" \"app.js\" \"js/auth.js\" \"sw.js\" \"sw-register.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"package.json\""
   }

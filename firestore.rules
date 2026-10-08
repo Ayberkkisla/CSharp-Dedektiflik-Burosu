@@ -1,8 +1,30 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Kullanici yalnizca kendi kaydini okuyup yazabilir.
     match /kayitlar/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null
+                            && request.auth.uid == uid
+                            && request.resource.data.keys().hasOnly([
+                                 'xp', 'seri', 'sonGun', 'biten', 'ses'
+                               ])
+                            && request.resource.data.xp is number
+                            && request.resource.data.xp >= 0
+                            && request.resource.data.xp <= 1000000
+                            && request.resource.data.seri is number
+                            && request.resource.data.seri >= 0
+                            && request.resource.data.seri <= 100000
+                            && request.resource.data.sonGun is string
+                            && request.resource.data.sonGun.size() <= 32
+                            && request.resource.data.biten is list
+                            && request.resource.data.biten.size() <= 64
+                            && request.resource.data.ses is bool;
+    }
+
+    // Diger tum belgeler kapali.
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
