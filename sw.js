@@ -33,8 +33,8 @@ self.addEventListener("activate", (e) => {
 
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
-  if (url.origin !== self.location.origin) return; // firebase/CDN istekleri her zaman ağdan
-  if (e.request.method !== "GET") return; // yalnızca okuma istekleri
+  if (url.origin !== self.location.origin) return;
+  if (e.request.method !== "GET") return;
   e.respondWith(
     fetch(e.request)
       .then((res) => {
@@ -44,6 +44,6 @@ self.addEventListener("fetch", (e) => {
         }
         return res;
       })
-      .catch(() => caches.match(e.request)), // ağ yoksa önbellek
+      .catch(() => caches.match(e.request)),
   );
 });

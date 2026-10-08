@@ -1,10 +1,3 @@
-// Firebase yapilandirmasi ve giris/senkron mantigi.
-//
-// Kullanim: bu dosyayi firebase-config.js olarak kopyala, degerleri kendi
-// Firebase projenle degistir. firebase-config.js repoda tutulmaz.
-//
-// Firebase web API key'i tarayiciya inmesi gerekir (gizlenemez); guvenlik
-// Google Cloud API/referrer kisitlamalari ve firestore.rules ile saglanir.
 var fbUid = null,
   fbDb = null,
   fbAuth = null;

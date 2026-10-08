@@ -1,9 +1,3 @@
-// KOD TAMAMLA sorularinin dogru cevaplarini .NET ile derleyip calistirir.
-// data.js icindeki satirlar + kabul parcalari birlestirilir, gecici bir klasorde
-// derlenir ve uretilen cikti `cikti` alaniyla karsilastirilir.
-//
-// Burada test edilen C# kodunun dogrulugudur; oyun motoru degil.
-// Kullanim: npm run validate
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -24,7 +18,6 @@ Console.OutputEncoding = Encoding.UTF8;
 `;
 
 function loadData() {
-  // data.js bir JS dosyasi: vm ile calistirip DERSLER / KODTAMAMLALAR alinir.
   const context = vm.createContext({});
   vm.runInContext(fs.readFileSync(DATA_JS, "utf8"), context, {
     filename: DATA_JS,
@@ -82,7 +75,6 @@ function main() {
   const questions = collectQuestions(loadData());
   console.log(`${questions.length} soru bulundu`);
 
-  // Gecici klasorde derle: repodaki Program.cs kirlenmesin.
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cnoir-validate-"));
   const project = path.join(tmp, "validator");
   copyDir(VALIDATOR_SRC, project);

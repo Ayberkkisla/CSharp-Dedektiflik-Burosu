@@ -1,5 +1,3 @@
-// data.js butunluk testleri (node:test, sifir bagimlilik).
-// Soru verisinin tutarliligini denetler; C# ciktilarini scripts/validate-questions.mjs dogrular.
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -26,8 +24,6 @@ test("data.js parse ediliyor ve beklenen toplamlar korunuyor", () => {
   );
 });
 
-// vaka 20 "Beceri Temelli Soru 2" yalnizca KOD TAMAMLA sorularindan olusur;
-// coktan secmeli sorusu ve boss sorusu bilincli olarak yok.
 const YALNIZCA_KODTAMAMLALI = new Set([20]);
 
 test("her vaka gerekli alanlari iceriyor", () => {
@@ -39,7 +35,6 @@ test("her vaka gerekli alanlari iceriyor", () => {
       Array.isArray(ders.konu) && ders.konu.length,
       `vaka ${ders.n} konu karti yok`,
     );
-    // Her vakada en az bir KOD TAMAMLA olmali; coktan secmeli sorular istege baglidir.
     const kodTamamla = (KODTAMAMLALAR[ders.n] || []).length;
     const coktanSecmeli = (ders.sorular || []).length;
     assert.ok(
@@ -47,7 +42,6 @@ test("her vaka gerekli alanlari iceriyor", () => {
       `vaka ${ders.n}: ne KOD TAMAMLA ne coktan secmeli soru var`,
     );
 
-    // Boss ve coktan secmeli soru tasiyan her vakada boss olmali.
     if (!YALNIZCA_KODTAMAMLALI.has(ders.n) && coktanSecmeli > 0) {
       assert.ok(ders.boss?.soru, `vaka ${ders.n} boss sorusu yok`);
       assert.ok(

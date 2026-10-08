@@ -55,19 +55,31 @@ Kendi projeni kullanacaksan: `Authentication > Google` ve `Firestore`'u aktif et
 Klasörü Netlify'a sürükle-bırak yap. Build gerekmez, statik dosyalardır.
 `firebase-config.js` publish edilen klasörde bulunmalı.
 
-## Proje Yapısı
+## Dosyalar
 
-```
-index.html     # sayfa iskeleti
-style.css      # stiller
-app.js         # oyun mantığı
-data.js        # soru verisi (23 vaka)
-firebase-config.js  # Firebase + giriş mantığı (repoda yok)
-sw.js          # service worker
-scripts/validate-questions.mjs  # soruları .NET ile doğrular
-tests/data.test.mjs            # veri bütünlüğü testleri
-firestore.rules  # Firestore güvenlik kuralları
-```
+| Dosya                            | Ne işe yarar                                                                                                              |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `index.html`                     | Sayfa iskeleti, script ve stil bağlantıları                                                                               |
+| `style.css`                      | Tüm görsel stiller                                                                                                        |
+| `app.js`                         | Oyun motoru: vaka akışı, menü, hesap makinesi, soru gösterimi                                                             |
+| `data.js`                        | Soru verisi: 23 vaka, 500 soru, boss soruları                                                                             |
+| `firebase-config.js`             | Firebase yapılandırması + Google girişi + ilerleme senkronu (**repoda yok**, `firebase-config.example.js`'den kopyalanır) |
+| `sw.js`                          | Service worker: çevrimdışı çalışma için önbellek                                                                          |
+| `sw-register.js`                 | Service worker'ı sayfa açılışında başlatır                                                                                |
+| `favicon.svg`                    | Site simgesi                                                                                                              |
+| `scripts/validate-questions.mjs` | KOD TAMAMLA sorularını .NET ile derleyip beklenen çıktıyla karşılaştırır                                                  |
+| `tests/data.test.mjs`            | Soru verisinin tutarlılığını denetler (cevap anahtarı, id tekliği, boşluk eşleşmesi)                                      |
+| `tools/validator/`               | .NET doğrulama projesi (script her soru için geçici klasöre kopyalar)                                                     |
+| `firestore.rules`                | Firestore kuralları: kullanıcı yalnızca kendi kaydına erişir                                                              |
+| `netlify.toml`                   | Yayın ayarı (build gerekmez, statik dosyalar)                                                                             |
+
+## Tasarım notları
+
+**Vaka 20** ("Beceri Temelli Soru 2") yalnızca KOD TAMAMLA sorularından oluşur; çoktan seçmeli
+ve boss sorusu bilinçli olarak yoktur. `tests/data.test.mjs` bu vakayı istisna olarak işaretler.
+
+**Firebase API key'i** tarayıcıya inmesi gereken bir değerdir, gizlenemez. Repoda tutulmaz;
+güvenlik Google Cloud'daki API/referrer kısıtlamaları ve `firestore.rules` ile sağlanır.
 
 ## Testler
 
