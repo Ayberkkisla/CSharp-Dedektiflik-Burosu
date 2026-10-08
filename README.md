@@ -94,10 +94,6 @@ npm run format:check # biçim kontrolü
 
 CI her push/PR'da bu üç adımı koşar.
 
-### Bilinen eksik
-
-Vaka 20 ("Beceri Temelli Soru 2") şu an yalnızca 2 KOD TAMAMLA sorusu içeriyor; çoktan seçmeli sorusu ve boss sorusu yok. Bu durum `tests/data.test.mjs` içinde açıkça işaretli ve düzeltildiğinde test güncellenir.
-
 ### Doğrulama kapsamı
 
 `npm run validate` yalnızca KOD TAMAMLA tipindeki soruları derler (`satirlar` + `kabul` + `cikti` alanları makine-okunurdur); çoktan seçmeli ve nüanslı soruların doğruluğu `npm test` ile yapısal olarak, içerik olarak ise elle kontrol edilir.

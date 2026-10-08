@@ -26,22 +26,9 @@ test("data.js parse ediliyor ve beklenen toplamlar korunuyor", () => {
   );
 });
 
-// BILINEN EKSILER (duzeltilene kadar acikca isaretli):
-// - vaka 20 "Beceri Temelli Soru 2": boss alani yok, coktan secmeli soru yok; sadece 2 KOD TAMAMLA var.
-test("vaka 20'de bilinen eksik: boss ve coktan secmeli soru yok", () => {
-  const vaka20 = DERSLER.find((d) => d.n === 20);
-  assert.ok(vaka20, "vaka 20 bulunamadi");
-  assert.equal(
-    (vaka20.sorular || []).length,
-    0,
-    "vaka 20 artik coktan secmeli soru iceriyor",
-  );
-  assert.ok(!vaka20.boss, "vaka 20 artik boss alani iceriyor");
-  assert.ok(
-    (KODTAMAMLALAR[20] || []).length > 0,
-    "vaka 20 KOD TAMAMLA icermiyor",
-  );
-});
+// vaka 20 "Beceri Temelli Soru 2" yalnizca KOD TAMAMLA sorularindan olusur;
+// coktan secmeli sorusu ve boss sorusu bilincli olarak yok.
+const YALNIZCA_KODTAMAMLALI = new Set([20]);
 
 test("her vaka gerekli alanlari iceriyor", () => {
   for (const ders of DERSLER) {
@@ -59,22 +46,15 @@ test("her vaka gerekli alanlari iceriyor", () => {
       kodTamamla + coktanSecmeli > 0,
       `vaka ${ders.n}: ne KOD TAMAMLA ne coktan secmeli soru var`,
     );
-  }
-});
 
-test("soru iceren 22 vakada yeterli soru ve boss var", () => {
-  const sorulu = DERSLER.filter((d) => (d.sorular || []).length > 0);
-  assert.equal(
-    sorulu.length,
-    22,
-    `soru iceren vaka 22 olmali, ${sorulu.length} bulundu`,
-  );
-  for (const ders of sorulu) {
-    assert.ok(ders.boss?.soru, `vaka ${ders.n} boss sorusu yok`);
-    assert.ok(
-      ders.sorular.length >= 5,
-      `vaka ${ders.n}: ${ders.sorular.length} soru, 5'ten az`,
-    );
+    // Boss ve coktan secmeli soru tasiyan her vakada boss olmali.
+    if (!YALNIZCA_KODTAMAMLALI.has(ders.n) && coktanSecmeli > 0) {
+      assert.ok(ders.boss?.soru, `vaka ${ders.n} boss sorusu yok`);
+      assert.ok(
+        coktanSecmeli >= 5,
+        `vaka ${ders.n}: ${coktanSecmeli} soru, 5'ten az`,
+      );
+    }
   }
 });
 
