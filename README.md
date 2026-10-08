@@ -103,12 +103,12 @@ gerektiği için tarama dışında tutulmasını sağlar. Firebase web API key'i
 
 Gizli değerlerin repoya girmesini dört katman engeller:
 
-| Katman                  | Ne yapar                                                                                                                                            |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.gitignore`            | `.env*`, `firebase-config.js`, `service-account.json`, `dist/` ignore edilir                                                                        |
-| `npm run check:secrets` | İçerik taraması (API key, private key, Telegram/GitHub/AWS/OpenAI token) + `.gitignore` kuralları doğrulaması + git'e girmiş yasaklı dosya kontrolü |
-| Git hook'ları           | `npm run install:hooks` sonrası `pre-commit` ve `pre-push` otomatik çalışır                                                                         |
-| GitHub Actions          | `security` job'ı her push'ta `check:secrets`'i koşar, key varsa kırmızıya döner                                                                     |
+| Katman                  | Ne yapar                                                                                                                                                            |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.gitignore`            | `.env*`, `firebase-config.js`, `service-account.json`, `dist/` ignore edilir                                                                                        |
+| `npm run check:secrets` | İçerik taraması (Firebase/Google API key, private key, koda gömülü şifre/token alanları) + `.gitignore` kuralları doğrulaması + git'e girmiş yasaklı dosya kontrolü |
+| Git hook'ları           | `npm run install:hooks` sonrası `pre-commit` ve `pre-push` otomatik çalışır                                                                                         |
+| GitHub Actions          | `security` job'ı her push'ta `check:secrets`'i koşar, key varsa kırmızıya döner                                                                                     |
 
 Bir kez kur, sonra otomatik çalışır:
 

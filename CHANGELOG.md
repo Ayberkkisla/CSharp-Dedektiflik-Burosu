@@ -4,7 +4,7 @@
 
 ### Güvenlik (gizli değerler artık git'e giremez)
 
-- `scripts/check-secrets.mjs`: içerik taraması (Firebase/Google API key, private key, Telegram/GitHub/AWS/OpenAI token) + `.gitignore` kuralları doğrulaması + git'e girmiş yasaklı dosya kontrolü.
+- `scripts/check-secrets.mjs`: içerik taraması (Firebase/Google API key, private key, koda gömülü şifre/token alanları) + `.gitignore` kuralları doğrulaması + git'e girmiş yasaklı dosya kontrolü. Tarama listesi proje özelinde tutuldu; kullanılmayan sağlayıcı kalıpları (Telegram, AWS, OpenAI, GitHub token) çıkarıldı.
 - `.githooks/pre-commit` ve `.githooks/pre-push`: `npm run install:hooks` ile etkinleşir (`core.hooksPath = ./.githooks`).
 - GitHub Actions'a `security` job'ı eklendi; her push'ta `check:secrets` koşar.
 - `tests/security.test.mjs`: denetim script'inin gerçekten yakaladığını sahte anahtar/tok yazarak sınar (11 test geçiyor).

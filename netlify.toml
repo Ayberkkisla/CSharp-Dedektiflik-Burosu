@@ -6,4 +6,4 @@
   NODE_VERSION = "20"
   # firebase-config.js tarayiciya inmesi gereken Firebase config'idir; secret degildir.
   # Tarama bu dosyayi atlar, degerler loglarda maskeli kalir.
-  SECRETS_SCAN_OMIT_PATHS = "firebase-config.js"
+  SECRETS_SCAN_OMIT_PATHS = "**/firebase-config.js"

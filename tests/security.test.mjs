@@ -57,17 +57,13 @@ test("private key yakalaniyor", () => {
   }
 });
 
-test("Telegram bot token'i yakalaniyor", () => {
-  const dosya = path.join(ROOT, "temp-leak-test-tg.txt");
-  fs.writeFileSync(
-    dosya,
-    'TELEGRAM_TOKEN = "1234567890:AAHabcdefghijklmnopqrstuvwxyz0123456789"\n',
-    "utf8",
-  );
+test("koda gomulu sifre alani yakalaniyor", () => {
+  const dosya = path.join(ROOT, "temp-leak-test-pw.txt");
+  fs.writeFileSync(dosya, '{"password":"cokgizliUzunSifre123"}\n', "utf8");
   try {
     const r = calistir();
-    assert.equal(r.status, 1, "token yazildi ama script gecti");
-    assert.match(r.stderr, /Telegram bot token/);
+    assert.equal(r.status, 1, "sifre yazildi ama script gecti");
+    assert.match(r.stderr, /sifre\/token/);
   } finally {
     fs.rmSync(dosya, { force: true });
   }

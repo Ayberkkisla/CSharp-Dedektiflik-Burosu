@@ -1,7 +1,9 @@
 // Guvenlik kontrolu: gizli degerlerin git'e girmesini engeller.
-//   1) Icerik taramasi: AIza..., private key, "=BEGIN ... PRIVATE KEY", token/password kaliplari
+//   1) Icerik taramasi: Firebase/Google API key (AIza...), private key, sifre/token alanlari
 //   2) Kural kontrolu: .env, firebase-config.js gibi dosyalar .gitignore'da mi
 //   3) Tracked dosya kontrolu: yasakli dosyalardan biri git'e giris mi
+//
+// Bu proje yalnizca Firebase kullaniyor; tarama listesi oy gore dar tutulur.
 //
 // Kullanim: npm run check:secrets
 import { execFileSync } from "node:child_process";
@@ -12,15 +14,14 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
 // Bu desenler gizli deger tasiyan dosyalari ve degerleri yakalar.
+// Projenin kullandigi tek gecisli servis Firebase oldugu icin liste oda gore
+// dar tutulur: kullanilmayan saglayici kaliplari (Telegram, AWS, OpenAI,
+// GitHub token) bilerek yoktur.
 // Firebase web API key'i istisnadır: tarayiciya inmesi zorunludur, bu yuzden
 // icerik degil KURAL taramasi uygulanir (dosya repoda olmamalidir).
 const CONTENT_PATTERNS = [
   { re: /AIza[0-9A-Za-z_-]{30,}/, ad: "Google/Firebase API key" },
   { re: /-----BEGIN [A-Z ]*PRIVATE KEY-----/, ad: "private key" },
-  { re: /\b[0-9]{10,}:[A-Za-z0-9_-]{30,}\b/, ad: "Telegram bot token" },
-  { re: /\bghp_[A-Za-z0-9]{30,}/, ad: "GitHub token" },
-  { re: /\bsk-[A-Za-z0-9]{20,}/, ad: "OpenAI/Secret key" },
-  { re: /AKIA[0-9A-Z]{16}/, ad: "AWS access key" },
   {
     re: /"(?:password|passwd|secret|token|api[_-]?key)"\s*:\s*"[^"$\s]{16,}"/i,
     ad: "sifre/token",
