@@ -86,4 +86,4 @@ CI her push'ta bu üçünü koşar.
 ## Lisans
 
 - Uygulama kodu: MIT (`LICENSE`)
-- Soru verisi (`data.js`): CC BY-SA 4.0 esinli, `LICENSE-CONTENT.md`
+- Soru verisi (`data.js`): tr.wikibooks _C#_ kaynaklarından esinli, CC BY-SA 4.0

@@ -1,5 +1,5 @@
 // data.js butunluk testleri (node:test, sifir bagimlilik).
-// Burada test edilen sey soru verisinin tutarliligi; .NET dogrulamasi scripts/validate-questions.mjs'de.
+// Soru verisinin tutarliligini denetler; C# ciktilarini scripts/validate-questions.mjs dogrular.
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";

@@ -13,7 +13,7 @@
 - Python bağımlılığı kaldırıldı, `python -m http.server` yerine `npm start`.
 - Soru verisi bütünlük testleri (`tests/data.test.mjs`).
 - GitHub Actions CI: veri testleri + .NET doğrulama + Prettier.
-- Prettier, `firestore.rules`, `CONTRIBUTING.md`, `LICENSE-CONTENT.md`, issue/PR şablonları, `CHANGELOG.md` eklendi.
+- Prettier, `firestore.rules`, `CONTRIBUTING.md`, issue/PR şablonları, `CHANGELOG.md` eklendi.
 - PWA: `sw.js` network-first, yalnızca `res.ok` önbellekleniyor.
 - Erişilebilirlik: `aria-live` maskot balonunda, `:focus-visible` odak stili, `favicon.svg`.
 

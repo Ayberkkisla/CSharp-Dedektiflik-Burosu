@@ -1,10 +1,10 @@
 // Firebase yapilandirmasi ve giris/senkron mantigi.
-// Bu dosya repoda YOKTUR (.gitignore'da).
-// Nasil olusturulur: firebase-config.example.js dosyasini kopyalayip
-// firebase-config.js adıyla kaydet ve degerleri kendi Firebase projenle degistir.
 //
-// Not: Firebase web API key'i tarayiciya inmesi gerekir (gizlenemez).
-// Guvenlik, Google Cloud'daki API + referrer kisitlamalari ve firestore.rules ile saglanir.
+// Kullanim: bu dosyayi firebase-config.js olarak kopyala, degerleri kendi
+// Firebase projenle degistir. firebase-config.js repoda tutulmaz.
+//
+// Firebase web API key'i tarayiciya inmesi gerekir (gizlenemez); guvenlik
+// Google Cloud API/referrer kisitlamalari ve firestore.rules ile saglanir.
 var fbUid = null,
   fbDb = null,
   fbAuth = null;
