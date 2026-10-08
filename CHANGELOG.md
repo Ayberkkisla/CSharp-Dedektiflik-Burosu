@@ -32,6 +32,7 @@
 - `netlify.toml`: `publish = "dist"` — `scripts/build-site.mjs` yalnızca gereken dosyaları kopyalar, `tools/`/`tests/`/`docs/`/`.github/` canlıya çıkmaz. `SECRETS_SCAN_OMIT_PATHS = "firebase-config.js"` ile tarayıcıya inmesi zorunlu Firebase config'i Netlify taramasından çıkarılır, loglarda maskeli kalır.
 - `firestore.rules` sertleştirildi: yalnızca `xp`, `seri`, `sonGun`, `biten`, `ses` alanları, tip ve aralık kontrolleriyle; diğer tüm yollar kapalı.
 - `dist/` yayınlanırken `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` başlıkları eklenir.
+- `scripts/make-firebase-config.mjs` artık CI/Netlify/Vercel/GitHub Actions ortamlarında eksik `FIREBASE_*` değişkeni varsa **build'i durduruyor**; yerelde uyarıyla devam ediyor. Böylece eksik env nedeniyle giriş/senkronun sessizce kapalı kalması engellenir (canlıda yaşandı: site "giriş yapılamıyor" uyarısı veriyordu).
 - Geçmişten temizlik: iki Firebase API key'i `git filter-repo` ile tüm commit'lerden silindi, force-push yapıldı.
 
 ### Yayın

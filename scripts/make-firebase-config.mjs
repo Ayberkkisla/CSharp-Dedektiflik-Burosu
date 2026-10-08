@@ -42,6 +42,16 @@ function main() {
     ([env]) => env,
   );
 
+  // CI/Netlify gibi ortamda eksik degisken hatadir: gizli modda uretmek
+  // "giris calisiyor" gorunumu verir ama giris sessizce kapali kalir.
+  // Bu yuzden build ortaminda hata verip deploy'u durduruyoruz.
+  const isBuildOrtami = !!(
+    process.env.CI ||
+    process.env.NETLIFY ||
+    process.env.VERCEL ||
+    process.env.GITHUB_ACTIONS
+  );
+
   const body = missing.length
     ? `// firebase-config.js (uretilmis) - eksik ortam degiskenleri: ${missing.join(", ")}\n` +
       `// Firebase yapilandirmasi yok; oyun yerel modda calisiyor.\n` +
@@ -56,6 +66,16 @@ function main() {
   fs.writeFileSync(OUT, body, "utf8");
 
   if (missing.length) {
+    if (isBuildOrtami) {
+      console.error(
+        `[firebase-config] HATA: ${missing.length} ortam degiskeni eksik: ${missing.join(", ")}\n` +
+          "Netlify > Project configuration > Environment variables icinde bu 6 degeni tanimla " +
+          "(FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_PROJECT_ID, " +
+          "FIREBASE_STORAGE_BUCKET, FIREBASE_MESSAGING_SENDER_ID, FIREBASE_APP_ID).\n" +
+          "Deploy bilerek durduruluyor: aksi halde giriş/senkron sessizce calismaz.",
+      );
+      process.exit(1);
+    }
     console.warn(
       `[firebase-config] ${missing.length} degisken eksik -> yerel modda uretildi: ${missing.join(", ")}`,
     );

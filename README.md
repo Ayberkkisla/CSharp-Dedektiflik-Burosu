@@ -46,6 +46,7 @@ scripts/
 tests/
   data.test.mjs               # soru verisi bütünlüğü
   security.test.mjs           # gizli değer denetimini sınar
+  firebase-config.test.mjs    # CI'da eksik env varsa build'in durduğunu sınar
 tools/validator/              # .NET doğrulama projesi
 .githooks/                    # pre-commit / pre-push
 firestore.rules               # Firestore güvenlik kuralları
@@ -81,7 +82,8 @@ npm run dev:config
 
 Gerekli değişkenler: `FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_STORAGE_BUCKET`, `FIREBASE_MESSAGING_SENDER_ID`, `FIREBASE_APP_ID`.
 
-Değişkenler tanımlı değilse site **yapılandırmasız modda** açılır: oyun tam çalışır, giriş ve cihazlar arası senkron kapalı olur.
+Değişkenler tanımlı değilse **yerelde** site yapılandırmasız modda açılır: oyun tam çalışır, giriş ve cihazlar arası senkron kapalı olur.
+CI/Netlify gibi build ortamlarında ise eksik değişken **build'i durdurur** — böylece "giriş çalışmıyor" hatası canlıya sessizce yayılmaz.
 
 Kendi Firebase projeni kullanacaksan: `Authentication > Google` ve `Firestore`'u aktif et, domain'i `Authorized domains`'e ekle, kuralları `firestore.rules` dosyasından kopyala.
 
@@ -127,7 +129,7 @@ Sızan bir değeri geçmişten temizlemek için: `python -m git_filter_repo --re
 ## Testler ve doğrulama
 
 ```bash
-npm test              # veri bütünlüğü + güvenlik denetimi testleri
+npm test              # veri bütünlüğü + güvenlik denetimi + config üretimi testleri
 npm run check:secrets # gizli değer taraması
 npm run validate      # KOD TAMAMLA sorularını .NET ile derleyip çıktıları karşılaştırır
 npm run format:check  # biçim kontrolü
