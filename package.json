@@ -9,6 +9,8 @@
     "validate": "node scripts/validate-questions.mjs",
     "test": "node --test tests/data.test.mjs",
     "format": "npx --yes prettier --write .",
-    "format:check": "npx --yes prettier --check \"**/*.{html,css,md,yml,yaml}\" \"app.js\" \"sw.js\" \"sw-register.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"package.json\""
+    "format:check": "npx --yes prettier --check \"**/*.{html,css,md,yml,yaml}\" \"app.js\" \"sw.js\" \"sw-register.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"package.json\"",
+    "build": "node scripts/write-firebase-config.mjs",
+    "prestart": "npm run build"
   }
 }

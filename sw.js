@@ -1,5 +1,5 @@
 /* Never intercept Google sign-in, Firebase calls or account data. */
-const VERSION = "noir-static-v1";
+const VERSION = "noir-static-v2";
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (event) =>
   event.waitUntil(
@@ -15,6 +15,7 @@ self.addEventListener("fetch", (event) => {
   const request = event.request,
     url = new URL(request.url);
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
+  if (url.pathname.endsWith("/firebase-config.js")) return;
   const isPage = request.mode === "navigate",
     isAsset =
       /\/assets\//.test(url.pathname) &&

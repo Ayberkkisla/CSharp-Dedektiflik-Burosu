@@ -1,8 +1,9 @@
-DEDEKTİF NOKTA — NETLIFY PAKETİ
+DEDEKTİF NOKTA — NETLIFY KURULUMU
 
-1. ZIP dosyasını bir klasöre çıkar.
-2. Netlify panelinde manuel dağıtımı aç.
-3. index.html ve assets klasörünü içeren klasörü yükleme alanına bırak.
-4. Kurulum veya build komutu gerekmez.
+GitHub bağlantılı dağıtımda Netlify, npm run build komutunu çalıştırır ve kök klasörü yayınlar.
+Google girişi için Netlify ortam değişkenlerine NOIR_FIREBASE_CONFIG ekle.
+Değer, firebase-config.example.js içindeki nesnenin kendi proje değerlerinle doldurulmuş geçerli JSON karşılığı olmalıdır.
+Ortam değişkeni tanımlı değilse Google girişi kapalı kalır; misafir ilerlemesi cihazda saklanır.
 
-Google ile giriş kullanacaksan, yayın sonrası Netlify alan adını Firebase Authentication > Settings > Authorized domains bölümüne ekle.
+Manuel dağıtımda önce npm run build çalıştır. Üretilen assets/firebase-config.js dahil klasörü yükle.
+Firebase yapılandırmasını Git'e ekleme. Ayrıntılar README.md dosyasındadır.

@@ -38,40 +38,39 @@ npm start        # http://localhost:8000
 
 ### Firebase yapılandırması
 
-`firebase-config.js` repoda **tutulmaz** (`.gitignore`'da). Şablondan oluştur:
+Gerçek Firebase yapılandırması Git deposunda tutulmaz. Google girişi olmadan da ilerleme cihazda kaydedilir.
 
-```bash
-copy firebase-config.example.js firebase-config.js
-```
+Netlify'da **Site configuration → Environment variables** bölümüne `NOIR_FIREBASE_CONFIG` ekle. Değer, `firebase-config.example.js` içindeki nesnenin kendi Firebase projenin değerleriyle doldurulmuş geçerli JSON karşılığı olmalıdır. `window.NOIR_FIREBASE_CONFIG =` kısmını ve sondaki noktalı virgülü ekleme. Değişkenin build sırasında erişilebilir olduğundan emin ol.
 
-Sonra `firebase-config.js` içindeki değerleri kendi Firebase projenle değiştir.
-Firebase konsolundan: **Proje ayarları → Web uygulamaları → SDK kurulum**.
+`npm run build`, bu değerden Git tarafından izlenmeyen `assets/firebase-config.js` dosyasını üretir. Değişken yoksa anahtarsız bir dosya üretir ve Google girişi kapalı kalır. Oluşturulan dosyanın içeriği günlük çıktısına yazdırılmaz.
 
-Kendi projeni kullanacaksan: `Authentication > Google` ve `Firestore`'u aktif et, domain'i
-`Authorized domains`'e ekle, kuralları `firestore.rules` dosyasından kopyala.
+Yerel sunucuda Google girişi için aynı ortam değişkenini tanımlayıp `npm start` çalıştır. Alternatif olarak `firebase-config.example.js` dosyasını `assets/firebase-config.js` konumuna kopyalayıp kendi değerlerini doldur ve doğrudan statik sunucu başlat. `npm start`, build adımını çalıştırıp bu dosyayı ortam değişkeninden yeniden üretir.
+
+Firebase web yapılandırması uygulama çalışırken tarayıcıya gönderilir; ortam değişkeni kullanmak onu tarayıcıdan gizlemez. Güvenlik için Firebase API kısıtlamaları, yetkili alan adları ve uygun Firestore kuralları gerekir.
 
 ### Yayınlama
 
-Klasörü Netlify'a sürükle-bırak yap. Build gerekmez, statik dosyalardır.
-`firebase-config.js` publish edilen klasörde bulunmalı.
+Netlify, `netlify.toml` içindeki `npm run build` komutunu çalıştırır ve kök klasörü yayınlar. Ortam değişkenini değiştirdikten sonra yeniden deploy et.
+
+Manuel dağıtımda önce `npm run build` çalıştır ve üretilen `assets/firebase-config.js` dahil klasörü yükle. Yalnızca ZIP sürükleyip bırakmak build komutunu çalıştırmaz.
 
 ## Dosyalar
 
-| Dosya                            | Ne işe yarar                                                                                                              |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `index.html`                     | Sayfa iskeleti, script ve stil bağlantıları                                                                               |
-| `style.css`                      | Tüm görsel stiller                                                                                                        |
-| `app.js`                         | Oyun motoru: vaka akışı, menü, hesap makinesi, soru gösterimi                                                             |
-| `data.js`                        | Soru verisi: 23 vaka, 500 soru, boss soruları                                                                             |
-| `firebase-config.js`             | Firebase yapılandırması + Google girişi + ilerleme senkronu (**repoda yok**, `firebase-config.example.js`'den kopyalanır) |
-| `sw.js`                          | Service worker: çevrimdışı çalışma için önbellek                                                                          |
-| `sw-register.js`                 | Service worker'ı sayfa açılışında başlatır                                                                                |
-| `favicon.svg`                    | Site simgesi                                                                                                              |
-| `scripts/validate-questions.mjs` | KOD TAMAMLA sorularını .NET ile derleyip beklenen çıktıyla karşılaştırır                                                  |
-| `tests/data.test.mjs`            | Soru verisinin tutarlılığını denetler (cevap anahtarı, id tekliği, boşluk eşleşmesi)                                      |
-| `tools/validator/`               | .NET doğrulama projesi (script her soru için geçici klasöre kopyalar)                                                     |
-| `firestore.rules`                | Firestore kuralları: kullanıcı yalnızca kendi kaydına erişir                                                              |
-| `netlify.toml`                   | Yayın ayarı (build gerekmez, statik dosyalar)                                                                             |
+| Dosya                            | Ne işe yarar                                                                              |
+| -------------------------------- | ----------------------------------------------------------------------------------------- |
+| `index.html`                     | Sayfa iskeleti, script ve stil bağlantıları                                               |
+| `style.css`                      | Tüm görsel stiller                                                                        |
+| `app.js`                         | Oyun motoru: vaka akışı, menü, hesap makinesi, soru gösterimi                             |
+| `data.js`                        | Soru verisi: 23 vaka, 500 soru, boss soruları                                             |
+| `assets/firebase-config.js`      | Ortam değişkeninden build sırasında üretilen Firebase web yapılandırması (**repoda yok**) |
+| `sw.js`                          | Service worker: çevrimdışı çalışma için önbellek                                          |
+| `sw-register.js`                 | Service worker'ı sayfa açılışında başlatır                                                |
+| `favicon.svg`                    | Site simgesi                                                                              |
+| `scripts/validate-questions.mjs` | KOD TAMAMLA sorularını .NET ile derleyip beklenen çıktıyla karşılaştırır                  |
+| `tests/data.test.mjs`            | Soru verisinin tutarlılığını denetler (cevap anahtarı, id tekliği, boşluk eşleşmesi)      |
+| `tools/validator/`               | .NET doğrulama projesi (script her soru için geçici klasöre kopyalar)                     |
+| `firestore.rules`                | Firestore kuralları: kullanıcı yalnızca kendi kaydına erişir                              |
+| `netlify.toml`                   | Yayın ayarı (build gerekmez, statik dosyalar)                                             |
 
 ## Tasarım notları
 
