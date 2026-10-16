@@ -1,0 +1,5 @@
+This project includes GSAP 3.15.0, copyright GreenSock / GSAP.
+Upstream package: https://www.npmjs.com/package/gsap/v/3.15.0
+Distribution: https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js
+License and terms: https://gsap.com/standard-license/
+The original license header is retained in assets/gsap.min.js.

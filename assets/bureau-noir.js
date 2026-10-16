@@ -1,0 +1,12 @@
+(function(g){'use strict';
+const $=id=>document.getElementById(id),motion=g.matchMedia('(prefers-reduced-motion: reduce)'),toggle=$('bureau-motion'),overlay=$('bureau-entry');
+let enabled=!motion.matches,timer=null,navigating=false,lastLink=null;
+try{if(g.localStorage.getItem('noir-bureau-motion')==='off')enabled=false;}catch(_){}
+function displayMotion(){const animate=enabled&&!motion.matches&&!document.hidden;document.body.classList.toggle('is-still',!animate);document.querySelectorAll('.bureau-loop').forEach(img=>{const target=animate?img.dataset.animated:img.dataset.poster;if(img.getAttribute('src')!==target)img.setAttribute('src',target);});toggle.setAttribute('aria-pressed',String(enabled&&!motion.matches));toggle.textContent=enabled&&!motion.matches?'Hareket açık':'Hareket kapalı';toggle.disabled=motion.matches;if(motion.matches)toggle.title='Sistemindeki hareket azaltma tercihi açık.';else toggle.removeAttribute('title');}
+toggle.addEventListener('click',()=>{enabled=!enabled;try{g.localStorage.setItem('noir-bureau-motion',enabled?'on':'off');}catch(_){}displayMotion();});motion.addEventListener?.('change',displayMotion);document.addEventListener('visibilitychange',displayMotion);
+function reset(){clearTimeout(timer);timer=null;navigating=false;overlay.hidden=true;document.body.classList.remove('is-entering');document.body.removeAttribute('aria-busy');}
+document.querySelectorAll('.bureau-course').forEach(link=>link.addEventListener('click',event=>{if(event.defaultPrevented||event.button>0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||link.target==='_blank'||motion.matches||!enabled)return;event.preventDefault();if(navigating)return;navigating=true;lastLink=link;$('bureau-entry-code').textContent=link.dataset.course==='C#'?'DOSYA 01 / C#':'DOSYA 02 / C';$('bureau-entry-title').textContent=link.dataset.welcome;$('bureau-entry-caption').textContent=link.dataset.caption;overlay.hidden=false;document.body.classList.add('is-entering');document.body.setAttribute('aria-busy','true');overlay.focus({preventScroll:true});timer=setTimeout(()=>{timer=null;g.location.assign(link.getAttribute('href'));},1650);}));
+function cancel(){reset();lastLink?.focus({preventScroll:true});}
+$('bureau-entry-cancel').addEventListener('click',cancel);document.addEventListener('keydown',event=>{if(event.key==='Escape'&&navigating){event.preventDefault();cancel();}});
+g.addEventListener('pageshow',()=>{reset();displayMotion();});g.addEventListener('pagehide',reset);displayMotion();
+})(window);

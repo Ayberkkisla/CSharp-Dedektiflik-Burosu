@@ -1,0 +1,8 @@
+DEDEKTİF NOKTA — NETLIFY PAKETİ
+
+1. ZIP dosyasını bir klasöre çıkar.
+2. Netlify panelinde manuel dağıtımı aç.
+3. index.html ve assets klasörünü içeren klasörü yükleme alanına bırak.
+4. Kurulum veya build komutu gerekmez.
+
+Google ile giriş kullanacaksan, yayın sonrası Netlify alan adını Firebase Authentication > Settings > Authorized domains bölümüne ekle.

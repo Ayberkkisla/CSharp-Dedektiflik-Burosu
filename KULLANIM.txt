@@ -1,0 +1,54 @@
+DEDEKTİF NOKTA · ORTAK PROGRAMLAMA BÜROSU
+index.html ile C# ve C bölümlerine ulaşılır.
+C bölümünde 12 vaka var. Her vaka önce tahta örneğinin tamamlanmış C kodunu, kullanılan ifadeleri ve her satırın görevini anlatır. Sonra üç çözümlü örnek/soru çifti gelir: farklı sayılarla sonuç, farklı değişken adlarıyla üç satırlı kod tamamlama, özel girdi kontrolü.
+Tahta kodları birebir transkripsiyon değildir; boş liste, bellek ve dönüş kontrolleriyle tamamlanmıştır.
+Yeni ilerleme cnoir-cases kaydında tutulur. Eski ilerlemeler ve kod taslakları korunur. Serbest yazma alanı vaka sonunda isteğe bağlıdır; C kodu tarayıcıda derlenmez. Testli C dosyası yerel C ortamında çalıştırılabilir.
+
+Görsel tahta: her vakada düğümler data/next bölmeli kutularla gösterilir. Sonraki/önceki görsel adım düğmeleri bağlantı değişikliklerini, gezicileri ve free edilen düğümü gösterir. Soru sayfasında yalnızca başlangıç şeması görünür.
+
+Çözümlü örneklerin animasyonu otomatik başlar. Oynat/duraklat, önceki/sonraki adım ve yavaş/normal/hızlı ayarı vardır. Örnekten çıkınca zamanlayıcı durdurulur. Hareket azaltma tercihinde otomatik hareket kapalıdır. Soruların başlangıç şemaları sabittir.
+
+Kesintisiz animasyon: aynı SVG sahnesi korunur; düğümler bellek konumlarında kalır. İşaretçiler ve bağlantı okları ara konumlardan geçerek hareket eder, adres ışığı bağlantının üzerinde ilerler. Oynat/duraklat hareketin ortasında kullanılabilir.
+
+
+C bölümünün tek girişi: c-kod-atolyesi.html. Her vakada önce açıklama ve çözümlü örnek, ardından benzer soru vardır. Nokta kalıcı vaka yolunda dosyalar arasında hareket eder; doğru cevapta +20/+30 XP, parıltı ve bildirim gösterilir. Aynı sorunun XP ödülü yalnızca bir kez verilir. Vaka sonunda o dosyadan kazanılan XP görünür.
+
+Sorular artık kısa animasyonlu soru sahneleriyle sunulur. Film başlangıç listesini ve yapılacak işlemi tanıtır; bağlantıları değiştirip cevabı göstermez. Oynat/duraklat, zaman çizelgesi ve tekrar izle kontrolleri vardır. Tarayıcı destekliyorsa Sesli anlatımı aç düğmesi Türkçe anlatımı etkinleştirir. Bu yerel animasyonlu oynatıcıdır; dış video bağlantısı gerekmez.
+
+Soru kodları: sonuç ve özel durum sorularında animasyonun yanında tam C fonksiyonu, satır numaraları ve soruya ait fonksiyon çağrısı gösterilir. Satıra dokununca açıklaması açılır. Kod tamamlama sorularında numaralı fonksiyondaki üç boşluk korunur.
+
+Oyun haritası: C bölümünün girişinde yalnızca 12 mekânlı harita vardır; altta ikinci vaka girişleri bulunmaz. Numaralı durağa dokunarak vaka açılır. Her durağın ayrı çizimi ve adı vardır. Nokta kıvrılan rotayı izleyerek hareket eder. Vaka sırasında harita üstte küçük görünür; VAKALAR düğmesi tam haritayı açar. XP ve tamamlanma kayıtları korunur.
+
+Noir harita: ada/orman görünümü yerine karanlık şehir, kanal, yağmur izleri, hafif sis ve loş sokak lambaları kullanılır. 12 mekânın çizimleri yenilendi: rıhtım, gece garı, arşiv, arka sokak, fener, bar, demir köprü, kavşak, avlu, son sefer, kilitli depo ve adliye. Vaka sırası, Nokta hareketi ve XP kayıtları korunur.
+
+Hareketli atmosfer: harita yağmuru sürekli akar, sokak lambaları ve pencereler yavaşça ışıldar. Gözlem Feneri’nin çift yönlü ışık huzmesi 12 saniyede bir tam tur döner. Hareket azaltma tercihi açıkken bu animasyonlar durur.
+
+Fener düzeltmesi: ışık ekran düzleminde çark gibi dönmez; yatay dönüşün görünümü sağa/sola uzama ve daralma ile gösterilir. Işığın çıkış noktası fenerde sabittir.
+
+Toplam 16 vaka. Yeni 13–16: 4. düğümü silme, yalnızca ilk tekrar eden değeri silme, boş liste ile birleştirme, dairesel başı silip dönüş okunu koruma. Yeni konu yok; önceki bağlı liste işlemlerinin farklı senaryolarıdır. Eski XP ve tamamlanan vakalar korunur.
+
+Sesli anlatım: konuşma dilinde kısa cümleler, teknik sembolleri seslendirmeyen metin, sahne değişiminde kesilmeyen anlatım. Mevcutsa doğal Türkçe tarayıcı sesi tercih edilir. Ses kalitesi cihazın ses motoruna bağlıdır.
+
+Her 16 vakada tam fonksiyon kod yapbozu: tüm satırları sürükleyip yerleştirme, dokunma/klavye desteği, yer değiştirme, model üzerinde çalıştırma ve testli C indirme. Yapboz başına bir kez 40 XP; toplam 1760 XP. Tarayıcı C derlemez; güvenli referans sıralamalarını kontrol edip bağlantı modelini gösterir. Eski ilerleme korunur.
+
+Vakaya giriş: kenarlardan merkeze siyah dairesel kapanış, kapalı ekranda vaka açma, ardından merkezden açılış. Yaklaşık 1,2 saniye; azaltılmış hareket tercihinde doğrudan giriş.
+
+Kod yapbozu: yerleştirilen satır doğru konumdaysa yeşil, yanlışsa kırmızı parlar. Bağımsız data/next atamalarının kabul edilen alternatif sırası da yeşil gösterilir.
+
+Sabit hızlı gezinme çubuğu: Geri/İleri, soruda Kontrol et/Devam, yapbozda Çalıştır ve sayfa başına git. Mobil güvenli ekran boşluğu desteklenir; sorular doğru çözülmeden ileri atlanmaz.
+
+Üç boşluklu kod sorularında da anlık yeşil/kırmızı yerleştirme geri bildirimi etkin.
+
+Üst bölüm seçici: fareyle üzerine gelince Büro/C#/C bağlantıları açılır. Dokunma ve klavye desteği; Escape veya dışarı tıklama ile kapanır.
+
+Üst şerit artık varsayılan olarak gizlidir. Ekranın üst kenarına fareyle gelince tamamı açılır, uzaklaşınca kapanır. Mobilde küçük ☰ sekmesiyle açılır. Ders alanında şerit için boşluk ayrılmaz.
+
+C# bölümü: mevcut 23 ders ve soru içeriği korunarak noir şehir haritasına taşındı. Dört bölge, 23 mekân, sıra kilitleri, Nokta hareketi, XP parlamaları ve siyah vaka geçişi. Eski cnoir ilerlemesi korunur.
+
+Büro sayfasında F11 tam ekran önerisi hafifçe büyüyüp küçülür. Dokunmatik cihazlarda gizlidir; azaltılmış hareket tercihinde sabit görünür.
+
+C doğruluk kontrolü (14 Ekim): 16 vaka, 62 hazır girdi, cevap anahtarları, kod eşleştirmeleri ve animasyonlar incelendi. Birleştirme sorularının işaretçi/çağrı adları tutarlı hale getirildi. 27.600 kaynak gövdesi değerlendirmesi C sözdiziminin kullanılan alt kümesini bir bellek modelinde çalıştırır; yerel C derlemesi yapılmamıştır.
+
+Firebase hesabı: Google girişi + kullanıcıya özel Firestore ilerleme kayıtları. Misafir ve farklı hesap kayıtları ayrıdır. Yapboz yerleşimleri ve taslaklar eşitlenir. Google provider, yetkili Netlify domaini ve firestore.rules kurulumu gereklidir.
+
+Google giriş alanı Büroda ilk görünür karttır; otomatik kayıt düğmesi parlıyor. Derslerde üst menü dışında görünür. İlk hesap kontrolü tamamlanmadan giriş başlatılmaz; giriş penceresi sürerken sayfa yenileme ertelenir. Çift tıklama ikinci pencere açmaz.
