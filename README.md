@@ -11,7 +11,7 @@ C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS
 - 🕵️‍♂️ Noir teması, yağmur/pencere/ofis arkaplan, maskot ipuçları
 - 📱 Mobil ve masaüstü uyumlu
 - 📦 PWA: `sw.js` ile çevrimdışı önbellek
-- ✔️ KOD TAMAMLA sorularının doğru cevapları CI'da .NET ile derlenip doğrulanır
+- ✔️ Test verisindeki KOD TAMAMLA sorularının doğru cevapları CI'da .NET ile derlenip doğrulanır
 
 ## Ekran Görüntüleri
 
@@ -56,21 +56,27 @@ Manuel dağıtımda önce `npm run build` çalıştır ve üretilen `assets/fire
 
 ## Dosyalar
 
-| Dosya                            | Ne işe yarar                                                                              |
-| -------------------------------- | ----------------------------------------------------------------------------------------- |
-| `index.html`                     | Sayfa iskeleti, script ve stil bağlantıları                                               |
-| `style.css`                      | Tüm görsel stiller                                                                        |
-| `app.js`                         | Oyun motoru: vaka akışı, menü, hesap makinesi, soru gösterimi                             |
-| `data.js`                        | Soru verisi: 23 vaka, 500 soru, boss soruları                                             |
-| `assets/firebase-config.js`      | Ortam değişkeninden build sırasında üretilen Firebase web yapılandırması (**repoda yok**) |
-| `sw.js`                          | Service worker: çevrimdışı çalışma için önbellek                                          |
-| `sw-register.js`                 | Service worker'ı sayfa açılışında başlatır                                                |
-| `favicon.svg`                    | Site simgesi                                                                              |
-| `scripts/validate-questions.mjs` | KOD TAMAMLA sorularını .NET ile derleyip beklenen çıktıyla karşılaştırır                  |
-| `tests/data.test.mjs`            | Soru verisinin tutarlılığını denetler (cevap anahtarı, id tekliği, boşluk eşleşmesi)      |
-| `tools/validator/`               | .NET doğrulama projesi (script her soru için geçici klasöre kopyalar)                     |
-| `firestore.rules`                | Firestore kuralları: kullanıcı yalnızca kendi kaydına erişir                              |
-| `netlify.toml`                   | Yayın ayarı (build gerekmez, statik dosyalar)                                             |
+| Dosya veya klasör                                    | Ne işe yarar                                                                             |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `index.html`                                         | C# ve C bölümlerine açılan ana sayfa                                                     |
+| `CSharp Dedektiflik bürosu.html`                     | C# dersleri ve oyun motoru                                                               |
+| `c-kod-atolyesi.html`                                | C bağlı liste vakaları ve alıştırmaları                                                  |
+| `assets/`                                            | Aktif sayfaların stilleri, betikleri, haritaları ve animasyonları                        |
+| `assets/progress-store.js`                           | Cihazdaki ilerleme kaydı                                                                 |
+| `assets/firebase-account.js`                         | Google girişi ve ilerleme eşitleme                                                       |
+| `assets/firebase-config.js`                          | Build sırasında üretilen, Git tarafından izlenmeyen yapılandırma                         |
+| `firebase-config.example.js`                         | Gerçek anahtar içermeyen yapılandırma örneği                                             |
+| `scripts/write-firebase-config.mjs`                  | Yayın ortamından Firebase yapılandırması üretir                                          |
+| `sw.js`, `manifest.webmanifest`                      | PWA ve çevrimdışı önbellek                                                               |
+| `data.js`                                            | Mevcut soru testleri ve .NET doğrulaması için korunan veri; sayfalar bu dosyayı yüklemez |
+| `tests/data.test.mjs`                                | Test verisinin tutarlılığını denetler                                                    |
+| `scripts/validate-questions.mjs`, `tools/validator/` | Test verisindeki C# kod cevaplarını .NET ile doğrular                                    |
+| `firestore.rules`                                    | Firebase için depo içindeki kural dosyası                                                |
+| `netlify.toml`                                       | Build, yayın başlıkları ve eski sayfa adresleri için yönlendirmeler                      |
+
+Yüklenmeyen eski sinema, film, macera, soruşturma ve bağımsız laboratuvar modülleri kaldırıldı.
+Eski HTML adresleri Netlify üzerinden güncel bölümlere yönlendirilir.
+Derslerde kullanılan `assets/case-loops/` animasyonları, posterleri ve `assets/c-question-video.js` korunur.
 
 ## Tasarım notları
 

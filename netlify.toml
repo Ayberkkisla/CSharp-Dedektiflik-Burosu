@@ -11,3 +11,34 @@
   for = "/assets/firebase-config.js"
   [headers.values]
     Cache-Control = "no-store"
+
+# Compatibility routes for removed legacy pages.
+[[redirects]]
+  from = "/c-bagli-liste.html"
+  to = "/c-kod-atolyesi.html"
+  status = 301
+
+[[redirects]]
+  from = "/c-dersler.html"
+  to = "/c-kod-atolyesi.html"
+  status = 301
+
+[[redirects]]
+  from = "/csharp-film-01.html"
+  to = "/CSharp%20Dedektiflik%20b%C3%BCrosu.html"
+  status = 301
+
+[[redirects]]
+  from = "/csharp-sinema.html"
+  to = "/CSharp%20Dedektiflik%20b%C3%BCrosu.html"
+  status = 301
+
+[[redirects]]
+  from = "/csharp-sinema-arsiv.html"
+  to = "/CSharp%20Dedektiflik%20b%C3%BCrosu.html"
+  status = 301
+
+[[redirects]]
+  from = "/csharp-kod-laboratuvari.html"
+  to = "/CSharp%20Dedektiflik%20b%C3%BCrosu.html"
+  status = 301
