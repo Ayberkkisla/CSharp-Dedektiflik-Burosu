@@ -1,5 +1,841 @@
 /* One task per screen; the case and saved programs are unchanged. */
-.dc-camera .cg-film-frame{width:min(100%,85.5vh);max-height:none;margin:0 auto;aspect-ratio:3/2}.dc-camera .dc-camera-layout>div:first-child{background:#0b1924}
-.desktop-case{background:#0d1720;font-size:14px}.dc-monitor{max-width:1240px;margin:15px auto 0;padding:0 9px;background:#25323c;box-shadow:0 10px 60px #0004;border-color:#3c4b57}.dc-bezel{height:24px}.dc-bezel>span:nth-child(2){display:none}.dc-screen{background:#15232f;min-height:calc(100vh - 85px)}.dc-menubar{height:48px;padding:10px 24px;background:#12202b;gap:20px}.dc-case-title{display:none}.dc-system>span:nth-child(2){display:none}.dc-system>#dc-xp{border:0;font-size:10px;color:#a6b9bc}.dc-os{font-size:11px}.dc-desktop{display:block;min-height:calc(100vh - 180px)}.dc-launcher{display:none}.dc-workspace{padding:28px 32px 34px;max-width:1120px;margin:auto}.dc-desktop-heading{margin-bottom:24px;align-items:center}.dc-desktop-heading .dc-eyebrow{display:none}.dc-desktop-heading h1{font-size:27px;font-weight:600;letter-spacing:-.04em;margin:0}.dc-desktop-heading>p{font:12px/1.7 Manrope,'Segoe UI',sans-serif;color:#9bb1bd;max-width:390px}.dc-simple-nav{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:22px;border-bottom:1px solid #36505e;padding-bottom:16px}.dc-simple-nav>div{display:flex;gap:8px;flex-wrap:wrap}.dc-simple-nav button{font:12px Manrope,'Segoe UI',sans-serif;padding:10px 15px;background:transparent;border-color:transparent;color:#94aebd}.dc-simple-nav button[aria-selected=true]{background:#29414d;border-color:#5e838e;color:#d9eee9}.dc-simple-nav>#dc-simple-camera{font-size:11px;border-color:#3b5869;white-space:nowrap}.dc-windows{display:block}.dc-windows>.dc-window{display:none}.dc-screen[data-view=messages] .dc-windows>.dc-inbox{display:block}.dc-screen[data-view=analysis] .dc-windows>.dc-terminal{display:block}.dc-screen[data-view=profiles] .dc-windows>.dc-profiles-window{display:block}.dc-window{border-color:#3b5565;border-radius:7px;box-shadow:none;background:#1b2d39}.dc-titlebar{background:#223743;min-height:45px;padding:0 20px;border-bottom-color:#3b5565}.dc-titlebar h2{font-size:12px;font-weight:600}.dc-titlebar .dc-app-icon,.dc-titlebar .dc-window-dots,.dc-titlebar .dc-pill,.dc-titlebar>.dc-title-button{display:none}.dc-camera>.dc-titlebar>.dc-title-button{display:block}.dc-contact{padding:22px 25px;gap:16px;border-bottom:0}.dc-contact>img{width:46px;height:58px}.dc-contact strong{font-size:15px}.dc-contact small{font-size:8px;margin-top:7px}.dc-inbox-intro{font-size:13px;line-height:1.9;margin:0 25px 24px;max-width:620px;color:#b4c8d1}.dc-messages{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 25px 25px;max-height:none;overflow:visible}.dc-message{padding:18px;margin:0;border-radius:5px;background:#223846;border-color:#415d6c}.dc-message-head{font-size:9px}.dc-message-head>span:last-child{font-size:8px}.dc-message strong{font-size:13px;margin:11px 0 9px;font-weight:500}.dc-message small{font-size:11px}.dc-empty-inbox{font-size:13px;text-align:left;padding:0;grid-column:1/-1;line-height:1.9}.dc-inbox-footer{display:none}.dc-profile-progress{display:none}.dc-profiles-toolbar{padding:20px 22px 16px;font-size:12px}.dc-profiles-toolbar>span{display:none}.dc-profiles{gap:12px;padding:0 22px 20px}.dc-profile{padding:18px 12px;border-radius:5px;background:#223744;border-color:#48616f}.dc-profile-avatar{width:62px;height:78px;margin-bottom:12px}.dc-profile>strong{font-size:12px}.dc-profile>small{font-size:9px;min-height:30px;color:#93b0c0}.dc-profile-fields{margin-top:12px}.dc-profile-field{margin:9px 0}.dc-profile-field>span{font-size:8px}.dc-profile-field>em{font-size:10px;line-height:1.7;margin-top:3px}.dc-profile-state{display:none}.dc-profile-detail{margin:0 22px;padding:18px 0}.dc-profile-detail h3{font-size:12px;margin-bottom:7px}.dc-profile-detail p{font-size:11px;line-height:1.8}.dc-profile-footer{padding:18px 22px;background:transparent;gap:20px}.dc-profile-footer>p{font-size:11px}.dc-profile-footer>.dc-primary{font-size:12px;padding:11px 16px}.dc-code-workspace{display:block}.dc-editor-pane{padding:23px 25px;border:0}.dc-file-caption{font-size:10px}.dc-file-caption>span:last-child{display:none}.dc-editor-pane>p{font-size:13px;line-height:1.9;color:#b6cbd2;max-width:760px;margin:16px 0 20px}.dc-tabs{padding:0 12px;background:#142734}.dc-tabs>button{font-size:11px;padding:13px 17px}.dc-input-details{font-size:11px;color:#90b0bf;margin-bottom:20px}.dc-input-details>summary{cursor:pointer}.dc-feed{margin:12px 0 5px}.dc-feed-item{padding:10px 14px}.dc-feed-item>small{font-size:9px}.dc-feed-item>strong{font-size:14px}.dc-editor-label{font-size:9px;margin-bottom:11px;justify-content:flex-start;gap:20px}.dc-editor-label>span{font-size:11px}.dc-editor-wrap{min-height:140px;border-color:#547486}.dc-editor-wrap textarea{font-size:13px;line-height:1.9;padding:15px 15px 15px 8px;min-height:140px}.dc-lines{font-size:11px;line-height:2.25;padding:15px 11px;min-width:39px}.dc-snippets{margin:14px 0 23px;gap:10px}.dc-snippets>button{font-size:11px;padding:10px 13px}.dc-runbar{gap:12px;justify-content:flex-start}.dc-runbar>button{font-size:11px;padding:10px 14px}.dc-runbar>button:first-child{margin-right:0;font-size:12px;min-width:135px}.dc-runbar>#dc-template{display:none}.dc-hint{font-size:12px!important;margin-top:18px!important}.dc-context{font-size:10px;margin-top:20px}.dc-context pre{font-size:10px}.dc-simple-library{font-size:10px!important;padding:0!important;border:0!important;background:transparent!important;color:#7c9bab!important;margin-top:13px}.dc-console-pane{padding:0 25px 24px;background:transparent}.dc-result-details{border-top:1px solid #3b5664;padding-top:15px;color:#89a9b9;font-size:10px}.dc-result-details>summary{cursor:pointer}.dc-console-heading{margin-top:15px;font-size:9px}.dc-console{min-height:0;max-height:250px;font-size:11px}.dc-terminal-feedback{font:12px/1.9 Manrope,'Segoe UI',sans-serif;padding-top:10px;color:#b8d6bd}.dc-terminal-feedback:empty{display:none}.dc-next-file{font-size:12px;margin-top:15px;padding:10px 15px;color:#c1dfdb;border-color:#71988f}.dc-taskbar{height:33px;min-height:33px;justify-content:flex-end;background:#12222e;border-top-color:#304b5c}.dc-taskbar-apps{display:none}.dc-tray{font-size:8px}.dc-tray>span:last-child{display:none}.dc-monitor-foot{height:25px;font-size:6px}.dc-camera{width:min(850px,94%);top:65px;box-shadow:0 20px 90px #0008,0 0 0 100vmax #07131dcc}.dc-camera-layout{display:block}.dc-camera-notes{border:0;border-top:1px solid #425d6c;display:flex;align-items:center;justify-content:flex-end;padding:15px 20px;background:#1c323f}.dc-camera-notes>img,.dc-camera-notes>p,#dc-film-clues{display:none}.dc-camera-notes>.dc-primary{width:auto;margin:0;font-size:12px;padding:10px 16px}.dc-camera-brief{padding:15px 20px}.dc-camera-brief>strong{font-size:9px}.dc-camera-brief>p{font-size:12px;line-height:1.8;margin-top:8px}.cg-film-frame{max-height:57vh}.cg-film-caption{font-size:12px;padding:13px 18px}.cg-film-controls{padding:12px 16px}.cg-film-controls button{font-size:11px;min-width:95px}.cg-film-controls>span{font-size:9px}#cg-investigate{font-size:9px}.dc-notification{font-size:11px;box-shadow:0 5px 20px #0003}.dc-notification>strong{font-size:12px}.dc-dialog{font-size:13px}.dc-dialog>p{font-size:12px}.dc-confirm-row{font-size:12px}.dc-confirm-row>strong{font-size:11px}.dc-screen .noir-account{padding:6px 16px!important;background:#12242f}.dc-screen .noir-account>strong{display:none}.dc-library summary{font-size:12px}.dc-library details>p{font-size:11px}.dc-library pre{font-size:10px}
-@media(max-width:950px){.dc-workspace{padding:22px}.dc-profile{padding:14px 9px}.dc-profiles{gap:8px}.dc-profile>strong{font-size:11px}.dc-profile-field>em{font-size:9px}.dc-profile-footer{display:block}.dc-profile-footer>.dc-primary{margin-top:13px}}
-@media(max-width:680px){.dc-monitor{margin:0;padding:0;border-radius:0}.dc-bezel{height:19px}.dc-menubar{padding:9px 14px;height:43px}.dc-screen{min-height:calc(100dvh - 44px)}.dc-workspace{padding:20px 14px}.dc-desktop-heading{display:block;margin-bottom:19px}.dc-desktop-heading h1{font-size:24px}.dc-desktop-heading>p{font-size:11px;margin-top:8px}.dc-simple-nav{display:block;padding-bottom:15px;margin-bottom:17px}.dc-simple-nav>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.dc-simple-nav button{font-size:10px;line-height:1.6;padding:9px 6px}.dc-simple-nav>#dc-simple-camera{font-size:10px;margin-top:10px;padding:6px 11px}.dc-titlebar{min-height:41px;padding:0 16px}.dc-titlebar h2{font-size:11px}.dc-contact{padding:19px 17px;gap:13px}.dc-contact strong{font-size:14px}.dc-contact>img{width:35px;height:47px}.dc-inbox-intro{font-size:12px;margin:0 17px 19px}.dc-messages{grid-template-columns:1fr;gap:10px;padding:0 17px 20px}.dc-message{padding:15px;flex:auto}.dc-message strong{font-size:12px;margin:9px 0}.dc-message small{font-size:10px}.dc-message-head{font-size:8px}.dc-profiles{display:flex;padding:0 16px 17px;gap:11px;overflow-x:auto}.dc-profile{flex:0 0 154px;padding:17px 13px}.dc-profile>strong{font-size:12px}.dc-profile>small{font-size:9px}.dc-profile-avatar{width:60px;height:75px}.dc-profile-field>em{font-size:10px}.dc-profiles-toolbar{padding:17px 16px 15px}.dc-profiles-toolbar>p{font-size:11px}.dc-profile-detail{margin:0 16px;padding:17px 0}.dc-profile-detail h3{font-size:12px}.dc-profile-detail p{font-size:11px}.dc-profile-footer{padding:17px 16px}.dc-profile-footer>p{font-size:11px}.dc-profile-footer>.dc-primary{width:100%;font-size:11px}.dc-editor-pane{padding:19px 16px}.dc-editor-pane>p{font-size:12px;margin:13px 0 18px}.dc-tabs{padding:0 4px}.dc-tabs>button{font-size:10px;padding:12px}.dc-editor-label{display:block;font-size:8px}.dc-editor-label>span{display:block;margin-top:5px;font-size:10px}.dc-editor-wrap textarea{font-size:11px;padding:13px 10px 13px 5px;min-height:145px}.dc-lines{font-size:10px;line-height:2.1;padding:13px 8px;min-width:32px}.dc-snippets{margin:13px 0 20px}.dc-snippets>button{font-size:10px;line-height:1.7}.dc-runbar{gap:10px}.dc-runbar>button{font-size:10px}.dc-runbar>button:first-child{min-width:125px;font-size:11px;flex:0 1 auto}.dc-console-pane{padding:0 16px 20px}.dc-terminal-feedback{font-size:11px}.dc-console{font-size:10px}.dc-next-file{font-size:11px}.dc-taskbar{padding:0 14px}.dc-tray>#dc-save-state{display:block}.dc-camera{top:50px;width:calc(100% - 14px);max-height:calc(100% - 90px)}.dc-camera-brief{padding:13px 15px}.dc-camera-brief>p{font-size:11px}.dc-camera-notes{display:flex;padding:13px 15px}.dc-camera-notes>.dc-primary{font-size:11px;width:100%}.cg-film-caption{font-size:11px;padding:12px 14px}.cg-film-controls{gap:8px;padding:10px}.cg-film-controls button{font-size:10px;min-width:82px}.cg-film-controls>span{font-size:8px}#cg-investigate{font-size:8px}.dc-win-content{padding-top:9vh}}
+.dc-camera .cg-film-frame {
+  width: min(100%, 85.5vh);
+  max-height: none;
+  margin: 0 auto;
+  aspect-ratio: 3/2;
+}
+.dc-camera .dc-camera-layout > div:first-child {
+  background: #0b1924;
+}
+.desktop-case {
+  background: #0d1720;
+  font-size: 14px;
+}
+.dc-monitor {
+  max-width: 1240px;
+  margin: 15px auto 0;
+  padding: 0 9px;
+  background: #25323c;
+  box-shadow: 0 10px 60px #0004;
+  border-color: #3c4b57;
+}
+.dc-bezel {
+  height: 24px;
+}
+.dc-bezel > span:nth-child(2) {
+  display: none;
+}
+.dc-screen {
+  background: #15232f;
+  min-height: calc(100vh - 85px);
+}
+.dc-menubar {
+  height: 48px;
+  padding: 10px 24px;
+  background: #12202b;
+  gap: 20px;
+}
+.dc-case-title {
+  display: none;
+}
+.dc-system > span:nth-child(2) {
+  display: none;
+}
+.dc-system > #dc-xp {
+  border: 0;
+  font-size: 10px;
+  color: #a6b9bc;
+}
+.dc-os {
+  font-size: 11px;
+}
+.dc-desktop {
+  display: block;
+  min-height: calc(100vh - 180px);
+}
+.dc-launcher {
+  display: none;
+}
+.dc-workspace {
+  padding: 28px 32px 34px;
+  max-width: 1120px;
+  margin: auto;
+}
+.dc-desktop-heading {
+  margin-bottom: 24px;
+  align-items: center;
+}
+.dc-desktop-heading .dc-eyebrow {
+  display: none;
+}
+.dc-desktop-heading h1 {
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+.dc-desktop-heading > p {
+  font:
+    12px/1.7 Manrope,
+    "Segoe UI",
+    sans-serif;
+  color: #9bb1bd;
+  max-width: 390px;
+}
+.dc-simple-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #36505e;
+  padding-bottom: 16px;
+}
+.dc-simple-nav > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.dc-simple-nav button {
+  font:
+    12px Manrope,
+    "Segoe UI",
+    sans-serif;
+  padding: 10px 15px;
+  background: transparent;
+  border-color: transparent;
+  color: #94aebd;
+}
+.dc-simple-nav button[aria-selected="true"] {
+  background: #29414d;
+  border-color: #5e838e;
+  color: #d9eee9;
+}
+.dc-simple-nav > #dc-simple-camera {
+  font-size: 11px;
+  border-color: #3b5869;
+  white-space: nowrap;
+}
+.dc-windows {
+  display: block;
+}
+.dc-windows > .dc-window {
+  display: none;
+}
+.dc-screen[data-view="messages"] .dc-windows > .dc-inbox {
+  display: block;
+}
+.dc-screen[data-view="analysis"] .dc-windows > .dc-terminal {
+  display: block;
+}
+.dc-screen[data-view="profiles"] .dc-windows > .dc-profiles-window {
+  display: block;
+}
+.dc-window {
+  border-color: #3b5565;
+  border-radius: 7px;
+  box-shadow: none;
+  background: #1b2d39;
+}
+.dc-titlebar {
+  background: #223743;
+  min-height: 45px;
+  padding: 0 20px;
+  border-bottom-color: #3b5565;
+}
+.dc-titlebar h2 {
+  font-size: 12px;
+  font-weight: 600;
+}
+.dc-titlebar .dc-app-icon,
+.dc-titlebar .dc-window-dots,
+.dc-titlebar .dc-pill,
+.dc-titlebar > .dc-title-button {
+  display: none;
+}
+.dc-camera > .dc-titlebar > .dc-title-button {
+  display: block;
+}
+.dc-contact {
+  padding: 22px 25px;
+  gap: 16px;
+  border-bottom: 0;
+}
+.dc-contact > img {
+  width: 46px;
+  height: 58px;
+}
+.dc-contact strong {
+  font-size: 15px;
+}
+.dc-contact small {
+  font-size: 8px;
+  margin-top: 7px;
+}
+.dc-inbox-intro {
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 0 25px 24px;
+  max-width: 620px;
+  color: #b4c8d1;
+}
+.dc-messages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 25px 25px;
+  max-height: none;
+  overflow: visible;
+}
+.dc-message {
+  padding: 18px;
+  margin: 0;
+  border-radius: 5px;
+  background: #223846;
+  border-color: #415d6c;
+}
+.dc-message-head {
+  font-size: 9px;
+}
+.dc-message-head > span:last-child {
+  font-size: 8px;
+}
+.dc-message strong {
+  font-size: 13px;
+  margin: 11px 0 9px;
+  font-weight: 500;
+}
+.dc-message small {
+  font-size: 11px;
+}
+.dc-empty-inbox {
+  font-size: 13px;
+  text-align: left;
+  padding: 0;
+  grid-column: 1/-1;
+  line-height: 1.9;
+}
+.dc-inbox-footer {
+  display: none;
+}
+.dc-profile-progress {
+  display: none;
+}
+.dc-profiles-toolbar {
+  padding: 20px 22px 16px;
+  font-size: 12px;
+}
+.dc-profiles-toolbar > span {
+  display: none;
+}
+.dc-profiles {
+  gap: 12px;
+  padding: 0 22px 20px;
+}
+.dc-profile {
+  padding: 18px 12px;
+  border-radius: 5px;
+  background: #223744;
+  border-color: #48616f;
+}
+.dc-profile-avatar {
+  width: 62px;
+  height: 78px;
+  margin-bottom: 12px;
+}
+.dc-profile > strong {
+  font-size: 12px;
+}
+.dc-profile > small {
+  font-size: 9px;
+  min-height: 30px;
+  color: #93b0c0;
+}
+.dc-profile-fields {
+  margin-top: 12px;
+}
+.dc-profile-field {
+  margin: 9px 0;
+}
+.dc-profile-field > span {
+  font-size: 8px;
+}
+.dc-profile-field > em {
+  font-size: 10px;
+  line-height: 1.7;
+  margin-top: 3px;
+}
+.dc-profile-state {
+  display: none;
+}
+.dc-profile-detail {
+  margin: 0 22px;
+  padding: 18px 0;
+}
+.dc-profile-detail h3 {
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+.dc-profile-detail p {
+  font-size: 11px;
+  line-height: 1.8;
+}
+.dc-profile-footer {
+  padding: 18px 22px;
+  background: transparent;
+  gap: 20px;
+}
+.dc-profile-footer > p {
+  font-size: 11px;
+}
+.dc-profile-footer > .dc-primary {
+  font-size: 12px;
+  padding: 11px 16px;
+}
+.dc-code-workspace {
+  display: block;
+}
+.dc-editor-pane {
+  padding: 23px 25px;
+  border: 0;
+}
+.dc-file-caption {
+  font-size: 10px;
+}
+.dc-file-caption > span:last-child {
+  display: none;
+}
+.dc-editor-pane > p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #b6cbd2;
+  max-width: 760px;
+  margin: 16px 0 20px;
+}
+.dc-tabs {
+  padding: 0 12px;
+  background: #142734;
+}
+.dc-tabs > button {
+  font-size: 11px;
+  padding: 13px 17px;
+}
+.dc-input-details {
+  font-size: 11px;
+  color: #90b0bf;
+  margin-bottom: 20px;
+}
+.dc-input-details > summary {
+  cursor: pointer;
+}
+.dc-feed {
+  margin: 12px 0 5px;
+}
+.dc-feed-item {
+  padding: 10px 14px;
+}
+.dc-feed-item > small {
+  font-size: 9px;
+}
+.dc-feed-item > strong {
+  font-size: 14px;
+}
+.dc-editor-label {
+  font-size: 9px;
+  margin-bottom: 11px;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.dc-editor-label > span {
+  font-size: 11px;
+}
+.dc-editor-wrap {
+  min-height: 140px;
+  border-color: #547486;
+}
+.dc-editor-wrap textarea {
+  font-size: 13px;
+  line-height: 1.9;
+  padding: 15px 15px 15px 8px;
+  min-height: 140px;
+}
+.dc-lines {
+  font-size: 11px;
+  line-height: 2.25;
+  padding: 15px 11px;
+  min-width: 39px;
+}
+.dc-snippets {
+  margin: 14px 0 23px;
+  gap: 10px;
+}
+.dc-snippets > button {
+  font-size: 11px;
+  padding: 10px 13px;
+}
+.dc-runbar {
+  gap: 12px;
+  justify-content: flex-start;
+}
+.dc-runbar > button {
+  font-size: 11px;
+  padding: 10px 14px;
+}
+.dc-runbar > button:first-child {
+  margin-right: 0;
+  font-size: 12px;
+  min-width: 135px;
+}
+.dc-runbar > #dc-template {
+  display: none;
+}
+.dc-hint {
+  font-size: 12px !important;
+  margin-top: 18px !important;
+}
+.dc-context {
+  font-size: 10px;
+  margin-top: 20px;
+}
+.dc-context pre {
+  font-size: 10px;
+}
+.dc-simple-library {
+  font-size: 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #7c9bab !important;
+  margin-top: 13px;
+}
+.dc-console-pane {
+  padding: 0 25px 24px;
+  background: transparent;
+}
+.dc-result-details {
+  border-top: 1px solid #3b5664;
+  padding-top: 15px;
+  color: #89a9b9;
+  font-size: 10px;
+}
+.dc-result-details > summary {
+  cursor: pointer;
+}
+.dc-console-heading {
+  margin-top: 15px;
+  font-size: 9px;
+}
+.dc-console {
+  min-height: 0;
+  max-height: 250px;
+  font-size: 11px;
+}
+.dc-terminal-feedback {
+  font:
+    12px/1.9 Manrope,
+    "Segoe UI",
+    sans-serif;
+  padding-top: 10px;
+  color: #b8d6bd;
+}
+.dc-terminal-feedback:empty {
+  display: none;
+}
+.dc-next-file {
+  font-size: 12px;
+  margin-top: 15px;
+  padding: 10px 15px;
+  color: #c1dfdb;
+  border-color: #71988f;
+}
+.dc-taskbar {
+  height: 33px;
+  min-height: 33px;
+  justify-content: flex-end;
+  background: #12222e;
+  border-top-color: #304b5c;
+}
+.dc-taskbar-apps {
+  display: none;
+}
+.dc-tray {
+  font-size: 8px;
+}
+.dc-tray > span:last-child {
+  display: none;
+}
+.dc-monitor-foot {
+  height: 25px;
+  font-size: 6px;
+}
+.dc-camera {
+  width: min(850px, 94%);
+  top: 65px;
+  box-shadow:
+    0 20px 90px #0008,
+    0 0 0 100vmax #07131dcc;
+}
+.dc-camera-layout {
+  display: block;
+}
+.dc-camera-notes {
+  border: 0;
+  border-top: 1px solid #425d6c;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px 20px;
+  background: #1c323f;
+}
+.dc-camera-notes > img,
+.dc-camera-notes > p,
+#dc-film-clues {
+  display: none;
+}
+.dc-camera-notes > .dc-primary {
+  width: auto;
+  margin: 0;
+  font-size: 12px;
+  padding: 10px 16px;
+}
+.dc-camera-brief {
+  padding: 15px 20px;
+}
+.dc-camera-brief > strong {
+  font-size: 9px;
+}
+.dc-camera-brief > p {
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 8px;
+}
+.cg-film-frame {
+  max-height: 57vh;
+}
+.cg-film-caption {
+  font-size: 12px;
+  padding: 13px 18px;
+}
+.cg-film-controls {
+  padding: 12px 16px;
+}
+.cg-film-controls button {
+  font-size: 11px;
+  min-width: 95px;
+}
+.cg-film-controls > span {
+  font-size: 9px;
+}
+#cg-investigate {
+  font-size: 9px;
+}
+.dc-notification {
+  font-size: 11px;
+  box-shadow: 0 5px 20px #0003;
+}
+.dc-notification > strong {
+  font-size: 12px;
+}
+.dc-dialog {
+  font-size: 13px;
+}
+.dc-dialog > p {
+  font-size: 12px;
+}
+.dc-confirm-row {
+  font-size: 12px;
+}
+.dc-confirm-row > strong {
+  font-size: 11px;
+}
+.dc-screen .noir-account {
+  padding: 6px 16px !important;
+  background: #12242f;
+}
+.dc-screen .noir-account > strong {
+  display: none;
+}
+.dc-library summary {
+  font-size: 12px;
+}
+.dc-library details > p {
+  font-size: 11px;
+}
+.dc-library pre {
+  font-size: 10px;
+}
+@media (max-width: 950px) {
+  .dc-workspace {
+    padding: 22px;
+  }
+  .dc-profile {
+    padding: 14px 9px;
+  }
+  .dc-profiles {
+    gap: 8px;
+  }
+  .dc-profile > strong {
+    font-size: 11px;
+  }
+  .dc-profile-field > em {
+    font-size: 9px;
+  }
+  .dc-profile-footer {
+    display: block;
+  }
+  .dc-profile-footer > .dc-primary {
+    margin-top: 13px;
+  }
+}
+@media (max-width: 680px) {
+  .dc-monitor {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+  .dc-bezel {
+    height: 19px;
+  }
+  .dc-menubar {
+    padding: 9px 14px;
+    height: 43px;
+  }
+  .dc-screen {
+    min-height: calc(100dvh - 44px);
+  }
+  .dc-workspace {
+    padding: 20px 14px;
+  }
+  .dc-desktop-heading {
+    display: block;
+    margin-bottom: 19px;
+  }
+  .dc-desktop-heading h1 {
+    font-size: 24px;
+  }
+  .dc-desktop-heading > p {
+    font-size: 11px;
+    margin-top: 8px;
+  }
+  .dc-simple-nav {
+    display: block;
+    padding-bottom: 15px;
+    margin-bottom: 17px;
+  }
+  .dc-simple-nav > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+  }
+  .dc-simple-nav button {
+    font-size: 10px;
+    line-height: 1.6;
+    padding: 9px 6px;
+  }
+  .dc-simple-nav > #dc-simple-camera {
+    font-size: 10px;
+    margin-top: 10px;
+    padding: 6px 11px;
+  }
+  .dc-titlebar {
+    min-height: 41px;
+    padding: 0 16px;
+  }
+  .dc-titlebar h2 {
+    font-size: 11px;
+  }
+  .dc-contact {
+    padding: 19px 17px;
+    gap: 13px;
+  }
+  .dc-contact strong {
+    font-size: 14px;
+  }
+  .dc-contact > img {
+    width: 35px;
+    height: 47px;
+  }
+  .dc-inbox-intro {
+    font-size: 12px;
+    margin: 0 17px 19px;
+  }
+  .dc-messages {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 17px 20px;
+  }
+  .dc-message {
+    padding: 15px;
+    flex: auto;
+  }
+  .dc-message strong {
+    font-size: 12px;
+    margin: 9px 0;
+  }
+  .dc-message small {
+    font-size: 10px;
+  }
+  .dc-message-head {
+    font-size: 8px;
+  }
+  .dc-profiles {
+    display: flex;
+    padding: 0 16px 17px;
+    gap: 11px;
+    overflow-x: auto;
+  }
+  .dc-profile {
+    flex: 0 0 154px;
+    padding: 17px 13px;
+  }
+  .dc-profile > strong {
+    font-size: 12px;
+  }
+  .dc-profile > small {
+    font-size: 9px;
+  }
+  .dc-profile-avatar {
+    width: 60px;
+    height: 75px;
+  }
+  .dc-profile-field > em {
+    font-size: 10px;
+  }
+  .dc-profiles-toolbar {
+    padding: 17px 16px 15px;
+  }
+  .dc-profiles-toolbar > p {
+    font-size: 11px;
+  }
+  .dc-profile-detail {
+    margin: 0 16px;
+    padding: 17px 0;
+  }
+  .dc-profile-detail h3 {
+    font-size: 12px;
+  }
+  .dc-profile-detail p {
+    font-size: 11px;
+  }
+  .dc-profile-footer {
+    padding: 17px 16px;
+  }
+  .dc-profile-footer > p {
+    font-size: 11px;
+  }
+  .dc-profile-footer > .dc-primary {
+    width: 100%;
+    font-size: 11px;
+  }
+  .dc-editor-pane {
+    padding: 19px 16px;
+  }
+  .dc-editor-pane > p {
+    font-size: 12px;
+    margin: 13px 0 18px;
+  }
+  .dc-tabs {
+    padding: 0 4px;
+  }
+  .dc-tabs > button {
+    font-size: 10px;
+    padding: 12px;
+  }
+  .dc-editor-label {
+    display: block;
+    font-size: 8px;
+  }
+  .dc-editor-label > span {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+  }
+  .dc-editor-wrap textarea {
+    font-size: 11px;
+    padding: 13px 10px 13px 5px;
+    min-height: 145px;
+  }
+  .dc-lines {
+    font-size: 10px;
+    line-height: 2.1;
+    padding: 13px 8px;
+    min-width: 32px;
+  }
+  .dc-snippets {
+    margin: 13px 0 20px;
+  }
+  .dc-snippets > button {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+  .dc-runbar {
+    gap: 10px;
+  }
+  .dc-runbar > button {
+    font-size: 10px;
+  }
+  .dc-runbar > button:first-child {
+    min-width: 125px;
+    font-size: 11px;
+    flex: 0 1 auto;
+  }
+  .dc-console-pane {
+    padding: 0 16px 20px;
+  }
+  .dc-terminal-feedback {
+    font-size: 11px;
+  }
+  .dc-console {
+    font-size: 10px;
+  }
+  .dc-next-file {
+    font-size: 11px;
+  }
+  .dc-taskbar {
+    padding: 0 14px;
+  }
+  .dc-tray > #dc-save-state {
+    display: block;
+  }
+  .dc-camera {
+    top: 50px;
+    width: calc(100% - 14px);
+    max-height: calc(100% - 90px);
+  }
+  .dc-camera-brief {
+    padding: 13px 15px;
+  }
+  .dc-camera-brief > p {
+    font-size: 11px;
+  }
+  .dc-camera-notes {
+    display: flex;
+    padding: 13px 15px;
+  }
+  .dc-camera-notes > .dc-primary {
+    font-size: 11px;
+    width: 100%;
+  }
+  .cg-film-caption {
+    font-size: 11px;
+    padding: 12px 14px;
+  }
+  .cg-film-controls {
+    gap: 8px;
+    padding: 10px;
+  }
+  .cg-film-controls button {
+    font-size: 10px;
+    min-width: 82px;
+  }
+  .cg-film-controls > span {
+    font-size: 8px;
+  }
+  #cg-investigate {
+    font-size: 8px;
+  }
+  .dc-win-content {
+    padding-top: 9vh;
+  }
+}

@@ -1,19 +1,185 @@
 /* Pins and red string turn the lesson sequence into a responsive evidence board. */
-.lesson-folders .cj-journey{background:radial-gradient(ellipse at 8% 10%,#5a5b3712,transparent 65%),repeating-linear-gradient(35deg,#9b9c6103 0 1px,transparent 1px 5px),#111b1c;border-color:#60654b88}
-.lesson-folders .cj-road,.lesson-folders .cs-map .cj-road{position:relative;gap:46px 27px;padding:32px 24px 18px;box-sizing:border-box;isolation:isolate}
-.lesson-folders .cj-stop{overflow:visible;z-index:2;animation-name:ln-board-file;box-shadow:0 6px 14px #0005;border-radius:6px;background:#1c2725}
-.lesson-folders .cj-stop:hover{box-shadow:0 8px 24px #0007}
-.lesson-folders .ln-file-art{height:auto;aspect-ratio:480/210;border-radius:5px 5px 0 0;overflow:hidden}
-.lesson-folders .ln-file-art img{display:block;object-position:50% 50%!important;filter:saturate(.8) brightness(.95)!important}
-.lesson-folders .cj-stop:hover .ln-file-art img{filter:saturate(.95) brightness(1.1)!important}
-.ln-pin{display:none}.lesson-folders .ln-pin{display:block;position:absolute;top:-10px;left:calc(50% - 5px);width:10px;height:10px;background:radial-gradient(circle at 35% 25%,#efbaa3,#a75446 48%,#4f2424 90%);border:1px solid #d2917466;border-radius:50%;box-shadow:1px 3px 3px #000a;z-index:4}
-.lesson-folders .cj-stop.is-done .ln-pin{background:radial-gradient(circle at 35% 25%,#d9dcba,#79966d 48%,#304b36 90%);border-color:#c0cb9a66}
-.ln-threads{display:none}.lesson-folders .ln-threads{display:block;position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1;filter:drop-shadow(0 2px 1px #000a)}
-.ln-threads path{fill:none;stroke:#a55e50;stroke-width:1.8;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.9}.ln-threads path.is-solved{stroke:#9d9d6a;opacity:.8}
-.ln-place{position:absolute;bottom:10px;left:11px;right:8px;color:#ddd3b2;font:8px/1.4 Consolas,monospace;letter-spacing:.6px;text-shadow:0 2px 4px #000;z-index:1}
-.ln-board-note{display:none}.lesson-folders .ln-board-note{display:block;color:#9d9d81;font:10px/1.7 'Segoe UI',sans-serif;margin:8px 3px 0}
-.lesson-folders .cj-journey.is-compact .ln-threads,.lesson-folders .cj-journey.is-compact .ln-pin,.lesson-folders .cj-journey.is-compact .ln-board-note{display:none}
-.lesson-folders .cj-journey.is-compact .cj-road{padding:9px 0;gap:8px}.lesson-folders .cj-journey.is-compact .cj-stop{box-shadow:none}
-@keyframes ln-board-file{from{opacity:0}to{opacity:1}}
-@media(max-width:760px){.lesson-folders .cj-road,.lesson-folders .cs-map .cj-road{gap:40px 22px;padding:29px 20px 15px}.ln-place{font-size:7px;left:9px;bottom:8px}}
-@media(max-width:450px){.lesson-folders .cj-road,.lesson-folders .cs-map .cj-road{gap:36px 18px;padding:27px 12px 12px}.lesson-folders .cj-journey{padding:14px 9px}.ln-place{font-size:6px;letter-spacing:0;left:6px;bottom:6px}.lesson-folders .cj-case-title{font-size:12px}.lesson-folders .cj-stop{gap:0 5px;padding:0 8px 12px}.lesson-folders .ln-file-art{margin:0 -8px}.ln-threads path{stroke-width:1.4}.ln-board-note{font-size:9px!important}}
+.lesson-folders .cj-journey {
+  background:
+    radial-gradient(ellipse at 8% 10%, #5a5b3712, transparent 65%),
+    repeating-linear-gradient(35deg, #9b9c6103 0 1px, transparent 1px 5px),
+    #111b1c;
+  border-color: #60654b88;
+}
+.lesson-folders .cj-road,
+.lesson-folders .cs-map .cj-road {
+  position: relative;
+  gap: 46px 27px;
+  padding: 32px 24px 18px;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+.lesson-folders .cj-stop {
+  overflow: visible;
+  z-index: 2;
+  animation-name: ln-board-file;
+  box-shadow: 0 6px 14px #0005;
+  border-radius: 6px;
+  background: #1c2725;
+}
+.lesson-folders .cj-stop:hover {
+  box-shadow: 0 8px 24px #0007;
+}
+.lesson-folders .ln-file-art {
+  height: auto;
+  aspect-ratio: 480/210;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+.lesson-folders .ln-file-art img {
+  display: block;
+  object-position: 50% 50% !important;
+  filter: saturate(0.8) brightness(0.95) !important;
+}
+.lesson-folders .cj-stop:hover .ln-file-art img {
+  filter: saturate(0.95) brightness(1.1) !important;
+}
+.ln-pin {
+  display: none;
+}
+.lesson-folders .ln-pin {
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(
+    circle at 35% 25%,
+    #efbaa3,
+    #a75446 48%,
+    #4f2424 90%
+  );
+  border: 1px solid #d2917466;
+  border-radius: 50%;
+  box-shadow: 1px 3px 3px #000a;
+  z-index: 4;
+}
+.lesson-folders .cj-stop.is-done .ln-pin {
+  background: radial-gradient(
+    circle at 35% 25%,
+    #d9dcba,
+    #79966d 48%,
+    #304b36 90%
+  );
+  border-color: #c0cb9a66;
+}
+.ln-threads {
+  display: none;
+}
+.lesson-folders .ln-threads {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 2px 1px #000a);
+}
+.ln-threads path {
+  fill: none;
+  stroke: #a55e50;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.9;
+}
+.ln-threads path.is-solved {
+  stroke: #9d9d6a;
+  opacity: 0.8;
+}
+.ln-place {
+  position: absolute;
+  bottom: 10px;
+  left: 11px;
+  right: 8px;
+  color: #ddd3b2;
+  font:
+    8px/1.4 Consolas,
+    monospace;
+  letter-spacing: 0.6px;
+  text-shadow: 0 2px 4px #000;
+  z-index: 1;
+}
+.ln-board-note {
+  display: none;
+}
+.lesson-folders .ln-board-note {
+  display: block;
+  color: #9d9d81;
+  font:
+    10px/1.7 "Segoe UI",
+    sans-serif;
+  margin: 8px 3px 0;
+}
+.lesson-folders .cj-journey.is-compact .ln-threads,
+.lesson-folders .cj-journey.is-compact .ln-pin,
+.lesson-folders .cj-journey.is-compact .ln-board-note {
+  display: none;
+}
+.lesson-folders .cj-journey.is-compact .cj-road {
+  padding: 9px 0;
+  gap: 8px;
+}
+.lesson-folders .cj-journey.is-compact .cj-stop {
+  box-shadow: none;
+}
+@keyframes ln-board-file {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 760px) {
+  .lesson-folders .cj-road,
+  .lesson-folders .cs-map .cj-road {
+    gap: 40px 22px;
+    padding: 29px 20px 15px;
+  }
+  .ln-place {
+    font-size: 7px;
+    left: 9px;
+    bottom: 8px;
+  }
+}
+@media (max-width: 450px) {
+  .lesson-folders .cj-road,
+  .lesson-folders .cs-map .cj-road {
+    gap: 36px 18px;
+    padding: 27px 12px 12px;
+  }
+  .lesson-folders .cj-journey {
+    padding: 14px 9px;
+  }
+  .ln-place {
+    font-size: 6px;
+    letter-spacing: 0;
+    left: 6px;
+    bottom: 6px;
+  }
+  .lesson-folders .cj-case-title {
+    font-size: 12px;
+  }
+  .lesson-folders .cj-stop {
+    gap: 0 5px;
+    padding: 0 8px 12px;
+  }
+  .lesson-folders .ln-file-art {
+    margin: 0 -8px;
+  }
+  .ln-threads path {
+    stroke-width: 1.4;
+  }
+  .ln-board-note {
+    font-size: 9px !important;
+  }
+}

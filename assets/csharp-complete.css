@@ -1,1 +1,89 @@
-.cc-edit-wrap{position:relative;min-width:0}.cc-popup{position:absolute;z-index:30;left:10px;right:10px;bottom:12px;max-height:235px;border:1px solid #a78854;border-radius:12px;background:#171622;box-shadow:0 10px 35px #000b;overflow:hidden}.cc-popup[hidden]{display:none}.cc-popup>[role=listbox]{overflow:auto;max-height:195px;overscroll-behavior:contain}.cin-root .cc-popup button{display:flex;align-items:center;justify-content:space-between;gap:15px;width:100%;border:0;border-radius:0;border-bottom:1px solid #332c40;background:transparent;color:#d9cce4;text-align:left;padding:9px 12px;font-size:12px}.cc-popup button b{font:13px Consolas,monospace}.cc-popup button span{color:#a79bb5;font-weight:400;font-size:11px}.cin-root .cc-popup button.is-selected,.cin-root .cc-popup button:hover{background:#493a25;color:#ffe0a2}.cc-popup>small{display:block;padding:7px 12px;color:#b8a78f;font-size:10px;border-top:1px solid #524335}.cc-edit-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0}.cin-root .cc-edit-tools button{font-size:12px;padding:8px 12px}.cc-edit-tools>small{font-size:11px;color:#a89ab7}@media(max-width:600px){.cc-popup button span{display:none}.cc-popup{left:4px;right:4px}.cc-edit-tools>small{font-size:10px}}
+.cc-edit-wrap {
+  position: relative;
+  min-width: 0;
+}
+.cc-popup {
+  position: absolute;
+  z-index: 30;
+  left: 10px;
+  right: 10px;
+  bottom: 12px;
+  max-height: 235px;
+  border: 1px solid #a78854;
+  border-radius: 12px;
+  background: #171622;
+  box-shadow: 0 10px 35px #000b;
+  overflow: hidden;
+}
+.cc-popup[hidden] {
+  display: none;
+}
+.cc-popup > [role="listbox"] {
+  overflow: auto;
+  max-height: 195px;
+  overscroll-behavior: contain;
+}
+.cin-root .cc-popup button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #332c40;
+  background: transparent;
+  color: #d9cce4;
+  text-align: left;
+  padding: 9px 12px;
+  font-size: 12px;
+}
+.cc-popup button b {
+  font:
+    13px Consolas,
+    monospace;
+}
+.cc-popup button span {
+  color: #a79bb5;
+  font-weight: 400;
+  font-size: 11px;
+}
+.cin-root .cc-popup button.is-selected,
+.cin-root .cc-popup button:hover {
+  background: #493a25;
+  color: #ffe0a2;
+}
+.cc-popup > small {
+  display: block;
+  padding: 7px 12px;
+  color: #b8a78f;
+  font-size: 10px;
+  border-top: 1px solid #524335;
+}
+.cc-edit-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.cin-root .cc-edit-tools button {
+  font-size: 12px;
+  padding: 8px 12px;
+}
+.cc-edit-tools > small {
+  font-size: 11px;
+  color: #a89ab7;
+}
+@media (max-width: 600px) {
+  .cc-popup button span {
+    display: none;
+  }
+  .cc-popup {
+    left: 4px;
+    right: 4px;
+  }
+  .cc-edit-tools > small {
+    font-size: 10px;
+  }
+}

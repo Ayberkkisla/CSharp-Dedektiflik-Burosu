@@ -1,3 +1,174 @@
-.noir-account{padding:18px 20px;border:1px solid #69573c;border-radius:17px;background:linear-gradient(135deg,#2c2530,#161a23);color:#eee1c7;font:14px/1.5 'Segoe UI',sans-serif;margin:18px 0 24px}.noir-account>strong{font-size:17px}.noir-account>p{margin:8px 0 14px;color:#c9bdce}.noir-account-actions{display:flex;gap:9px;flex-wrap:wrap}.noir-account button{min-height:44px;padding:10px 15px;border:1px solid #b99a60;border-radius:10px;background:#342919;color:#ffe2a7;font:600 13px 'Segoe UI',sans-serif;cursor:pointer}.noir-account button:disabled{opacity:.6;cursor:wait}.noir-account button[hidden]{display:none}.noir-account button:focus-visible{outline:3px solid #90d7e8;outline-offset:3px}.site-nav>.noir-account{margin:0;width:100%;padding:12px 16px}.site-nav>.noir-account>strong{font-size:14px}.site-nav>.noir-account>p{font-size:12px;margin:5px 0 9px}@media(max-width:600px){.noir-account{padding:15px}.noir-account-actions button{flex:1}}
+.noir-account {
+  padding: 18px 20px;
+  border: 1px solid #69573c;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #2c2530, #161a23);
+  color: #eee1c7;
+  font:
+    14px/1.5 "Segoe UI",
+    sans-serif;
+  margin: 18px 0 24px;
+}
+.noir-account > strong {
+  font-size: 17px;
+}
+.noir-account > p {
+  margin: 8px 0 14px;
+  color: #c9bdce;
+}
+.noir-account-actions {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.noir-account button {
+  min-height: 44px;
+  padding: 10px 15px;
+  border: 1px solid #b99a60;
+  border-radius: 10px;
+  background: #342919;
+  color: #ffe2a7;
+  font:
+    600 13px "Segoe UI",
+    sans-serif;
+  cursor: pointer;
+}
+.noir-account button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.noir-account button[hidden] {
+  display: none;
+}
+.noir-account button:focus-visible {
+  outline: 3px solid #90d7e8;
+  outline-offset: 3px;
+}
+.site-nav > .noir-account {
+  margin: 0;
+  width: 100%;
+  padding: 12px 16px;
+}
+.site-nav > .noir-account > strong {
+  font-size: 14px;
+}
+.site-nav > .noir-account > p {
+  font-size: 12px;
+  margin: 5px 0 9px;
+}
+@media (max-width: 600px) {
+  .noir-account {
+    padding: 15px;
+  }
+  .noir-account-actions button {
+    flex: 1;
+  }
+}
 
-.bureau-content>.noir-account{position:relative;margin:0 0 24px;padding:24px 28px;border:1px solid #b18b4c;border-radius:22px;background:radial-gradient(ellipse at left,#65502550,transparent 70%),linear-gradient(135deg,#292030,#141923);box-shadow:0 7px 25px #0005}.bureau-content>.noir-account>strong{display:block;font-size:24px;color:#ffe5b5}.bureau-content>.noir-account>p{max-width:720px;font-size:15px}.noir-account .noir-google-login{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:15px 22px;font-size:16px;color:#ffeac9;border-color:#e5bd77;border-bottom:4px solid #a27437;background:linear-gradient(135deg,#6c4e24,#423043);box-shadow:0 0 20px #eab96640;animation:noir-login-glow 2.2s ease-in-out infinite;white-space:normal;text-align:center}.noir-account .noir-google-login:before{content:"G";display:grid;place-items:center;flex:0 0 29px;height:29px;border-radius:50%;background:#fff;color:#4285f4;font:800 20px Arial,sans-serif}.noir-account .noir-google-login:hover{border-color:#ffdf9f;background:linear-gradient(135deg,#806032,#50394d)}.noir-account .noir-google-login:disabled{animation:none}.noir-account .noir-google-login[hidden]{display:none}.noir-account-compact{max-width:1000px;margin:30px auto 18px;padding:15px 20px}.noir-account-compact .noir-google-login{font-size:13px;padding:10px 15px}.noir-account-compact>strong{font-size:15px}.noir-account-compact>p{font-size:13px}@keyframes noir-login-glow{0%,100%{transform:scale(1);box-shadow:0 0 14px #eab96635}50%{transform:scale(1.018);box-shadow:0 0 30px #eab96675}}@media(max-width:600px){.bureau-content>.noir-account{padding:20px 16px}.bureau-content>.noir-account>strong{font-size:21px}.noir-account .noir-google-login{width:100%;font-size:14px;padding:13px 16px}.noir-account-compact{margin:30px 10px 16px;padding:14px}}@media(prefers-reduced-motion:reduce){.noir-account .noir-google-login{animation:none}}
+.bureau-content > .noir-account {
+  position: relative;
+  margin: 0 0 24px;
+  padding: 24px 28px;
+  border: 1px solid #b18b4c;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at left, #65502550, transparent 70%),
+    linear-gradient(135deg, #292030, #141923);
+  box-shadow: 0 7px 25px #0005;
+}
+.bureau-content > .noir-account > strong {
+  display: block;
+  font-size: 24px;
+  color: #ffe5b5;
+}
+.bureau-content > .noir-account > p {
+  max-width: 720px;
+  font-size: 15px;
+}
+.noir-account .noir-google-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 22px;
+  font-size: 16px;
+  color: #ffeac9;
+  border-color: #e5bd77;
+  border-bottom: 4px solid #a27437;
+  background: linear-gradient(135deg, #6c4e24, #423043);
+  box-shadow: 0 0 20px #eab96640;
+  animation: noir-login-glow 2.2s ease-in-out infinite;
+  white-space: normal;
+  text-align: center;
+}
+.noir-account .noir-google-login:before {
+  content: "G";
+  display: grid;
+  place-items: center;
+  flex: 0 0 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: #fff;
+  color: #4285f4;
+  font:
+    800 20px Arial,
+    sans-serif;
+}
+.noir-account .noir-google-login:hover {
+  border-color: #ffdf9f;
+  background: linear-gradient(135deg, #806032, #50394d);
+}
+.noir-account .noir-google-login:disabled {
+  animation: none;
+}
+.noir-account .noir-google-login[hidden] {
+  display: none;
+}
+.noir-account-compact {
+  max-width: 1000px;
+  margin: 30px auto 18px;
+  padding: 15px 20px;
+}
+.noir-account-compact .noir-google-login {
+  font-size: 13px;
+  padding: 10px 15px;
+}
+.noir-account-compact > strong {
+  font-size: 15px;
+}
+.noir-account-compact > p {
+  font-size: 13px;
+}
+@keyframes noir-login-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 14px #eab96635;
+  }
+  50% {
+    transform: scale(1.018);
+    box-shadow: 0 0 30px #eab96675;
+  }
+}
+@media (max-width: 600px) {
+  .bureau-content > .noir-account {
+    padding: 20px 16px;
+  }
+  .bureau-content > .noir-account > strong {
+    font-size: 21px;
+  }
+  .noir-account .noir-google-login {
+    width: 100%;
+    font-size: 14px;
+    padding: 13px 16px;
+  }
+  .noir-account-compact {
+    margin: 30px 10px 16px;
+    padding: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .noir-account .noir-google-login {
+    animation: none;
+  }
+}

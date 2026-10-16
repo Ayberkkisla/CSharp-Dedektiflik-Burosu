@@ -1,6 +1,688 @@
-:root{--ng-paper:#d8c8a8;--ng-ink:#101722;--ng-brass:#c0a16c}.cinema-game{margin:0;background:#080e16;color:var(--ng-paper);font:15px/1.6 'Segoe UI',sans-serif}.ng-shell{max-width:1500px;margin:0 auto;padding:18px 24px 35px}.ng-top{display:flex;align-items:center;gap:20px;padding:0 0 12px;border-bottom:1px solid #32383d}.ng-back{font-size:11px;color:#8c999f;text-decoration:none}.ng-brand{margin-right:auto;font:14px Georgia,serif;letter-spacing:2px;color:#cab58a}.ng-top>span{font-size:11px;color:#aab6b9}.ng-top #ng-xp{color:#c6b07b}.ng-heading{display:flex;align-items:center;gap:20px;margin:16px 0}.ng-heading h1{font:25px/1.2 Georgia,serif;color:#e2d5bb;margin:0}.ng-heading p{font-size:12px;color:#9daeb6;margin:6px 0 0}.ng-tools{display:flex;gap:6px;margin-left:auto;flex-shrink:0}.ng-shell button{font:inherit;cursor:pointer}.ng-tools button{border:1px solid #455058;background:#18222c;color:#b4c0c7;border-radius:6px;font-size:11px;padding:9px 12px}.ng-shell button:focus-visible,.ng-shell a:focus-visible{outline:3px solid #f3ce87;outline-offset:4px}.ng-stage{position:relative;border:1px solid #3a3b3b;background:#101722;overflow:hidden;box-shadow:0 18px 60px #0008;isolation:isolate}.ng-world{position:relative;aspect-ratio:1000/560;width:100%;max-height:60vh;overflow:hidden}.ng-scenery{position:absolute;inset:0}.ng-scenery svg{width:100%;height:100%;display:block}.ng-world:after{content:'';position:absolute;inset:0;z-index:4;pointer-events:none;box-shadow:inset 0 0 100px #0007;background:repeating-linear-gradient(0deg,#fff01 0,#fff01 1px,transparent 1px,transparent 4px)}.ng-bag{position:absolute;z-index:6;display:flex;gap:8px;flex-wrap:wrap;top:14px;left:16px;right:16px;pointer-events:none}.ng-bag span{font:10px/1.5 Consolas,monospace;background:#101923cb;color:#6f8190;border:1px solid #39434a;padding:5px 10px;border-radius:3px}.ng-bag span.is-found{color:#c4c2a6;border-color:#7a765b;background:#222c2dd9}.ng-nokta{position:absolute;left:38%;bottom:3%;width:12%;height:30%;object-fit:contain;transform:translateX(-50%);z-index:5;filter:drop-shadow(8px 12px 6px #0009);pointer-events:none}.ng-reel{position:absolute;z-index:5;transform:translateX(-50%);border:0;background:none;color:#bfb494;width:10%;padding:0;display:flex;flex-direction:column;align-items:center;gap:7px}.ng-reel-disc{position:relative;width:clamp(36px,4.2vw,62px);height:clamp(36px,4.2vw,62px);border:3px solid #8f8c7f;border-radius:50%;background:radial-gradient(circle at 25% 30%,#131b26 0 12%,transparent 13%),radial-gradient(circle at 75% 30%,#131b26 0 12%,transparent 13%),radial-gradient(circle at 30% 75%,#131b26 0 12%,transparent 13%),radial-gradient(circle at 70% 75%,#131b26 0 12%,transparent 13%),#686b65;color:#eee1bd;font:bold 14px/1 Consolas,monospace;display:grid;place-items:center;box-shadow:0 7px 8px #0006;transition:transform .18s,filter .18s}.ng-reel:hover .ng-reel-disc{transform:rotate(15deg);filter:brightness(1.35)}.ng-reel small{font-size:clamp(8px,.8vw,12px);line-height:1.3;max-width:100%;text-align:center;text-shadow:0 1px 4px #000}.ng-reel.is-solved .ng-reel-disc{border-color:#a3b79a;background-color:#7e876a}.ng-clue{position:absolute;z-index:6;transform:translate(-50%,-50%);display:flex;align-items:center;flex-direction:column;gap:5px;border:0;color:#d7c69f;background:none;padding:8px;min-width:70px}.ng-clue-value{display:grid;place-items:center;width:45px;height:48px;max-width:160px;border:1px solid #c2ab73;background:#1d2732d9;box-shadow:0 0 0 5px #d7bc7620;font:24px/1.2 Georgia,serif;animation:ng-clue-pulse 2.7s infinite}.ng-clue small{font-size:11px;letter-spacing:.3px;text-shadow:0 2px 6px #000}.ng-clue.is-found .ng-clue-value{width:auto;min-width:45px;padding:0 7px;font:16px/1.2 Consolas,monospace;color:#c5d5be;border-color:#91a58a;animation:none;background:#26332f}.ng-clue:hover .ng-clue-value{background:#445047}.ng-machine{position:absolute;z-index:7;transform:translate(-50%,-50%);background:#202a30f5;color:#a8aca5;border:1px solid #62695d;border-radius:4px;box-shadow:0 6px 15px #0007;padding:12px 22px;font-size:12px;white-space:nowrap}.ng-machine.is-ready{background:#3b392b;color:#f1d39d;border-color:#bc9c59;box-shadow:0 0 35px #d8b46720}.ng-stage.is-error{border-color:#8f5e5b}.ng-stage.is-success{border-color:#839b76}.ng-console{min-height:24px;border-top:1px solid #333e45;padding:8px 17px;background:#0c141c;color:#a6bdb6;font:11px/1.5 Consolas,monospace}.ng-dialogue-box{position:relative;display:grid;grid-template-columns:78px 1fr;gap:17px;background:#17202a;border:1px solid #3e4549;border-top:0;min-height:120px;padding:19px 24px;box-shadow:0 15px 30px #0004}.ng-dialogue-portrait{width:78px;height:100px;object-fit:contain;align-self:start;filter:drop-shadow(0 5px 6px #0006)}.ng-speaker{font-size:10px;letter-spacing:1.6px;color:#c7ac73;text-transform:uppercase}.ng-dialogue{font-size:14px;color:#cbd0ce;max-width:900px;line-height:1.8;margin:5px 0 12px}.ng-actions{display:flex;gap:8px;flex-wrap:wrap}.ng-actions button{border:1px solid #65746f;border-radius:5px;font-size:12px;padding:9px 15px;background:#2a383a;color:#d5ddd2;text-align:left}.ng-actions button.ng-primary{background:#bda16d;color:#161d24;border-color:#dac28e;font-weight:700}.ng-actions button.ng-secondary{background:transparent;border-color:#44525e;color:#a5b4be}.ng-actions button.ng-choice:hover{border-color:#c7ad7c;background:#4c4938}.ng-code-panel{position:absolute;z-index:10;right:14px;top:60px;width:min(410px,43%);max-height:70%;overflow:auto;border:1px solid #736b56;border-radius:5px;background:#0d1722f2;box-shadow:0 12px 40px #0009;backdrop-filter:blur(8px)}.ng-code-panel[hidden]{display:none}.ng-code-head{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:9px 12px;border-bottom:1px solid #39424b;color:#b3a889;font-size:10px;letter-spacing:1px}.ng-code-head button{border:0;background:transparent;color:#bcb5a5;font-size:19px;line-height:1}.ng-code-panel pre{font:11px/1.9 Consolas,monospace;margin:0;padding:12px 0;overflow:auto}.ng-code-line{display:block;white-space:pre;padding:4px 12px;color:#d0d9dc}.ng-code-line.is-active{background:#8a775a42;color:#f4ddb1}.ng-code-line.is-unseen{opacity:.35}.ng-reward{position:absolute;z-index:8;left:50%;top:43%;transform:translateX(-50%);border:1px solid #bda16d;border-radius:4px;background:#55472dcf;box-shadow:0 0 50px #d1b87530;padding:15px 24px;color:#f3ddb0;font:14px Georgia,serif;white-space:nowrap}.ng-footnote{margin:15px 0 0;text-align:center;color:#62737e;font-size:10px}.ng-footnote a{color:#83979f}.ng-world button{touch-action:manipulation}@keyframes ng-clue-pulse{50%{box-shadow:0 0 0 9px #d7bc7607;border-color:#ecce88}}
-@media(min-width:1300px){.ng-world{max-height:62vh}}@media(max-width:760px){.ng-shell{padding:18px 10px 24px}.ng-heading{align-items:flex-start;gap:10px}.ng-heading h1{font-size:21px}.ng-heading p{font-size:11px;max-width:85%}.ng-tools{flex-wrap:wrap;justify-content:flex-end;max-width:155px}.ng-tools button{font-size:10px;padding:7px 8px}.ng-top{gap:12px}.ng-brand{font-size:12px;letter-spacing:1px}.ng-back{font-size:10px}.ng-top>span{font-size:10px}.ng-world{max-height:none;min-height:320px;aspect-ratio:1000/650}.ng-scenery svg{object-fit:fill}.ng-reel{width:11%}.ng-reel small{font-size:8px}.ng-reel-disc{width:35px;height:35px;font-size:11px}.ng-clue small{font-size:9px}.ng-clue-value{width:34px;height:38px;font-size:20px}.ng-clue.is-found .ng-clue-value{font-size:12px;min-width:34px}.ng-machine{font-size:11px;padding:10px 13px}.ng-nokta{width:18%;height:28%}.ng-bag{top:8px;left:8px;right:8px;gap:4px}.ng-bag span{font-size:8px;padding:3px 5px}.ng-dialogue-box{grid-template-columns:45px 1fr;gap:10px;padding:15px 12px;min-height:150px}.ng-dialogue-portrait{width:45px;height:65px}.ng-dialogue{font-size:12px;margin-bottom:12px}.ng-actions{gap:7px}.ng-actions button{font-size:11px;min-height:42px;padding:9px 12px}.ng-actions .ng-choice{width:100%}.ng-code-panel{top:50px;right:8px;width:calc(100% - 16px);max-height:65%}.ng-code-panel pre{font-size:11px}.ng-reward{font-size:12px;padding:12px 17px}.ng-heading>div:first-child{min-width:0}.ng-objective{max-width:none!important}}@media(orientation:landscape) and (max-height:550px){.ng-shell{padding-top:8px}.ng-top{padding-bottom:5px}.ng-heading{margin:8px 0}.ng-heading h1{font-size:18px}.ng-heading p{font-size:10px}.ng-world{aspect-ratio:1000/430;min-height:230px;max-height:58vh}.ng-dialogue-box{min-height:90px;padding:10px 16px}.ng-dialogue{font-size:12px}.ng-actions .ng-choice{width:auto}.ng-dialogue-portrait{height:65px}.ng-code-panel{width:45%}}@media(prefers-reduced-motion:reduce){.ng-clue-value{animation:none}.ng-reel-disc{transition:none}}
+:root {
+  --ng-paper: #d8c8a8;
+  --ng-ink: #101722;
+  --ng-brass: #c0a16c;
+}
+.cinema-game {
+  margin: 0;
+  background: #080e16;
+  color: var(--ng-paper);
+  font:
+    15px/1.6 "Segoe UI",
+    sans-serif;
+}
+.ng-shell {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 18px 24px 35px;
+}
+.ng-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid #32383d;
+}
+.ng-back {
+  font-size: 11px;
+  color: #8c999f;
+  text-decoration: none;
+}
+.ng-brand {
+  margin-right: auto;
+  font:
+    14px Georgia,
+    serif;
+  letter-spacing: 2px;
+  color: #cab58a;
+}
+.ng-top > span {
+  font-size: 11px;
+  color: #aab6b9;
+}
+.ng-top #ng-xp {
+  color: #c6b07b;
+}
+.ng-heading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 16px 0;
+}
+.ng-heading h1 {
+  font:
+    25px/1.2 Georgia,
+    serif;
+  color: #e2d5bb;
+  margin: 0;
+}
+.ng-heading p {
+  font-size: 12px;
+  color: #9daeb6;
+  margin: 6px 0 0;
+}
+.ng-tools {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.ng-shell button {
+  font: inherit;
+  cursor: pointer;
+}
+.ng-tools button {
+  border: 1px solid #455058;
+  background: #18222c;
+  color: #b4c0c7;
+  border-radius: 6px;
+  font-size: 11px;
+  padding: 9px 12px;
+}
+.ng-shell button:focus-visible,
+.ng-shell a:focus-visible {
+  outline: 3px solid #f3ce87;
+  outline-offset: 4px;
+}
+.ng-stage {
+  position: relative;
+  border: 1px solid #3a3b3b;
+  background: #101722;
+  overflow: hidden;
+  box-shadow: 0 18px 60px #0008;
+  isolation: isolate;
+}
+.ng-world {
+  position: relative;
+  aspect-ratio: 1000/560;
+  width: 100%;
+  max-height: 60vh;
+  overflow: hidden;
+}
+.ng-scenery {
+  position: absolute;
+  inset: 0;
+}
+.ng-scenery svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.ng-world:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  box-shadow: inset 0 0 100px #0007;
+  background: repeating-linear-gradient(
+    0deg,
+    #fff01 0,
+    #fff01 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+.ng-bag {
+  position: absolute;
+  z-index: 6;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  top: 14px;
+  left: 16px;
+  right: 16px;
+  pointer-events: none;
+}
+.ng-bag span {
+  font:
+    10px/1.5 Consolas,
+    monospace;
+  background: #101923cb;
+  color: #6f8190;
+  border: 1px solid #39434a;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+.ng-bag span.is-found {
+  color: #c4c2a6;
+  border-color: #7a765b;
+  background: #222c2dd9;
+}
+.ng-nokta {
+  position: absolute;
+  left: 38%;
+  bottom: 3%;
+  width: 12%;
+  height: 30%;
+  object-fit: contain;
+  transform: translateX(-50%);
+  z-index: 5;
+  filter: drop-shadow(8px 12px 6px #0009);
+  pointer-events: none;
+}
+.ng-reel {
+  position: absolute;
+  z-index: 5;
+  transform: translateX(-50%);
+  border: 0;
+  background: none;
+  color: #bfb494;
+  width: 10%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+.ng-reel-disc {
+  position: relative;
+  width: clamp(36px, 4.2vw, 62px);
+  height: clamp(36px, 4.2vw, 62px);
+  border: 3px solid #8f8c7f;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 25% 30%, #131b26 0 12%, transparent 13%),
+    radial-gradient(circle at 75% 30%, #131b26 0 12%, transparent 13%),
+    radial-gradient(circle at 30% 75%, #131b26 0 12%, transparent 13%),
+    radial-gradient(circle at 70% 75%, #131b26 0 12%, transparent 13%), #686b65;
+  color: #eee1bd;
+  font:
+    bold 14px/1 Consolas,
+    monospace;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 7px 8px #0006;
+  transition:
+    transform 0.18s,
+    filter 0.18s;
+}
+.ng-reel:hover .ng-reel-disc {
+  transform: rotate(15deg);
+  filter: brightness(1.35);
+}
+.ng-reel small {
+  font-size: clamp(8px, 0.8vw, 12px);
+  line-height: 1.3;
+  max-width: 100%;
+  text-align: center;
+  text-shadow: 0 1px 4px #000;
+}
+.ng-reel.is-solved .ng-reel-disc {
+  border-color: #a3b79a;
+  background-color: #7e876a;
+}
+.ng-clue {
+  position: absolute;
+  z-index: 6;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  border: 0;
+  color: #d7c69f;
+  background: none;
+  padding: 8px;
+  min-width: 70px;
+}
+.ng-clue-value {
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 48px;
+  max-width: 160px;
+  border: 1px solid #c2ab73;
+  background: #1d2732d9;
+  box-shadow: 0 0 0 5px #d7bc7620;
+  font:
+    24px/1.2 Georgia,
+    serif;
+  animation: ng-clue-pulse 2.7s infinite;
+}
+.ng-clue small {
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  text-shadow: 0 2px 6px #000;
+}
+.ng-clue.is-found .ng-clue-value {
+  width: auto;
+  min-width: 45px;
+  padding: 0 7px;
+  font:
+    16px/1.2 Consolas,
+    monospace;
+  color: #c5d5be;
+  border-color: #91a58a;
+  animation: none;
+  background: #26332f;
+}
+.ng-clue:hover .ng-clue-value {
+  background: #445047;
+}
+.ng-machine {
+  position: absolute;
+  z-index: 7;
+  transform: translate(-50%, -50%);
+  background: #202a30f5;
+  color: #a8aca5;
+  border: 1px solid #62695d;
+  border-radius: 4px;
+  box-shadow: 0 6px 15px #0007;
+  padding: 12px 22px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.ng-machine.is-ready {
+  background: #3b392b;
+  color: #f1d39d;
+  border-color: #bc9c59;
+  box-shadow: 0 0 35px #d8b46720;
+}
+.ng-stage.is-error {
+  border-color: #8f5e5b;
+}
+.ng-stage.is-success {
+  border-color: #839b76;
+}
+.ng-console {
+  min-height: 24px;
+  border-top: 1px solid #333e45;
+  padding: 8px 17px;
+  background: #0c141c;
+  color: #a6bdb6;
+  font:
+    11px/1.5 Consolas,
+    monospace;
+}
+.ng-dialogue-box {
+  position: relative;
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 17px;
+  background: #17202a;
+  border: 1px solid #3e4549;
+  border-top: 0;
+  min-height: 120px;
+  padding: 19px 24px;
+  box-shadow: 0 15px 30px #0004;
+}
+.ng-dialogue-portrait {
+  width: 78px;
+  height: 100px;
+  object-fit: contain;
+  align-self: start;
+  filter: drop-shadow(0 5px 6px #0006);
+}
+.ng-speaker {
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  color: #c7ac73;
+  text-transform: uppercase;
+}
+.ng-dialogue {
+  font-size: 14px;
+  color: #cbd0ce;
+  max-width: 900px;
+  line-height: 1.8;
+  margin: 5px 0 12px;
+}
+.ng-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ng-actions button {
+  border: 1px solid #65746f;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 9px 15px;
+  background: #2a383a;
+  color: #d5ddd2;
+  text-align: left;
+}
+.ng-actions button.ng-primary {
+  background: #bda16d;
+  color: #161d24;
+  border-color: #dac28e;
+  font-weight: 700;
+}
+.ng-actions button.ng-secondary {
+  background: transparent;
+  border-color: #44525e;
+  color: #a5b4be;
+}
+.ng-actions button.ng-choice:hover {
+  border-color: #c7ad7c;
+  background: #4c4938;
+}
+.ng-code-panel {
+  position: absolute;
+  z-index: 10;
+  right: 14px;
+  top: 60px;
+  width: min(410px, 43%);
+  max-height: 70%;
+  overflow: auto;
+  border: 1px solid #736b56;
+  border-radius: 5px;
+  background: #0d1722f2;
+  box-shadow: 0 12px 40px #0009;
+  backdrop-filter: blur(8px);
+}
+.ng-code-panel[hidden] {
+  display: none;
+}
+.ng-code-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-bottom: 1px solid #39424b;
+  color: #b3a889;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.ng-code-head button {
+  border: 0;
+  background: transparent;
+  color: #bcb5a5;
+  font-size: 19px;
+  line-height: 1;
+}
+.ng-code-panel pre {
+  font:
+    11px/1.9 Consolas,
+    monospace;
+  margin: 0;
+  padding: 12px 0;
+  overflow: auto;
+}
+.ng-code-line {
+  display: block;
+  white-space: pre;
+  padding: 4px 12px;
+  color: #d0d9dc;
+}
+.ng-code-line.is-active {
+  background: #8a775a42;
+  color: #f4ddb1;
+}
+.ng-code-line.is-unseen {
+  opacity: 0.35;
+}
+.ng-reward {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  top: 43%;
+  transform: translateX(-50%);
+  border: 1px solid #bda16d;
+  border-radius: 4px;
+  background: #55472dcf;
+  box-shadow: 0 0 50px #d1b87530;
+  padding: 15px 24px;
+  color: #f3ddb0;
+  font:
+    14px Georgia,
+    serif;
+  white-space: nowrap;
+}
+.ng-footnote {
+  margin: 15px 0 0;
+  text-align: center;
+  color: #62737e;
+  font-size: 10px;
+}
+.ng-footnote a {
+  color: #83979f;
+}
+.ng-world button {
+  touch-action: manipulation;
+}
+@keyframes ng-clue-pulse {
+  50% {
+    box-shadow: 0 0 0 9px #d7bc7607;
+    border-color: #ecce88;
+  }
+}
+@media (min-width: 1300px) {
+  .ng-world {
+    max-height: 62vh;
+  }
+}
+@media (max-width: 760px) {
+  .ng-shell {
+    padding: 18px 10px 24px;
+  }
+  .ng-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .ng-heading h1 {
+    font-size: 21px;
+  }
+  .ng-heading p {
+    font-size: 11px;
+    max-width: 85%;
+  }
+  .ng-tools {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 155px;
+  }
+  .ng-tools button {
+    font-size: 10px;
+    padding: 7px 8px;
+  }
+  .ng-top {
+    gap: 12px;
+  }
+  .ng-brand {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .ng-back {
+    font-size: 10px;
+  }
+  .ng-top > span {
+    font-size: 10px;
+  }
+  .ng-world {
+    max-height: none;
+    min-height: 320px;
+    aspect-ratio: 1000/650;
+  }
+  .ng-scenery svg {
+    object-fit: fill;
+  }
+  .ng-reel {
+    width: 11%;
+  }
+  .ng-reel small {
+    font-size: 8px;
+  }
+  .ng-reel-disc {
+    width: 35px;
+    height: 35px;
+    font-size: 11px;
+  }
+  .ng-clue small {
+    font-size: 9px;
+  }
+  .ng-clue-value {
+    width: 34px;
+    height: 38px;
+    font-size: 20px;
+  }
+  .ng-clue.is-found .ng-clue-value {
+    font-size: 12px;
+    min-width: 34px;
+  }
+  .ng-machine {
+    font-size: 11px;
+    padding: 10px 13px;
+  }
+  .ng-nokta {
+    width: 18%;
+    height: 28%;
+  }
+  .ng-bag {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    gap: 4px;
+  }
+  .ng-bag span {
+    font-size: 8px;
+    padding: 3px 5px;
+  }
+  .ng-dialogue-box {
+    grid-template-columns: 45px 1fr;
+    gap: 10px;
+    padding: 15px 12px;
+    min-height: 150px;
+  }
+  .ng-dialogue-portrait {
+    width: 45px;
+    height: 65px;
+  }
+  .ng-dialogue {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .ng-actions {
+    gap: 7px;
+  }
+  .ng-actions button {
+    font-size: 11px;
+    min-height: 42px;
+    padding: 9px 12px;
+  }
+  .ng-actions .ng-choice {
+    width: 100%;
+  }
+  .ng-code-panel {
+    top: 50px;
+    right: 8px;
+    width: calc(100% - 16px);
+    max-height: 65%;
+  }
+  .ng-code-panel pre {
+    font-size: 11px;
+  }
+  .ng-reward {
+    font-size: 12px;
+    padding: 12px 17px;
+  }
+  .ng-heading > div:first-child {
+    min-width: 0;
+  }
+  .ng-objective {
+    max-width: none !important;
+  }
+}
+@media (orientation: landscape) and (max-height: 550px) {
+  .ng-shell {
+    padding-top: 8px;
+  }
+  .ng-top {
+    padding-bottom: 5px;
+  }
+  .ng-heading {
+    margin: 8px 0;
+  }
+  .ng-heading h1 {
+    font-size: 18px;
+  }
+  .ng-heading p {
+    font-size: 10px;
+  }
+  .ng-world {
+    aspect-ratio: 1000/430;
+    min-height: 230px;
+    max-height: 58vh;
+  }
+  .ng-dialogue-box {
+    min-height: 90px;
+    padding: 10px 16px;
+  }
+  .ng-dialogue {
+    font-size: 12px;
+  }
+  .ng-actions .ng-choice {
+    width: auto;
+  }
+  .ng-dialogue-portrait {
+    height: 65px;
+  }
+  .ng-code-panel {
+    width: 45%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ng-clue-value {
+    animation: none;
+  }
+  .ng-reel-disc {
+    transition: none;
+  }
+}
 
-@media(min-width:1000px){.ng-shell{max-width:min(1300px,max(920px,calc((100dvh - 270px)*1.7857)))}.ng-world{max-height:none}}
+@media (min-width: 1000px) {
+  .ng-shell {
+    max-width: min(1300px, max(920px, calc((100dvh - 270px) * 1.7857)));
+  }
+  .ng-world {
+    max-height: none;
+  }
+}
 
-.ng-reward{width:88px;height:88px;padding:15px 10px;border:4px solid #a6a391;border-radius:50%;white-space:normal;font:11px/1.4 Consolas,monospace;background:radial-gradient(circle at 25% 25%,#101722 0 10%,transparent 11%),radial-gradient(circle at 75% 25%,#101722 0 10%,transparent 11%),radial-gradient(circle at 25% 75%,#101722 0 10%,transparent 11%),radial-gradient(circle at 75% 75%,#101722 0 10%,transparent 11%),#6d7267;color:#fff1ce;box-shadow:0 0 45px #e0c2802b,0 10px 20px #0008}.ng-reward:hover{filter:brightness(1.25)}.ng-stage.is-lobby:before{content:'';position:absolute;z-index:3;top:22%;left:65%;width:28%;height:47%;pointer-events:none;background:linear-gradient(120deg,transparent,#f1dca312,transparent);clip-path:polygon(100% 88%,0 0,0 72%);animation:ng-projector 5s ease-in-out infinite alternate}@keyframes ng-projector{to{opacity:.3;transform:translateY(-5px)}}@media(prefers-reduced-motion:reduce){.ng-stage.is-lobby:before{animation:none}}
+.ng-reward {
+  width: 88px;
+  height: 88px;
+  padding: 15px 10px;
+  border: 4px solid #a6a391;
+  border-radius: 50%;
+  white-space: normal;
+  font:
+    11px/1.4 Consolas,
+    monospace;
+  background:
+    radial-gradient(circle at 25% 25%, #101722 0 10%, transparent 11%),
+    radial-gradient(circle at 75% 25%, #101722 0 10%, transparent 11%),
+    radial-gradient(circle at 25% 75%, #101722 0 10%, transparent 11%),
+    radial-gradient(circle at 75% 75%, #101722 0 10%, transparent 11%), #6d7267;
+  color: #fff1ce;
+  box-shadow:
+    0 0 45px #e0c2802b,
+    0 10px 20px #0008;
+}
+.ng-reward:hover {
+  filter: brightness(1.25);
+}
+.ng-stage.is-lobby:before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 22%;
+  left: 65%;
+  width: 28%;
+  height: 47%;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent, #f1dca312, transparent);
+  clip-path: polygon(100% 88%, 0 0, 0 72%);
+  animation: ng-projector 5s ease-in-out infinite alternate;
+}
+@keyframes ng-projector {
+  to {
+    opacity: 0.3;
+    transform: translateY(-5px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ng-stage.is-lobby:before {
+    animation: none;
+  }
+}

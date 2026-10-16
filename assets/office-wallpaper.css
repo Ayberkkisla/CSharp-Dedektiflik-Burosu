@@ -1,11 +1,96 @@
-body.lesson-noir{position:relative;isolation:isolate}
-body.lesson-noir .kn-bg.office-wallpaper{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:#10120e}
-.office-wallpaper .ow-scene{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:.84}
-body.lesson-noir .kn-bg.office-wallpaper:before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#090b0890,transparent 32%,#090b083d)}
-body.lesson-noir .kn-bg.office-wallpaper:after{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 50% 42%,#090b0855 0%,#090b0844 35%,transparent 73%),linear-gradient(90deg,#080b081c,transparent 30%,transparent 72%,#080b0826)}
-.ow-rain{animation:ow-rain 6s linear infinite}.ow-steam{animation:ow-steam 7s ease-in-out infinite}.ow-lamplight{animation:ow-lamplight 10s ease-in-out infinite}
-.ln-still .office-wallpaper *{animation:none!important}
-@keyframes ow-rain{to{transform:translate(-15px,234px)}}@keyframes ow-steam{50%{transform:translateY(-12px);opacity:.12}}@keyframes ow-lamplight{50%{opacity:.83}}
-@media(max-width:760px){.office-wallpaper .ow-scene{width:160%;max-width:none;left:-30%;opacity:.65}body.lesson-noir .kn-bg.office-wallpaper:after{background:linear-gradient(#090b0844,#090b0877)}}
-@media(prefers-reduced-motion:reduce){.office-wallpaper *{animation:none!important}}
-@media print{.office-wallpaper{display:none!important}}
+body.lesson-noir {
+  position: relative;
+  isolation: isolate;
+}
+body.lesson-noir .kn-bg.office-wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: #10120e;
+}
+.office-wallpaper .ow-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.84;
+}
+body.lesson-noir .kn-bg.office-wallpaper:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, #090b0890, transparent 32%, #090b083d);
+}
+body.lesson-noir .kn-bg.office-wallpaper:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(
+      ellipse at 50% 42%,
+      #090b0855 0%,
+      #090b0844 35%,
+      transparent 73%
+    ),
+    linear-gradient(
+      90deg,
+      #080b081c,
+      transparent 30%,
+      transparent 72%,
+      #080b0826
+    );
+}
+.ow-rain {
+  animation: ow-rain 6s linear infinite;
+}
+.ow-steam {
+  animation: ow-steam 7s ease-in-out infinite;
+}
+.ow-lamplight {
+  animation: ow-lamplight 10s ease-in-out infinite;
+}
+.ln-still .office-wallpaper * {
+  animation: none !important;
+}
+@keyframes ow-rain {
+  to {
+    transform: translate(-15px, 234px);
+  }
+}
+@keyframes ow-steam {
+  50% {
+    transform: translateY(-12px);
+    opacity: 0.12;
+  }
+}
+@keyframes ow-lamplight {
+  50% {
+    opacity: 0.83;
+  }
+}
+@media (max-width: 760px) {
+  .office-wallpaper .ow-scene {
+    width: 160%;
+    max-width: none;
+    left: -30%;
+    opacity: 0.65;
+  }
+  body.lesson-noir .kn-bg.office-wallpaper:after {
+    background: linear-gradient(#090b0844, #090b0877);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .office-wallpaper * {
+    animation: none !important;
+  }
+}
+@media print {
+  .office-wallpaper {
+    display: none !important;
+  }
+}
