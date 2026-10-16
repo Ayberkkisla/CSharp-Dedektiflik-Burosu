@@ -15,17 +15,17 @@ C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS
 
 ## Ekran Görüntüleri
 
-| Dosya Arşivi / Rehber                                  | Vaka Açılışı                                          |
-| ------------------------------------------------------ | ----------------------------------------------------- |
-| ![Giriş rehberi](docs/screenshots/01-giris-rehber.png) | ![Vaka açılışı](docs/screenshots/02-vaka-acilisi.png) |
+### Ana sayfa
 
-| Başvuru Kartı                                           | Ders Notu                                       |
-| ------------------------------------------------------- | ----------------------------------------------- |
-| ![Başvuru kartı](docs/screenshots/03-basvuru-karti.png) | ![Ders notu](docs/screenshots/04-ders-notu.png) |
+![Ana sayfa — C# ve C bölüm seçimi](docs/screenshots/01-ana-sayfa.png)
 
-| Kanıt Sorusu                                          |
-| ----------------------------------------------------- |
-| ![Kanıt sorusu](docs/screenshots/05-kanit-sorusu.png) |
+| C# vaka haritası                                                  | C# vaka açılışı                                                 |
+| ----------------------------------------------------------------- | --------------------------------------------------------------- |
+| ![C# vaka haritası](docs/screenshots/02-csharp-vaka-haritasi.png) | ![C# vaka açılışı](docs/screenshots/03-csharp-vaka-acilisi.png) |
+
+| C bağlı liste haritası                                                    | C bağlı liste simülasyonu                                                       |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| ![C bağlı liste haritası](docs/screenshots/04-c-bagli-liste-haritasi.png) | ![C bağlı liste simülasyonu](docs/screenshots/05-c-bagli-liste-simulasyonu.png) |
 
 ## Kurulum
 
