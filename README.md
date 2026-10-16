@@ -1,17 +1,62 @@
-# C# Dedektiflik Bürosu — Dedektif Nokta
+# Dedektif Nokta — C# ve C Programlama Bürosu
 
-C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS oyunu. Dedektif Nokta'nın masasında C#'ın temellerini 23 vakada çözersin: konsol, döngüler, metotlar, koleksiyonlar, stringler, OOP ve daha fazlası.
+Dedektif Nokta, programlamayı vaka çözerek öğrenmeye yönelik, tarayıcıda çalışan bir eğitim uygulamasıdır. Ana sayfadaki iki dosya iki ayrı öğrenme bölümüne açılır: **C# programlamanın temelleri** ve **C dilinde bağlı listeler**.
 
-## Özellikler
+Bir vaka seçer, konu açıklamasını okur, kodun nasıl çalıştığını inceler ve alıştırmaları çözersin. Noir temalı büro, soruşturma panosu, animasyonlar ve Dedektif Nokta bu akışa eşlik eder.
 
-- 🎮 Senaryo tabanlı ilerlemeli 23 dosya (vaka), 4 ünite
-- ✅ 500 soru: çoktan seçmeli, KOD TAMAMLA, yapboz, boss soruları
-- 🔥 Günlük seri ve XP sistemi (`localStorage` + Firestore)
-- 👤 Google hesabıyla giriş; ilerleme cihazlar arası senkronlanır
-- 🕵️‍♂️ Noir teması, yağmur/pencere/ofis arkaplan, maskot ipuçları
-- 📱 Mobil ve masaüstü uyumlu
-- 📦 PWA: `sw.js` ile çevrimdışı önbellek
-- ✔️ Test verisindeki KOD TAMAMLA sorularının doğru cevapları CI'da .NET ile derlenip doğrulanır
+## İki bölüm, iki öğrenme yolu
+
+| Bölüm                  | Kapsam                              | İçerik                                                                                             |
+| ---------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **C# — Arşiv Sokağı**  | Programlamanın temelleri            | 23 vaka, 4 ünite; konu kartları, mini dersler, kanıt soruları, kod tamamlama ve yapbozlar          |
+| **C — Bellek Rıhtımı** | Doğrusal ve dairesel bağlı listeler | 16 vaka; satır açıklamaları, görsel bağlantı simülasyonları, çözümlü örnekler ve uygulama soruları |
+
+### C# — Programlamanın temelleri
+
+C# bölümünde vaka haritasından bir ders seçilir. Vaka açılışında konu ve örnek kod tanıtılır; ardından konu kartları, mini dersler ve sorularla ilerlenir. Vakanın içeriğine göre kanıt soruları, boss sorusu, kod tamamlama, kod parçalarını sıralama ve ek alıştırmalar bulunur.
+
+| Ünite                             | Vakalar | Konular                                                                                        |
+| --------------------------------- | ------- | ---------------------------------------------------------------------------------------------- |
+| Veri tipleri ve operatörler       | 1–6     | Tam ve ondalıklı sayılar, konsol giriş/çıkışı, hesaplamalar, tür dönüşümleri ve işlem önceliği |
+| Akış kontrolü                     | 7–12    | String interpolation, koşullar, mantık operatörleri, switch, döngüler ve kullanıcı girişi      |
+| Entegrasyon, algoritma ve diziler | 13–18   | Birden fazla konuyu birleştirme, algoritma kurma, diziler, metotlar ve özyineleme              |
+| Beceri temelli sorular            | 19–23   | Gerçek hayat ve proje senaryolarıyla problem çözme                                             |
+
+Vaka haritasında tamamlanan dosyalar işaretlenir; XP ve ilerleme bilgileri gösterilir.
+
+### C — Bağlı listeler
+
+C bölümü, **bağlı listeler ve işaretçiler** üzerine odaklanır. `struct node`, `data`, `next`, `head`, `NULL`, `malloc` ve `free` gibi kavramlar, düğümlerin ve bağlantıların değişimini gösteren örneklerle açıklanır.
+
+16 vaka boyunca şu işlemler çalışılır:
+
+- Doğrusal listenin başına ve sonuna düğüm ekleme.
+- Düğümleri gezme ve yazdırma.
+- İlk, son, belirli sıradaki veya ilk eşleşen düğümü silme.
+- İki doğrusal listeyi birleştirme.
+- Dairesel listeye ekleme ve dairesel listeden silme.
+- Boş liste, tek düğüm, bulunamayan hedef ve tekrar eden değerler gibi özel durumlar.
+
+Her vaka **dokuz adımlık** bir öğrenme akışı izler:
+
+1. Fonksiyonun amacını, kodunu ve satırların görevini öğren.
+2. Çözümlü örneğin animasyonunu izle.
+3. Farklı bir girdide oluşacak sonucu bul.
+4. Kod tamamlama için çözümlü örneği incele.
+5. Üç eksik kod satırını tamamla.
+6. Özel durum örneğini incele.
+7. Özel durum sorusunu çöz.
+8. Kod parçalarını doğru sıraya koy.
+9. Vakayı tamamla ve sonraki dosyaya geç.
+
+Görsel oynatıcıda düğümler, adresler ve bağlantılar kod satırlarıyla birlikte takip edilir. Oynat/duraklat, adım adım ilerleme, geri sarma ve hız ayarları bulunur. Vaka sonunda isteğe bağlı serbest kod alanı ve C dosyası indirme seçeneği vardır; indirilen kod yerel bir C ortamında çalıştırılabilir.
+
+## İlerleme ve kullanım
+
+- **Misafir kullanım:** XP, tamamlanan vakalar ve kod taslakları cihazın tarayıcısında saklanır. Tarayıcı verilerini temizlemek bu yerel kayıtları da kaldırır.
+- **Google hesabı:** Firebase yapılandırıldığında giriş yapılabilir ve yönetilen ilerleme kayıtları hesapla eşitlenebilir. Misafir ilerlemesini hesaba aktarma seçeneği bulunur.
+- **Mobil ve masaüstü:** Arayüz farklı ekran boyutlarına uyarlanır. Destekleyen tarayıcılarda ana ekrana uygulama olarak eklenebilir.
+- **Çevrimdışı kullanım:** Service worker, daha önce açılan sayfa ve varlıkları önbellekten sunabilir. İlk ziyaret ve Google ile giriş/eşitleme internet bağlantısı gerektirir.
 
 ## Ekran Görüntüleri
 
@@ -27,80 +72,84 @@ C# programlama öğrenmek için tarayıcı tabanlı, senaryo odaklı bir HTML/JS
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | ![C bağlı liste haritası](docs/screenshots/04-c-bagli-liste-haritasi.png) | ![C bağlı liste simülasyonu](docs/screenshots/05-c-bagli-liste-simulasyonu.png) |
 
-## Kurulum
+## Yerelde çalıştırma
+
+Node.js ve npm kurulu bir bilgisayarda:
 
 ```bash
-npm install
-npm start        # http://localhost:8000
+git clone https://github.com/Ayberkkisla/CSharp-Dedektiflik-Burosu.git
+cd CSharp-Dedektiflik-Burosu
+npm start
 ```
 
-> Port 8000 şart: Firebase API key referrer kısıtlaması `localhost:8000`'e izin veriyor.
+Tarayıcıda **http://localhost:8000** adresini aç.
 
-### Firebase yapılandırması
+`npm start`, önce Firebase yapılandırma dosyasını üretir, ardından statik sunucuyu başlatır. Firebase ortam değişkeni tanımlı değilse uygulama misafir modunda çalışır.
 
-Gerçek Firebase yapılandırması Git deposunda tutulmaz. Google girişi olmadan da ilerleme cihazda kaydedilir.
+## Firebase ve Google girişi
 
-Netlify'da **Site configuration → Environment variables** bölümüne `NOIR_FIREBASE_CONFIG` ekle. Değer, `firebase-config.example.js` içindeki nesnenin kendi Firebase projenin değerleriyle doldurulmuş geçerli JSON karşılığı olmalıdır. `window.NOIR_FIREBASE_CONFIG =` kısmını ve sondaki noktalı virgülü ekleme. Değişkenin build sırasında erişilebilir olduğundan emin ol.
+Gerçek proje yapılandırması Git deposunda tutulmaz. `firebase-config.example.js`, doldurulacak alanları gösteren bir örnektir.
 
-`npm run build`, bu değerden Git tarafından izlenmeyen `assets/firebase-config.js` dosyasını üretir. Değişken yoksa anahtarsız bir dosya üretir ve Google girişi kapalı kalır. Oluşturulan dosyanın içeriği günlük çıktısına yazdırılmaz.
+1. Kendi Firebase projende Google ile girişi ve Firestore'u yapılandır.
+2. Kullanacağın yerel/yayın alan adlarını Firebase Authentication'ın yetkili alan adlarına ekle.
+3. Yayın ortamında **`NOIR_FIREBASE_CONFIG`** adlı değişken oluştur.
+4. Bu değişkene örnek dosyadaki nesnenin kendi proje değerlerinle doldurulmuş **geçerli JSON** karşılığını yaz. `window.NOIR_FIREBASE_CONFIG =` kısmını, yorumları ve sondaki noktalı virgülü ekleme.
+5. Build çalıştır veya yeniden deploy et.
 
-Yerel sunucuda Google girişi için aynı ortam değişkenini tanımlayıp `npm start` çalıştır. Alternatif olarak `firebase-config.example.js` dosyasını `assets/firebase-config.js` konumuna kopyalayıp kendi değerlerini doldur ve doğrudan statik sunucu başlat. `npm start`, build adımını çalıştırıp bu dosyayı ortam değişkeninden yeniden üretir.
+`npm run build`, ortam değişkeninden `assets/firebase-config.js` dosyasını oluşturur. Bu dosya Git tarafından izlenmez. Değişken yoksa anahtarsız yapılandırma üretilir ve Google girişi kapalı kalır; cihazdaki ilerleme kaydı çalışır.
 
-Firebase web yapılandırması uygulama çalışırken tarayıcıya gönderilir; ortam değişkeni kullanmak onu tarayıcıdan gizlemez. Güvenlik için Firebase API kısıtlamaları, yetkili alan adları ve uygun Firestore kuralları gerekir.
+Güncel hesap kodu kayıtları `dedektifUsers/{uid}/progress/{key}` yolunda tutar. Yayınladığın Firestore kuralları bu yapıyla uyumlu olmalıdır. **Depodaki `firestore.rules` eski `kayitlar/{uid}` yapısını içerir; güncel hesap eşitlemesi için uyarlanmadan kullanılmamalıdır.**
 
-### Yayınlama
+Firebase web yapılandırması çalışma sırasında tarayıcıya gönderilir. Ortam değişkeni, anahtarın Git deposuna yazılmasını önler; tarayıcıdan gizlenmesini sağlamaz. API kısıtlamaları, yetkili alan adları ve Firestore erişim kuralları ayrıca yapılandırılmalıdır.
 
-Netlify, `netlify.toml` içindeki `npm run build` komutunu çalıştırır ve kök klasörü yayınlar. Ortam değişkenini değiştirdikten sonra yeniden deploy et.
+## Netlify'da yayınlama
 
-Manuel dağıtımda önce `npm run build` çalıştır ve üretilen `assets/firebase-config.js` dahil klasörü yükle. Yalnızca ZIP sürükleyip bırakmak build komutunu çalıştırmaz.
+GitHub bağlantılı dağıtımda `netlify.toml` şu ayarları kullanır:
 
-## Dosyalar
+| Ayar          | Değer           |
+| ------------- | --------------- |
+| Build komutu  | `npm run build` |
+| Yayın klasörü | `.`             |
 
-| Dosya veya klasör                                    | Ne işe yarar                                                                             |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `index.html`                                         | C# ve C bölümlerine açılan ana sayfa                                                     |
-| `CSharp Dedektiflik bürosu.html`                     | C# dersleri ve oyun motoru                                                               |
-| `c-kod-atolyesi.html`                                | C bağlı liste vakaları ve alıştırmaları                                                  |
-| `assets/`                                            | Aktif sayfaların stilleri, betikleri, haritaları ve animasyonları                        |
-| `assets/progress-store.js`                           | Cihazdaki ilerleme kaydı                                                                 |
-| `assets/firebase-account.js`                         | Google girişi ve ilerleme eşitleme                                                       |
-| `assets/firebase-config.js`                          | Build sırasında üretilen, Git tarafından izlenmeyen yapılandırma                         |
-| `firebase-config.example.js`                         | Gerçek anahtar içermeyen yapılandırma örneği                                             |
-| `scripts/write-firebase-config.mjs`                  | Yayın ortamından Firebase yapılandırması üretir                                          |
-| `sw.js`, `manifest.webmanifest`                      | PWA ve çevrimdışı önbellek                                                               |
-| `data.js`                                            | Mevcut soru testleri ve .NET doğrulaması için korunan veri; sayfalar bu dosyayı yüklemez |
-| `tests/data.test.mjs`                                | Test verisinin tutarlılığını denetler                                                    |
-| `scripts/validate-questions.mjs`, `tools/validator/` | Test verisindeki C# kod cevaplarını .NET ile doğrular                                    |
-| `firestore.rules`                                    | Firebase için depo içindeki kural dosyası                                                |
-| `netlify.toml`                                       | Build, yayın başlıkları ve eski sayfa adresleri için yönlendirmeler                      |
+Google girişi kullanılacaksa `NOIR_FIREBASE_CONFIG` değişkenini Netlify'ın ortam değişkenlerine ekle ve build sırasında erişilebilir olmasını sağla.
 
-Yüklenmeyen eski sinema, film, macera, soruşturma ve bağımsız laboratuvar modülleri kaldırıldı.
-Eski HTML adresleri Netlify üzerinden güncel bölümlere yönlendirilir.
-Derslerde kullanılan `assets/case-loops/` animasyonları, posterleri ve `assets/c-question-video.js` korunur.
+Manuel dağıtım için önce `npm run build` çalıştır; üretilen `assets/firebase-config.js` dahil klasörü yükle. Netlify'a yalnızca ZIP bırakmak build komutunu çalıştırmaz.
 
-## Tasarım notları
+## Proje yapısı
 
-**Vaka 20** ("Beceri Temelli Soru 2") yalnızca KOD TAMAMLA sorularından oluşur; çoktan seçmeli
-ve boss sorusu bilinçli olarak yoktur. `tests/data.test.mjs` bu vakayı istisna olarak işaretler.
+| Dosya veya klasör                                              | Görevi                                                |
+| -------------------------------------------------------------- | ----------------------------------------------------- |
+| `index.html`                                                   | C# ve C bölüm seçimi                                  |
+| `CSharp Dedektiflik bürosu.html`                               | C# ders içeriği ve vaka akışı                         |
+| `c-kod-atolyesi.html`                                          | C bağlı liste bölümünün sayfası                       |
+| `assets/c-case-data.js`, `assets/c-writing-data.js`            | C vakaları, fonksiyonlar ve örnek veriler             |
+| `assets/c-cases.js`                                            | C bölümünün dokuz adımlık vaka akışı                  |
+| `assets/c-visual.js`, `assets/c-question-video.js`             | Bağlı liste görselleştirmeleri ve soru animasyonları  |
+| `assets/case-loops/`                                           | Vaka kartlarında kullanılan animasyonlar ve posterler |
+| `assets/progress-store.js`                                     | Yerel ve hesap bazlı ilerleme yönetimi                |
+| `assets/firebase-account.js`                                   | Google girişi ve Firestore eşitleme                   |
+| `scripts/write-firebase-config.mjs`                            | Ortam değişkeninden web yapılandırması üretimi        |
+| `sw.js`, `manifest.webmanifest`                                | Önbellek ve uygulama olarak ekleme desteği            |
+| `docs/screenshots/`                                            | Güncel C# ve C ekran görüntüleri                      |
+| `tests/`, `scripts/validate-questions.mjs`, `tools/validator/` | Soru verisi testleri ve .NET doğrulaması              |
 
-**Firebase API key'i** tarayıcıya inmesi gereken bir değerdir, gizlenemez. Repoda tutulmaz;
-güvenlik Google Cloud'daki API/referrer kısıtlamaları ve `firestore.rules` ile sağlanır.
-
-## Testler
+## Geliştirme kontrolleri
 
 ```bash
-npm test              # soru verisi bütünlüğü
-npm run validate      # KOD TAMAMLA sorularını .NET ile derleyip karşılaştırır
-npm run format:check  # biçim kontrolü
+npm test
+npm run validate
+npm run format:check
 ```
 
-CI her push'ta bu üçünü koşar.
+- `npm test`, depoda test amacıyla korunan `data.js` dosyasının soru yapısını ve cevap alanlarını denetler.
+- `npm run validate`, aynı verideki uygun C# kod tamamlama cevaplarını .NET ile derleyip beklenen çıktıları karşılaştırır; .NET SDK gerektirir.
+- `npm run format:check`, yapılandırılmış dosya gruplarının Prettier biçimini kontrol eder.
 
-## Katkı
+Bu kontroller GitHub Actions'ta çalışır. `data.js` mevcut sayfalardan yüklenmez; bu testlerin kapsamı, güncel arayüzün bütün etkileşimlerini ve C simülasyonlarını kapsamaz.
 
-`CONTRIBUTING.md` dosyasına bak.
+## Katkı ve lisans
 
-## Lisans
+Katkı süreci için [CONTRIBUTING.md](CONTRIBUTING.md) dosyasına bak.
 
-- Uygulama kodu: MIT (`LICENSE`)
-- Soru verisi (`data.js`): tr.wikibooks _C#_ kaynaklarından esinli, CC BY-SA 4.0
+- Uygulama kodu: MIT — [LICENSE](LICENSE).
+- `data.js` soru verisi: tr.wikibooks _C#_ kaynaklarından esinli, CC BY-SA 4.0.

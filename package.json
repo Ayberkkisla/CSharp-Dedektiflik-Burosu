@@ -2,7 +2,7 @@
   "name": "csharp-dedektiflik-buyrosu",
   "version": "1.0.0",
   "private": true,
-  "description": "C# ogrenmek icin tarayicida calisan dedektiflik oyunu (framework yok)",
+  "description": "C# temellerini ve C bagli listelerini vaka, animasyon ve alistirmalarla ogreten tarayici uygulamasi",
   "type": "module",
   "scripts": {
     "start": "npx --yes serve -l 8000 .",
