@@ -248,9 +248,74 @@
     entry('Convert', 'Convert.§', 'Tür dönüşümü'),
     entry('Math', 'Math.§', 'Matematik işlemleri'),
     entry('Array', 'Array.§', 'Dizi işlemleri'),
+    entry('List', 'List<int> § = new List<int>();', 'Esnek koleksiyon'),
   ];
 
   const LIMIT = 10;
+
+  /* Üniteye göre öneri kapsamı: henüz öğretilmeyen öğe o ünitede gösterilmez.
+     u3 tam katalogdur. Listede olmayan ad, o ünitede gizlenir. */
+  const SCOPE_U1 = [
+    'int',
+    'long',
+    'double',
+    'decimal',
+    'bool',
+    'char',
+    'string',
+    'var',
+    'if',
+    'else',
+    'Console',
+    'Convert',
+    'Length',
+    'ToUpper',
+    'ToLower',
+    'Trim',
+    'IsNullOrEmpty',
+    'IsNullOrWhiteSpace',
+    'ToString',
+    'Equals',
+    'GetType',
+    'CompareTo',
+    'WriteLine',
+    'Write',
+    'ReadLine',
+    'ReadKey',
+    'Clear',
+    'ToInt32',
+    'ToInt64',
+    'ToDouble',
+    'ToDecimal',
+    'ToBoolean',
+    'ToChar',
+  ];
+  const SCOPE_U2 = SCOPE_U1.concat([
+    'for',
+    'foreach',
+    'while',
+    'do',
+    'else if',
+    'switch',
+    'case',
+    'break',
+    'continue',
+    'Substring',
+    'Split',
+    'Replace',
+    'Contains',
+    'StartsWith',
+    'EndsWith',
+    'IndexOf',
+    'ToCharArray',
+    'Parse',
+    'TryParse',
+  ]);
+  const SCOPES = { u1: new Set(SCOPE_U1), u2: new Set(SCOPE_U2), u3: null };
+  const allowedIn = (scope, name) => {
+    const set = SCOPES[scope];
+    return !set || set.has(name);
+  };
 
   function normalizeType(type) {
     if (!type) return null;
@@ -370,18 +435,18 @@
     return { owner, prefix, methodType, matched: !!match };
   }
 
-  function memberPool(owner, source, types, methodType) {
+  function memberPool(owner, source, types, methodType, scope) {
     const staticName = ALIAS[owner];
-    if (staticName) return STATICS[staticName] || [];
+    if (staticName) return (STATICS[staticName] || []).filter((item) => allowedIn(scope, item.name));
     let type = methodType || types.get(owner) || inferFromUsage(source, owner);
     if (type === 'int' || type === 'long' || type === 'double' || type === 'decimal' || type === 'float') type = 'number';
-    if (!type) return COMMON.slice();
-    return (MEMBERS[type] || []).concat(UNIVERSAL);
+    const pool = type ? (MEMBERS[type] || []).concat(UNIVERSAL) : COMMON.slice();
+    return pool.filter((item) => allowedIn(scope, item.name));
   }
 
-  function keywordPool(source, types, variables) {
-    const pool = KEYWORDS.slice();
-    const seen = new Set(KEYWORDS.map((item) => item.name.toLowerCase()));
+  function keywordPool(source, types, variables, scope) {
+    const pool = KEYWORDS.filter((item) => allowedIn(scope, item.name));
+    const seen = new Set(pool.map((item) => item.name.toLowerCase()));
     const add = (name, label) => {
       if (!name || !/^[A-Za-z_]\w*$/.test(name) || seen.has(name.toLowerCase())) return;
       seen.add(name.toLowerCase());
@@ -393,7 +458,7 @@
     }
     for (const name of types.keys()) add(name, 'Kodundaki değişken');
     for (const name of Object.keys(ALIAS)) {
-      if (!seen.has(name.toLowerCase())) add(name, 'Hazır isim');
+      if (!seen.has(name.toLowerCase()) && allowedIn(scope, name)) add(name, 'Hazır isim');
     }
     return pool;
   }
@@ -420,21 +485,23 @@
     const variables = options?.variables || [];
     const limit = options?.limit || LIMIT;
     const force = !!options?.force;
+    const scope = options?.scope || '';
     if (insideStringOrComment(before)) return { entries: [], prefix: '' };
     const { owner, prefix, methodType, matched } = splitContext(before);
     if (!matched || (!owner && !prefix && !methodType && !force)) return { entries: [], prefix };
     const types = declaredTypes(source, variables);
     const pool = owner
-      ? memberPool(owner, source, types)
+      ? memberPool(owner, source, types, '', scope)
       : methodType
-        ? memberPool('', source, types, methodType)
-        : keywordPool(source, types, variables);
+        ? memberPool('', source, types, methodType, scope)
+        : keywordPool(source, types, variables, scope);
     return { entries: filterEntries(pool, prefix, limit), prefix };
   }
 
   g.Unit1CodeComplete = {
     suggest,
-    mount(editor, getVariables) {
+    mount(editor, getVariables, options) {
+      const scope = options?.scope || '';
       const wrap = document.createElement('div');
       wrap.className = 'b7-editor-wrap';
       editor.before(wrap);
@@ -510,7 +577,7 @@
           pageText = typeof document === 'undefined' ? '' : document.body.textContent || '';
           pageAt = now;
         }
-        const result = suggest({ before, source: editor.value + '\n' + pageText, variables, force, limit: LIMIT });
+        const result = suggest({ before, source: editor.value + '\n' + pageText, variables, force, limit: LIMIT, scope });
         if (!result.entries.length) {
           hide();
           return;

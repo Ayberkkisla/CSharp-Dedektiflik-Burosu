@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 globalThis.window = globalThis;
 await import("../assets/unit1-code-complete.js");
@@ -277,4 +278,135 @@ test("dizi ve metin için aynı ada sahip üyeler tek kez önerilir", () => {
   });
   const lengths = list.filter((name) => name === "Length");
   assert.equal(lengths.length, 1);
+});
+
+test("ünite 1 yalnızca temel öğeleri önerir", () => {
+  const keywords = names({ before: "", force: true, limit: 500, scope: "u1" });
+  for (const name of ["int", "string", "Console", "Convert", "if", "else"]) {
+    assert.ok(keywords.includes(name), "ünite 1'de " + name + " önerilmeli");
+  }
+  const yasak = [
+    "for",
+    "foreach",
+    "while",
+    "do",
+    "switch",
+    "case",
+    "break",
+    "continue",
+    "new",
+    "void",
+    "static",
+    "class",
+    "return",
+    "Math",
+    "Array",
+    "List",
+  ];
+  for (const name of yasak) {
+    assert.ok(!keywords.includes(name), "ünite 1'de " + name + " önerilmemeli");
+  }
+  const members = names({ before: "bilinmeyen.", limit: 500, scope: "u1" });
+  assert.ok(members.includes("Length"));
+  assert.ok(!members.includes("Count") && !members.includes("Add"));
+  assert.equal(names({ before: "int.", limit: 500, scope: "u1" }).length, 0);
+  assert.ok(
+    names({ before: "string.IsNullOr", scope: "u1" }).includes("IsNullOrEmpty"),
+  );
+  assert.ok(
+    !names({ before: "string.Jo", limit: 500, scope: "u1" }).includes("Join"),
+  );
+  assert.equal(names({ before: "Console.", scope: "u1" }).length, 5);
+});
+
+test("ünite 2 döngüleri ve metin üyelerini ekler, koleksiyonları eklemez", () => {
+  const keywords = names({ before: "", force: true, limit: 500, scope: "u2" });
+  for (const name of [
+    "for",
+    "foreach",
+    "while",
+    "do",
+    "switch",
+    "case",
+    "break",
+    "continue",
+    "int",
+    "Console",
+  ]) {
+    assert.ok(keywords.includes(name), "ünite 2'de " + name + " önerilmeli");
+  }
+  for (const name of [
+    "new",
+    "void",
+    "static",
+    "class",
+    "Math",
+    "Array",
+    "List",
+  ]) {
+    assert.ok(!keywords.includes(name), "ünite 2'de " + name + " önerilmemeli");
+  }
+  const members = names({ before: "bilinmeyen.", limit: 500, scope: "u2" });
+  assert.ok(members.includes("Length"));
+  assert.ok(!members.includes("Count") && !members.includes("Add"));
+  assert.ok(names({ before: "int.Try", scope: "u2" }).includes("TryParse"));
+  const source = 'string ad = " x ";\n';
+  assert.ok(
+    names({ before: "ad.S", source, limit: 500, scope: "u2" }).includes(
+      "Substring",
+    ),
+  );
+});
+
+test("ünite 3 tam katalogdur", () => {
+  const keywords = names({ before: "", force: true, limit: 500, scope: "u3" });
+  for (const name of [
+    "new",
+    "void",
+    "static",
+    "class",
+    "Math",
+    "Array",
+    "List",
+  ]) {
+    assert.ok(keywords.includes(name), "ünite 3'te " + name + " önerilmeli");
+  }
+  const members = names({ before: "bilinmeyen.", limit: 500, scope: "u3" });
+  assert.ok(members.includes("Length"));
+  assert.ok(members.includes("Count") && members.includes("Add"));
+  assert.ok(names({ before: "Math.M", scope: "u3" }).includes("Max"));
+});
+
+test("ünite belirtilmezse tam katalog geçerli", () => {
+  const list = names({ before: "", force: true, limit: 500 });
+  assert.ok(
+    list.includes("List") && list.includes("for") && list.includes("class"),
+  );
+});
+
+const caseScopes = {
+  "unit1-box-case.js": "u1",
+  "unit1-hard-case.js": "u1",
+  "unit1-capstone.js": "u1",
+  "unit2-flow-case.js": "u2",
+  "unit2-next-case.js": "u2",
+  "unit2-loop-case.js": "u2",
+  "unit2-mix-case.js": "u2",
+  "unit2-capstone.js": "u2",
+  "unit3-array-case.js": "u3",
+  "unit3-method-case.js": "u3",
+  "unit3-capstone.js": "u3",
+};
+
+test("her kod yazma vakası kendi ünitesini bildirir", () => {
+  for (const [file, scope] of Object.entries(caseScopes)) {
+    const text = readFileSync(
+      new URL("../assets/" + file, import.meta.url),
+      "utf8",
+    );
+    assert.ok(
+      text.includes("{scope:'" + scope + "'}"),
+      file + " içinde ünite bilgisi yok",
+    );
+  }
 });
