@@ -12,9 +12,12 @@ ogrenciler oyunu kullanabilir.
 
 
 NE VAR ICINDE?
-  Dockerfile        -> sunucuyu bulutta acan tarif
-  server\           -> derlenmis sunucu + Roslyn (32 MB)
-  source\           -> C# kaynak kodu (arsiv amacli, imaja girmez)
+  Dockerfile        -> sunucuyu Linux'ta DERLEYIP calistiran tarif
+  source\           -> sunucunun C# kaynak kodu (imaj bundan derlenir)
+
+Derleme, Docker imajinin icinde (Linux uzerinde) yapilir. Depoda
+hazir DLL TUTULMAZ: .NET SDK'nin Roslyn dosyalari isletim sistemine
+ozeldir; Windows'ta derlenen kopya Linux konteynerinde yuklenemez.
 
 Reponun kokundeki render.yaml dosyasi, Render'in bu klasoru
 otomatik bulmasi icin gereken Blueprint tanimidir.
@@ -33,7 +36,7 @@ A) BLUEPRINT YONTEMI (onerilen - render.yaml kullanir)
    4. Dashboard -> "New +" -> "Blueprint"
    5. "CSharp-Dedektiflik-Burosu" reposunu sec -> "Connect"
    6. Render render.yaml dosyasini okur ve ayarlari gosterir -> "Apply"
-   7. Ilk build ~3-5 dakika surer
+   7. Ilk build ~5-8 dakika surer (sunucu Linux'ta derlenir)
 
 B) MANUEL YONTEM (Blueprint olmazsa)
    1. "New +" -> "Web Service"
@@ -125,6 +128,12 @@ Sunucu "Live" olmuyor / build hatasi
   -> En sik sebep: dockerfilePath / dockerContext ayari yanlis
      (dogrusu: backend/Dockerfile ve backend)
 
+Loglarda "Exited with status 139" ve BadImageFormatException
+  -> Imaj, Windows'ta derlenmis Roslyn DLL'leriyle olusturulmus demektir.
+  -> Cozum: Dockerfile'in 1. asamasi (mcr.microsoft.com/dotnet/sdk:10.0)
+     ile derleme Linux'ta yapilir. Bu asamayi silme; depoya elle
+     derlenmis DLL ekleme.
+
 /api/health 502 ya da timeout veriyor
   -> Ucretsiz plan uyuyor olabilir; 1 dakika bekleyip tekrar dene
 
@@ -144,7 +153,10 @@ Cok yavas / bellek hatasi
 ==========================================================
  TEKNIK NOTLAR
 ==========================================================
-- Taban imaj  : mcr.microsoft.com/dotnet/aspnet:10.0
+- Taban imaj  : mcr.microsoft.com/dotnet/sdk:10.0 (derleme asamasi)
+                mcr.microsoft.com/dotnet/aspnet:10.0 (calisma asamasi)
+- Derleme     : Kaynak kod imajin icinde, Linux uzerinde derlenir.
+                Depoda derlenmis DLL yoktur (platform bagimsizligi).
 - Sunucu      : ASP.NET Core 10 (minimal API) + Roslyn
 - Uclar       : GET /api/health  ve  POST /api/check
 - Port        : Render'in verdigi PORT degiskeni (varsayilan 10000)

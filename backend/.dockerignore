@@ -1,9 +1,11 @@
 # Docker build baglaminin kucuk kalmasi icin.
-# Dockerfile yalnizca server/ klasorunu kopyalar; kalanlar sadece Git'te durur.
+# Derleme asamasi yalnizca source/ klasorune ihtiyac duyar.
+# (Derleme imajin icinde yapilir; depoda hazir DLL tutulmaz.)
 
-source/
 .git
 .gitignore
-DEPLOY-ADIMLARI.txt
-README.md
+.gitattributes
 *.md
+DEPLOY-ADIMLARI.txt
+source/bin
+source/obj

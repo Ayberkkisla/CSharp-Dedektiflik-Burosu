@@ -1,22 +1,34 @@
 # ------------------------------------------------------------------
 #  Dedektif Nokta - C# kod dogrulama sunucusu (Roslyn)
 #
-#  Netlify'daki statik oyunun /api/check ve /api/health
-#  cagrilarini karsilar.
+#  Netlify'daki statik oyunun /api/check ve /api/health cagrilarini
+#  karsilar.
 #
-#  Yerel test (bu klasorun kardesi olan server\ icinde):
-#    dotnet Dedektif.dll --urls http://127.0.0.1:8090
-#  Test sonucu: 318/318 gecti.
+#  ONEMLI: Imaj LINUX uzerinde DERLENIR (asamali build).
+#  Depoya onceden derlenmis DLL koymayin: .NET SDK'nin Roslyn
+#  dosyalari isletim sistemine ozeldir. Windows'ta derlenmis
+#  Microsoft.CodeAnalysis*.dll Linux konteynerinde yuklenemez ve
+#  sunucu BadImageFormatException ile coker (Render: exit 139).
+#  Bu yuzden derleme, calisma ortamiyle AYNI platformda yapilir.
 # ------------------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/aspnet:10.0
 
+# ------------------- 1. Asama: derleme -------------------
+# Linux icin dogru Roslyn dosyalarini uretir.
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+COPY source/ ./
+RUN dotnet publish Dedektif.csproj -c Release -o /app/publish \
+    -p:UseAppHost=false --nologo
+
+# ------------------- 2. Asama: calisma ------------------
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 
-# Derlenmis sunucu + Roslyn (dotnet publish ciktisi):
+# Derlenmis sunucu + Linux icin Roslyn bagimliliklari:
 #   Dedektif.dll, Dedektif.deps.json, Dedektif.runtimeconfig.json,
 #   Microsoft.CodeAnalysis.dll, Microsoft.CodeAnalysis.CSharp.dll
 #   ve 13 dil klasoru
-COPY server/ ./
+COPY --from=build /app/publish ./
 
 # Program.cs UseStaticFiles() cagiriyor; bos bir wwwroot uyari olusmasini onler
 RUN mkdir -p /app/wwwroot

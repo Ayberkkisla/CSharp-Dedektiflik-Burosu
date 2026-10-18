@@ -127,6 +127,8 @@ Manuel dağıtım için önce `npm run build` çalıştır; üretilen `assets/fi
 
 Kod yazma vakaları, `backend/` klasöründeki .NET/Roslyn sunucusuna ihtiyaç duyar. Sunucu Render'da barındırılır; `render.yaml` Blueprint tanımı deponun kökündedir ve kurulum adımları `backend/DEPLOY-ADIMLARI.txt` dosyasındadır.
 
+Docker imajı `backend/source/` içindeki kaynak koddan, Linux tabanlı `dotnet/sdk` aşamasında derlenir. Depoda derlenmiş DLL tutulmaz: .NET SDK'nın Roslyn dosyaları işletim sistemine özeldir ve Windows'ta derlenen kopya Linux konteynerinde çalışmaz. Sunucu kodunu değiştirdiğinde tek yapman gereken dosyayı commitlemek; Render imajı yeniden derler.
+
 Oyun göreli `/api/check` ve `/api/health` adreslerini kullanır. `netlify.toml` içindeki `/api/*` yönlendirmesi bu istekleri Render adresine geçirir, böylece tarayıcıda CORS ayarı gerekmez. Sunucu adresi değişirse yalnızca bu satırdaki hedefi güncelle ve yeniden yayınla.
 
 ## Proje yapısı
@@ -147,8 +149,8 @@ Oyun göreli `/api/check` ve `/api/health` adreslerini kullanır. `netlify.toml`
 | `docs/screenshots/`                                            | Güncel C# ve C ekran görüntüleri                      |
 | `tests/`, `scripts/validate-questions.mjs`, `tools/validator/` | Soru verisi testleri ve .NET doğrulaması              |
 | `backend/`                                                     | Kod yazma vakalarının C# doğrulama sunucusu (Roslyn)  |
-| `backend/server/`                                              | Derlenmiş sunucu ve Roslyn bağımlılıkları             |
 | `backend/source/`                                              | Sunucunun C# kaynak kodu                              |
+| `backend/Dockerfile`                                           | Sunucuyu Linux'ta derleyip paketleyen imaj tanımı     |
 | `render.yaml`                                                  | Render Blueprint tanımı (sunucunun barındırma ayarı)  |
 
 ## Geliştirme kontrolleri
