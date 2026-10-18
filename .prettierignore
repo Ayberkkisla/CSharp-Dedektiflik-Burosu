@@ -15,3 +15,6 @@ c-kod-atolyesi.html
 CSharp Dedektiflik bürosu.html
 sw.js
 assets/**/*.css
+
+# Ucuncu taraf (vendor) dosyalari bicimlendirilmez.
+assets/vendor/
