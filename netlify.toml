@@ -12,6 +12,14 @@
   [headers.values]
     Cache-Control = "no-store"
 
+# C# kod dogrulama sunucusu (Render).
+# Oyunun goreli /api/check ve /api/health cagrilari buradan gecirilir;
+# boylece tarayicida CORS ayari gerekmez.
+[[redirects]]
+  from = "/api/*"
+  to = "https://dedektif-api.onrender.com/api/:splat"
+  status = 200
+
 # Compatibility routes for removed legacy pages.
 [[redirects]]
   from = "/c-bagli-liste.html"

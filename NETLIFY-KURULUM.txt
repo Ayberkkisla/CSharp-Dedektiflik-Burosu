@@ -7,3 +7,8 @@ Ortam değişkeni tanımlı değilse Google girişi kapalı kalır; misafir iler
 
 Manuel dağıtımda önce npm run build çalıştır. Üretilen assets/firebase-config.js dahil klasörü yükle.
 Firebase yapılandırmasını Git'e ekleme. Ayrıntılar README.md dosyasındadır.
+
+KOD YAZMA VAKALARI (.NET SUNUCUSU)
+Oyunun kod yazma vakaları backend/ klasöründeki Roslyn sunucusuna ihtiyaç duyar.
+netlify.toml içindeki /api/* satırı bu istekleri Render adresine geçirir; CORS ayarı gerekmez.
+Sunucu kurulumu için backend/DEPLOY-ADIMLARI.txt dosyasına bak.

@@ -1,0 +1,20 @@
+window.CQuizExamples = [
+ ['Bir düğümü okuyalım','25 değerli düğümün data alanı 25’tir. next alanı ise sonraki düğümün adresini tutar. Tek yönlü listede geriye giden bağlantı gerekmez.','struct Node { int data; struct Node *next; };'],
+ ['Adres tutan alanı tanımlayalım','Bir kutunun içine başka bir kutunun tamamını koymak yerine onun adresini tutarız. İşaretçi tanımında türün ardından * gelir.','struct Ogrenci { int no; struct Ogrenci *sonraki; };'],
+ ['Listenin bitişini bulalım','3 → 14 → 27 listesinde 27’nin devamı yoktur. Bu nedenle son düğümün bağlantısı NULL’dır. head ise ilk düğümü gösterir.','head → 3 → 14 → 27 → NULL'],
+ ['Boş liste oluşturalım','Henüz düğüm yoksa ilk düğümün adresini gösteremeyiz. Baş işaretçisini NULL yaparız. C’de 0 da null işaretçi sabiti olabilir.','struct Node *bas = NULL;'],
+ ['İki oku takip edelim','Liste 6 → 18 → 41 olsun. head->next ikinci düğüme gider, onun data alanı 18’dir. Bir next daha izlersek 41’e ulaşırız.','head->next->next->data  /* 41 */'],
+ ['Dolaşma koşulunu seçelim','5 → 17 → NULL listesinde gezici 5’i ve 17’yi işlemeli. Gezici NULL olduğunda dururuz. next’i kontrol edersek son düğümü atlarız.','for (struct Node *gez = head; gez != NULL; gez = gez->next)\n    printf("%d ", gez->data);'],
+ ['Bir sonraki adrese geçelim','Gezici şu an 13’ü gösteriyor. 13’ün next alanında 29’un adresi var. Bu adresi geziciye atayınca 29’a geçeriz. p++ düğüm bağlantısını izlemez.','gez = gez->next; /* 13’ten 29’a */'],
+ ['Boş listede veriye erişelim mi?','head NULL ise düğüm yoktur. Alanını okumadan önce bunu kontrol ederiz. NULL üzerinden -> kullanmak tanımsız davranıştır.','if (bas != NULL) printf("%d", bas->data);'],
+ ['Başa 45 ekleyelim','Liste 60 → 70 olsun. Önce yeni düğümün next alanına eski başın adresini koyarız. Ardından başı yeni düğüme taşırız. Ters sırada yeni düğüm kendisini gösterir.','yeni->data = 45;\nyeni->next = head;\nhead = yeni;'],
+ ['Başa eklemenin sonucunu bulalım','8 → 19 listesine baştan 3 eklersek yeni baş 3 olur; eski sıra korunur. Sona ekleseydik 3 en sonda olurdu.','Önce: 8 → 19 → NULL\nSonra: 3 → 8 → 19 → NULL'],
+ ['İki düğüm arasına ekleyelim','p, 16’yı göstersin; devamı 32 olsun. Araya 24 eklemek için önce yeni düğümü 32’ye bağlarız, sonra 16’yı yeni düğüme bağlarız.','yeni->next = p->next;\np->next = yeni;\n/* 16 → 24 → 32 */'],
+ ['Bellek ayırmayı kontrol edelim','malloc alan ayıramazsa NULL verir. Bu durumda data veya next alanına erişmeden dönmek gerekir. Başarılı olursa dönen adres kullanılabilir.','struct Node *ek = malloc(sizeof *ek);\nif (ek == NULL) return;\nek->data = 45; /* void fonksiyon içinde */'],
+ ['İlk düğüm olan 21’i silelim','21 → 34 listesinde önce 21’in adresini saklarız. Baş artık 34 olur. Sonra saklanan eski düğümü free ile bırakırız. Belleği bıraktıktan sonra next okunmaz.','struct Node *eski = head;\nhead = head->next;\nfree(eski); /* boş olmayan listede */'],
+ ['Ayrılan belleği geri verelim','malloc ile ayrılmış düğüm artık kullanılmayacaksa free çağırırız. İşaretçinin kendisi otomatik olarak NULL olmaz; serbest bırakılan düğüme tekrar erişmeyiz.','free(eski);\neski = NULL; /* isteğe bağlı */'],
+ ['Aradaki 50’yi silelim','25 → 50 → 75 listesinde onceki 25’i, sil 50’yi gösterir. 25’i 75’e bağlarız, sonra 50’yi serbest bırakırız.','onceki->next = sil->next;\nfree(sil);'],
+ ['Başa eklemenin maliyetini düşünelim','Listede 3 düğüm de 300 düğüm de olsa yeni->next ve head güncellenir. Düğümleri dolaşmayız. Bağlantı işlemleri sabit sayıda: O(1).','yeni->next = head;\nhead = yeni;'],
+ ['Aramanın en kötü durumunu düşünelim','4 → 11 → 19 → 28 listesinde olmayan 99’u ararken dört düğümün hepsini inceleriz. n düğümlü sırasız listede en kötü durumda n kontrol: O(n).','4? hayır → 11? hayır → 19? hayır → 28? hayır'],
+ ['Listeyi tamamen temizleyelim','7 → 22 listesinde önce 7’den 22’ye ilerleriz, sonra 7’yi bırakırız. İkinci turda NULL’a ilerler, 22’yi bırakırız. head sonunda NULL’dır.','while (head != NULL) {\n    struct Node *eski = head;\n    head = head->next;\n    free(eski);\n}']
+];

@@ -1,0 +1,29 @@
+
+/* Question cards in the bureau palette. */
+body .evidence-card{color:#eee6d1}
+body .evidence-card.kanit{background:linear-gradient(145deg,#1b2928,#172323)!important;border:1px solid #64705b!important;border-radius:12px!important;padding:clamp(16px,2.4vw,26px)!important;margin:14px 0!important;box-shadow:0 12px 30px #0003!important}
+body .evidence-card.kanit.zor{border-color:#a88f60!important;background:linear-gradient(145deg,#2a2b23,#1a2523)!important}
+body .evidence-card>h4{color:#dfc58d!important;font:600 12px/1.6 Consolas,monospace!important;letter-spacing:.7px!important;margin:0 0 17px!important;padding-bottom:12px;border-bottom:1px solid #c8b47b26}
+body .evidence-card p.soru{color:#eee6d1!important;font:600 clamp(17px,1.7vw,21px)/1.6 "Segoe UI",sans-serif!important;margin:0 0 16px!important}
+body .evidence-card p.soru code,body .evidence-card #secimler .seck-m code{background:#d8c28e12!important;color:#efcf90!important;border-radius:4px;padding:2px 5px}
+body .evidence-card pre.sorukod{background:#0e1b1c!important;color:#d8e6cb!important;border:1px solid #52634e!important;border-left:3px solid #bca66f!important;border-radius:7px!important;padding:17px 19px!important;font:14px/1.85 Consolas,monospace!important;box-shadow:none!important;margin:0 0 20px!important;white-space:pre-wrap!important;overflow-wrap:anywhere}
+body .evidence-card pre.sorukod code{background:transparent!important;color:inherit!important;padding:0!important}
+body .evidence-card #secimler{display:grid;gap:9px}
+body .evidence-card #secimler .seck{position:relative;display:flex;align-items:center;gap:13px;width:100%;min-height:57px;margin:0!important;padding:12px 15px!important;border:1px solid #526052!important;border-radius:8px!important;background:#20302c!important;color:#e4e3d0!important;box-shadow:none!important;font:400 16px/1.6 "Segoe UI",sans-serif!important;text-align:left;white-space:pre-wrap;transition:border-color .15s,background .15s;transform:none!important}
+body .evidence-card #secimler .seck .harf{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;height:30px;border:1px solid #718063!important;border-radius:5px!important;background:#192623!important;color:#d8c28e!important;font:600 14px/1 Consolas,monospace!important}
+body .evidence-card #secimler .seck-m{min-width:0;overflow-wrap:anywhere}
+body .evidence-card #secimler .seck:not(:disabled):hover{background:#2c3c32!important;border-color:#b9aa79!important}
+body .evidence-card #secimler .seck:focus-visible{outline:2px solid #f1d9a2!important;outline-offset:3px}
+body .evidence-card #secimler .seck.secili{background:#3b3b29!important;border-color:#dfc58d!important;box-shadow:inset 3px 0 #dfc58d!important}
+body .evidence-card #secimler .seck.secili .harf{background:#dfc58d!important;border-color:#dfc58d!important;color:#1b2823!important}
+body .evidence-card #secimler .seck.dogru{background:#253f31!important;border-color:#98ba88!important;color:#e3f0db!important;box-shadow:inset 3px 0 #98ba88!important}
+body .evidence-card #secimler .seck.yanlis{background:#432d29!important;border-color:#ca9480!important;color:#f1d7cc!important;box-shadow:inset 3px 0 #ca9480!important;animation:none!important}
+body .evidence-card #secimler .seck.dogru .harf{background:#98ba88!important;color:#17291e!important;border-color:#98ba88!important;font-size:0!important}
+body .evidence-card #secimler .seck.dogru .harf:after{content:"✓";font-size:18px}
+body .evidence-card #secimler .seck.yanlis .harf{background:#ca9480!important;color:#32211d!important;border-color:#ca9480!important;font-size:0!important}
+body .evidence-card #secimler .seck.yanlis .harf:after{content:"×";font-size:20px}
+body .evidence-card #secimler .seck:disabled{opacity:1!important;cursor:default}
+body .evidence-card input.terminal{border:1px solid #718063!important;background:#0e1b1c!important;color:#eee0bd!important;border-radius:7px!important;box-shadow:none!important;font:16px/1.6 Consolas,monospace!important}
+body .evidence-card input.terminal:focus-visible{outline:2px solid #dfc58d!important;outline-offset:3px}
+@media(max-width:600px){body .evidence-card.kanit{padding:16px!important;border-radius:9px!important}body .evidence-card #secimler .seck{font-size:14px!important;padding:11px!important;gap:10px;min-height:54px}body .evidence-card pre.sorukod{font-size:12px!important;padding:13px!important}body .evidence-card>h4{font-size:11px!important;letter-spacing:0!important}}
+@media(prefers-reduced-motion:reduce){body .evidence-card #secimler .seck{transition:none!important}}

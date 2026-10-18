@@ -23,3 +23,4 @@
  if(cl)cl.textContent=`${Array.isArray(v?.done)?v.done.length:0}/16 vaka · ${(Number(b?.xp)||0)+(Number(w?.xp)||0)+(Number(p?.xp)||0)+(Number(f?.xp)||0)+(Number(v?.xp)||0)} XP`;
  if(total)total.textContent=`⚡ Toplam ${(Number(a?.xp)||0)+(Number(b?.xp)||0)+(Number(w?.xp)||0)+(Number(p?.xp)||0)+(Number(f?.xp)||0)+(Number(v?.xp)||0)} XP · Aynı büro, iki bölüm`;
 })();
+

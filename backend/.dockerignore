@@ -1,0 +1,9 @@
+# Docker build baglaminin kucuk kalmasi icin.
+# Dockerfile yalnizca server/ klasorunu kopyalar; kalanlar sadece Git'te durur.
+
+source/
+.git
+.gitignore
+DEPLOY-ADIMLARI.txt
+README.md
+*.md

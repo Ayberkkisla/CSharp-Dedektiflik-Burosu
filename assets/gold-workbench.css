@@ -1,0 +1,72 @@
+
+/* Black and warm yellow workbench. */
+body .evidence-card.kanit,body .evidence-card.kanit.zor{background:linear-gradient(135deg,#25231b,#191a17 70%)!important;border:1px solid #80724d!important;border-radius:16px 4px 16px 4px!important;box-shadow:0 15px 35px #0005,inset 0 1px #efdaa51a!important;position:relative}
+body .evidence-card.kanit:before{content:"";display:block;position:absolute;top:-1px;left:24px;width:72px;height:3px;background:#e9cd83;border-radius:0 0 3px 3px}
+body .evidence-card>h4{color:#e9cd83!important;border-bottom-color:#d8c18a29}
+body .evidence-card p.soru{color:#f0e7ce!important}
+body .evidence-card .evidence-prompt{margin:15px 0!important;color:#d9d0b8!important;font:500 15px/1.6 "Segoe UI",sans-serif!important}
+body .evidence-editor{margin:8px 0 18px;border:1px solid #746440;border-radius:9px;overflow:hidden;background:#0c0d0c;box-shadow:0 7px 20px #0003}
+body .editor-titlebar{display:flex;align-items:center;gap:13px;min-height:39px;padding:0 14px;background:#23221c;border-bottom:1px solid #5d5339;color:#dfcf9f;font:12px/1.5 Consolas,monospace}
+body .editor-dots{display:flex;gap:5px}
+body .editor-dots i{width:6px;height:6px;border-radius:50%;background:#b9a46b;opacity:.6}
+body .editor-dots i:nth-child(2){opacity:.4}body .editor-dots i:nth-child(3){opacity:.2}
+body .editor-lang{margin-left:auto;color:#a99c7c;border:1px solid #655a3d;border-radius:4px;padding:1px 6px;font-size:10px}
+body .evidence-editor pre.editor-source{margin:0!important;padding:16px 0!important;background:#0c0d0c!important;border:0!important;border-radius:0!important;color:#e9e2cc!important;font:14px/1.85 Consolas,"Courier New",monospace!important;white-space:pre-wrap!important;overflow:auto;box-shadow:none!important;counter-reset:editor-line}
+body .evidence-editor pre.editor-source code{display:block!important;background:none!important;color:inherit!important;padding:0!important;font:inherit!important}
+body .editor-line{display:block;position:relative;min-height:1.85em;padding:0 18px 0 53px;white-space:pre-wrap;overflow-wrap:anywhere;counter-increment:editor-line}
+body .editor-line:before{content:counter(editor-line);position:absolute;left:0;top:0;width:35px;text-align:right;color:#756e59;font:inherit;border-right:1px solid #d7ba6f15;padding-right:9px;user-select:none}
+body .evidence-editor .syntax-keyword{color:#efc65e}
+body .evidence-editor .syntax-string{color:#ead7a3}
+body .evidence-editor .syntax-number{color:#d6bb82}
+body .evidence-editor .syntax-type{color:#f1e4bc}
+body .evidence-editor .syntax-comment{color:#938b70;font-style:italic}
+body .editor-status{display:flex;justify-content:space-between;padding:6px 13px;border-top:1px solid #bfa26126;background:#181913;color:#9d9478;font:10px/1.5 Consolas,monospace;letter-spacing:.6px}
+body .evidence-card #secimler .seck{background:#27271f!important;border-color:#656046!important;color:#e9e1cb!important}
+body .evidence-card #secimler .seck .harf{background:#1b1d17!important;border-color:#7f7552!important;color:#e6cd8b!important}
+body .evidence-card #secimler .seck:not(:disabled):hover{background:#343226!important;border-color:#c9b276!important}
+body .evidence-card #secimler .seck.secili{background:#423b24!important;border-color:#e9cd83!important;box-shadow:inset 3px 0 #e9cd83!important}
+body .evidence-card #secimler .seck.secili .harf{background:#e9cd83!important;color:#232219!important}
+body .evidence-card #secimler .seck.dogru{background:#293d2d!important;border-color:#a0b68b!important;box-shadow:inset 3px 0 #a0b68b!important}
+body .evidence-card #secimler .seck.yanlis{background:#422d25!important;border-color:#c9987e!important;box-shadow:inset 3px 0 #c9987e!important}
+body .topic-browser{color:#ece2c4}
+body .topic-intro{color:#c7bea4!important}
+body .topic-tabs button[role=tab]{background:#24241d!important;border-color:#776d4e!important;color:#e3d5af!important;border-radius:7px 2px 7px 2px!important}
+body .topic-tabs button[aria-selected=true]{background:#ecdaa2!important;color:#24231a!important;border-color:#ecdaa2!important;box-shadow:0 3px 12px #e4c77912!important}
+body .topic-tabs button:hover{border-color:#e9cf8a!important}
+body .topic-panel{background:linear-gradient(135deg,#28271d,#1b1d17)!important;border:1px solid #8d7e52!important;border-radius:13px 3px 13px 3px!important}
+body .topic-panel>h4{color:#f0dba0!important}
+body .topic-panel th{color:#ccbb89!important}
+body .topic-panel td{color:#ece3ca!important}
+body .topic-panel th,body .topic-panel td{border-top-color:#c7b47a26!important}
+body .topic-panel pre{background:#0c0d0b!important;color:#efda9d!important;border:1px solid #6d603f!important;border-radius:6px!important}
+body .topic-detail{border-top-color:#c7b47a33}
+body .topic-detail summary{color:#e8ce8d!important;padding:9px 11px;border:1px solid #796b43;border-radius:5px;background:#d7ba6310}
+body .topic-detail summary:hover{background:#d7ba631c}
+body .topic-steps li::marker{color:#efd68d}
+body .evidence-card input.terminal{background:#0c0d0b!important;border-color:#8d7e52!important;color:#efda9d!important}
+@media(max-width:600px){body .evidence-editor pre.editor-source{font-size:12px!important}body .editor-line{padding-left:40px;padding-right:12px}body .editor-line:before{width:26px;padding-right:7px}body .editor-titlebar{padding:0 11px}body .evidence-card .evidence-prompt{font-size:14px!important}}
+
+/* Darker surfaces keep pale yellow text distinct. */
+body .evidence-card.kanit,body .evidence-card.kanit.zor{background:linear-gradient(135deg,#121310,#0b0d0b 75%)!important;border-color:#655c40!important}
+body .evidence-card>h4{color:#f3da93!important}
+body .evidence-card #secimler .seck{background:#151713!important;border-color:#55543e!important;color:#f0e8d3!important}
+body .evidence-card #secimler .seck .harf{background:#0a0d0a!important;color:#f2d994!important}
+body .evidence-card #secimler .seck:not(:disabled):hover{background:#22251b!important;border-color:#bda96b!important}
+body .evidence-card #secimler .seck.secili{background:#2c2919!important;border-color:#f0d58e!important}
+body .evidence-card #secimler .seck.secili .harf{background:#f0d58e!important;color:#16190f!important}
+body .evidence-card #secimler .seck.dogru{background:#17291c!important;border-color:#a0b68b!important}
+body .evidence-card #secimler .seck.yanlis{background:#2c1b16!important;border-color:#c9987e!important}
+body .topic-tabs button[role=tab]{background:#121510!important;border-color:#666043!important;color:#f1deb0!important}
+body .topic-tabs button[aria-selected=true]{background:#ecdaa2!important;color:#171a10!important}
+body .topic-tabs button:not([aria-selected=true]):hover{background:#22251a!important}
+body .topic-panel{background:linear-gradient(135deg,#141710,#0b0e0b)!important;border-color:#716543!important}
+body .topic-panel>h4{color:#f6dfa1!important}
+body .topic-panel th{color:#e3cf96!important}
+body .topic-panel td{color:#f1e9d4!important}
+body .topic-panel pre{background:#060806!important;color:#f3dc9c!important}
+body .topic-detail summary{background:#0b0e09!important;color:#f0d695!important;border-color:#78693e}
+body .topic-detail summary:hover{background:#1c2115!important}
+body .editor-titlebar{background:#171a13!important;color:#f1dda3!important}
+body .editor-status{background:#10130d!important;color:#c1b58d!important}
+body .editor-line:before{color:#a49b7d!important}
+body .evidence-editor .syntax-comment{color:#b6aa88!important}

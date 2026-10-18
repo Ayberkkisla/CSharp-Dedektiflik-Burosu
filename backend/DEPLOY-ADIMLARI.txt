@@ -1,0 +1,158 @@
+==========================================================
+ DEDEKTIF NOKTA - C# DOGRULAMA SUNUCUSU (Render.com)
+ Kurulum Adimlari
+==========================================================
+
+Bu klasor, Netlify'daki oyunun KOD YAZMA vakalarini dogrulayan
+kucuk bir .NET/Roslyn sunucusudur (/api/check ve /api/health).
+
+Sunucu senin bilgisayarinda CALISMAZ. Render.com'un kendi veri
+merkezinde (Frankfurt) calisir. Bilgisayarin kapali olsa da
+ogrenciler oyunu kullanabilir.
+
+
+NE VAR ICINDE?
+  Dockerfile        -> sunucuyu bulutta acan tarif
+  server\           -> derlenmis sunucu + Roslyn (32 MB)
+  source\           -> C# kaynak kodu (arsiv amacli, imaja girmez)
+
+Reponun kokundeki render.yaml dosyasi, Render'in bu klasoru
+otomatik bulmasi icin gereken Blueprint tanimidir.
+
+NOT: Oyunun kendisi icin ayri bir GitHub deposu GEREKMEZ.
+Bu klasor, oyunun bulundugu deponun icindedir.
+
+
+----------------------------------------------------------
+ ADIM 1 - RENDER'DA SERVISI AC
+----------------------------------------------------------
+A) BLUEPRINT YONTEMI (onerilen - render.yaml kullanir)
+   1. https://render.com adresine git
+   2. "Get Started" -> "GitHub" ile giris yap (kredi karti istemez)
+   3. GitHub erisim izni ver (sadece bu repoyu secmen yeterli)
+   4. Dashboard -> "New +" -> "Blueprint"
+   5. "CSharp-Dedektiflik-Burosu" reposunu sec -> "Connect"
+   6. Render render.yaml dosyasini okur ve ayarlari gosterir -> "Apply"
+   7. Ilk build ~3-5 dakika surer
+
+B) MANUEL YONTEM (Blueprint olmazsa)
+   1. "New +" -> "Web Service"
+   2. "CSharp-Dedektiflik-Burosu" reposunu sec -> "Connect"
+   3. Language / Runtime : Docker
+   4. Instance Type      : Free
+   5. Region             : Frankfurt (EU Central)
+   6. Dockerfile Path    : backend/Dockerfile
+      Docker Build Context: backend
+   7. Health Check Path  : /api/health
+   8. "Create Web Service"
+
+
+----------------------------------------------------------
+ ADIM 2 - CALISTIGINI DOGRULA
+----------------------------------------------------------
+Render sana bir adres verir, ornek:
+    https://dedektif-api.onrender.com
+
+Tarayicida su adresi ac:
+    https://dedektif-api.onrender.com/api/health
+
+Su cevabi gormelisin:
+    {"engine":"Roslyn","units":[1,2,3],"questions":125}
+
+Bu cevap geliyorsa sunucu CALISIYOR demektir.
+
+EGER ADRES FARKLIYSA ("dedektif-api" adi alinmissa Render sonuna
+rastgele bir ek koyar, ornegin dedektif-api-xxxx.onrender.com):
+adresi kopyala ve netlify.toml icindeki /api/* satirinda guncelle.
+
+
+----------------------------------------------------------
+ ADIM 3 - NETLIFY'I BUNA BAGLA
+----------------------------------------------------------
+netlify.toml dosyasinda su satir zaten hazir:
+
+    [[redirects]]
+      from = "/api/*"
+      to = "https://dedektif-api.onrender.com/api/:splat"
+      status = 200
+
+Render adresin bundan farkliysa sadece bu satirdaki adresi degistir,
+commitle ve push et. Netlify otomatik olarak yeniden yayinlar.
+
+NOT: Bu yontem sayesinde CORS ayariyla ugrasmak GEREKMEZ.
+     Tarayici sadece Netlify ile konusur; Netlify sunucu tarafinda
+     istegi Render'a iletir.
+
+
+----------------------------------------------------------
+ ADIM 4 - FIREBASE ALAN ADINI EKLE
+----------------------------------------------------------
+1. https://console.firebase.google.com -> proje: csharp-dedektiflik-3bcc0
+2. Build -> Authentication -> Settings -> "Authorized domains"
+3. "Add domain" -> Netlify alan adini yaz
+   (ornek: dedektifnokta.netlify.app)
+4. Kaydet
+
+Bunu yapmazsan oyundaki giris / kayit ozelligi calismaz.
+
+
+----------------------------------------------------------
+ ADIM 5 - SUNUCUYU UYANIK TUT (ONEMLI)
+----------------------------------------------------------
+Render'in ucretsiz planinda servis 15 dakika istek almazsa uykuya gecer.
+Uyandiginda ilk cevap 20-40 saniye surebilir. Oyunun zaman asimi ise
+15-20 saniyedir -> ogrenci "zaman asimi" hatasi gorebilir.
+
+COZUM: ucretsiz bir izleme servisiyle 10 dakikada bir ping at.
+
+   https://uptimerobot.com    (ya da)    https://cron-job.org
+
+Ayarlar:
+   URL      : https://dedektif-api.onrender.com/api/health
+   Aralik   : 10 dakika
+   Yontem   : GET
+
+Bu ping Render'in kendi altyapisindan yapilir, senin bilgisayarindan degil.
+Cihazini kapatabilirsin, ping calismaya devam eder.
+
+
+==========================================================
+ SORUN GIDERME
+==========================================================
+
+Sunucu "Live" olmuyor / build hatasi
+  -> Render'da "Logs" sekmesini ac
+  -> En sik sebep: dockerfilePath / dockerContext ayari yanlis
+     (dogrusu: backend/Dockerfile ve backend)
+
+/api/health 502 ya da timeout veriyor
+  -> Ucretsiz plan uyuyor olabilir; 1 dakika bekleyip tekrar dene
+
+Oyun kod vakalarinda "sunucuya ulasilamadi" diyor
+  -> netlify.toml icindeki /api/* adresi yanlis olabilir
+  -> Render servisi henuz "Live" olmayabilir
+  -> Adres dogruysa ve yine olmuyorsa: Render -> Logs
+
+Oyun "Dogrulama servisi: 500" diyor
+  -> Render loglarina bak; cogu zaman gecici bir durumdur
+
+Cok yavas / bellek hatasi
+  -> Free plan 512 MB RAM verir. .NET + Roslyn ~300-400 MB kullanir.
+  -> Starter plana ($7/ay) gecmek bunu cozer.
+
+
+==========================================================
+ TEKNIK NOTLAR
+==========================================================
+- Taban imaj  : mcr.microsoft.com/dotnet/aspnet:10.0
+- Sunucu      : ASP.NET Core 10 (minimal API) + Roslyn
+- Uclar       : GET /api/health  ve  POST /api/check
+- Port        : Render'in verdigi PORT degiskeni (varsayilan 10000)
+- CORS        : Program.cs'te yalnizca localhost'a acik; Netlify proxy
+                kullandigimiz icin CORS gerekmiyor.
+- Guvenlik    : Sunucu ogrenci kodunu CALISTIRMAZ. Roslyn ile ayristirir,
+                kontrollu bir yorumlayiciyla degerlendirir; islem (process)
+                baslatmaz. Bu yuzden bulutta barindirmak guvenlidir.
+- Test        : Yerelde 318/318 test gecti
+                (capstone referanslari 47/47, unit1 54/54,
+                 dizi 63/63, metot 78/78, unite3 final 76/76)

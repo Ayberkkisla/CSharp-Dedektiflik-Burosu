@@ -6,3 +6,12 @@ netlify.toml
 package-lock.json
 firebase-config.js
 google5af49ed490352552.html
+
+# Oyunun disa aktarilan (kucultulmus) uretim dosyalari.
+# Oyun ureticisinden ciktigi gibi korunur. Bicimlendirme dosyalari buyutur ve
+# HTML'de bosluk duyarliligi gorunumu degistirebilir.
+index.html
+c-kod-atolyesi.html
+CSharp Dedektiflik bürosu.html
+sw.js
+assets/**/*.css

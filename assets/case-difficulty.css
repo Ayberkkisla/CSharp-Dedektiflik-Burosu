@@ -1,0 +1,31 @@
+
+/* Hard writing cases: preview the difficulty before opening. */
+body .cj-stop[data-difficulty=hard]{--stop-color:#d67f76!important;background:linear-gradient(145deg,#371d1d,#1e1414)!important;border-color:#a15c55!important;box-shadow:inset 0 3px #bf6d62,0 6px 18px #0004!important}
+body .cj-stop[data-difficulty=hard]:hover{background:linear-gradient(145deg,#472322,#291818)!important;border-color:#ef9d8c!important}
+body .cj-stop[data-difficulty=hard] small{color:#ffb3a3!important;font-weight:700!important;letter-spacing:.5px!important}
+body .cj-stop[data-difficulty=hard] .cj-number{background:#512722!important;color:#ffd0bd!important;border-color:#ba7468!important}
+body .cj-stop[data-difficulty=hard] .cj-case-title{color:#f2c7b8!important}
+body .cj-stop[data-difficulty=hard].is-current{border-color:#ef9d8c!important;box-shadow:inset 0 3px #ef9d8c,0 0 0 2px #a9584933!important}
+body .cj-stop[data-difficulty=hard].is-done small:after{color:#b4d0ab}
+body .cj-stop[data-difficulty=hard] .ln-file-art:after{background:linear-gradient(transparent,#491a1aaa)!important}
+#c18,#c24{background:#110c0c!important}
+#c18 .c18-topbar,#c24 .c24-topbar{background:#211212!important;border-color:#6e3c36!important}
+#c18 .c18-brand,#c24 .c24-brand{color:#f0b3a3!important}
+#c18 .c18-brand:after,#c24 .c24-brand:after{content:"ZOR VAKA";display:inline-block;margin-left:12px;padding:3px 7px;border:1px solid #a45f52;border-radius:4px;background:#49251f;color:#ffc1af;font:700 10px/1.5 "Segoe UI",sans-serif;letter-spacing:1px;vertical-align:middle}
+#c18 .c18-overline,#c24 .c24-overline{color:#efa795!important}
+#c18 .c18-filmbar,#c24 .c24-filmbar{background:#291715!important;border-color:#734139!important;color:#efb09f!important}
+#c18 .c18-primary,#c24 .c24-primary{background:#e69785!important;border-color:#e69785!important;color:#26110d!important}
+#c18 .c18-seals button[aria-current=step],#c24 .c24-seals button[aria-current=step]{background:#502820!important;border-color:#e69785!important;color:#ffd3c2!important}
+#c18 .c18-seals button.c18-done,#c24 .c24-seals button.c24-done{border-color:#81966c!important}
+@media(max-width:600px){#c18 .c18-brand:after,#c24 .c24-brand:after{font-size:9px;margin-left:6px;letter-spacing:.4px}}
+
+#c24 .teach14{background:#1b1111!important;color:#eadbd2}
+#c24 .tt-inputs li,#c24 .tt-values span{background:#281a18!important;border-color:#6f4940!important}
+#c24 .tt-current,#c24 .tt-values{background:#261a18!important;border-color:#775045!important}
+#c24 .tt-side .tt-full-code,#c24 .tt-console{background:#120d0d!important;border-color:#785044!important}
+#c24 .tt-header{color:#dfb3a3}
+#c24 .tt-back,#c24 .tt-speed,#c24 .tt-examples select{background:#34201c!important;border-color:#89574a!important;color:#efc3b2!important}
+#c24 .tt-forward{background:#e69785!important;border-color:#e69785!important;color:#26110d!important}
+#c24 .tt-effect:not(.skip):not(.stop){background:#30201d!important}
+#c18 .c18-cinema,#c24 .c24-cinema{border-color:#825247!important}
+#c18 .c18-dialogue,#c24 .c24-dialogue{background:#211512!important;border-color:#70473b!important}

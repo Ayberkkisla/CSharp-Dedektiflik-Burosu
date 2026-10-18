@@ -6,10 +6,10 @@ Bir vaka seçer, konu açıklamasını okur, kodun nasıl çalıştığını inc
 
 ## İki bölüm, iki öğrenme yolu
 
-| Bölüm                  | Kapsam                              | İçerik                                                                                             |
-| ---------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------- |
-| **C# — Arşiv Sokağı**  | Programlamanın temelleri            | 23 vaka, 4 ünite; konu kartları, mini dersler, kanıt soruları, kod tamamlama ve yapbozlar          |
-| **C — Bellek Rıhtımı** | Doğrusal ve dairesel bağlı listeler | 16 vaka; satır açıklamaları, görsel bağlantı simülasyonları, çözümlü örnekler ve uygulama soruları |
+| Bölüm                  | Kapsam                              | İçerik                                                                                               |
+| ---------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **C# — Arşiv Sokağı**  | Programlamanın temelleri            | 33 vaka, 4 ünite; konu kartları, mini dersler, kanıt soruları, kod tamamlama, kod yazma ve yapbozlar |
+| **C — Bellek Rıhtımı** | Doğrusal ve dairesel bağlı listeler | 16 vaka; satır açıklamaları, görsel bağlantı simülasyonları, çözümlü örnekler ve uygulama soruları   |
 
 ### C# — Programlamanın temelleri
 
@@ -23,6 +23,14 @@ C# bölümünde vaka haritasından bir ders seçilir. Vaka açılışında konu 
 | Beceri temelli sorular            | 19–23   | Gerçek hayat ve proje senaryolarıyla problem çözme                                             |
 
 Vaka haritasında tamamlanan dosyalar işaretlenir; XP ve ilerleme bilgileri gösterilir.
+
+### C# — Kod yazma vakaları
+
+İlk 23 vakanın ardından **10 kod yazma vakası** gelir. Bu vakalarda cevabı seçmek veya kod parçalarını sıralamak yerine öğrenci kendi kodunu yazar.
+
+Yazılan kod tarayıcıda çalıştırılmaz. Kod, `backend/` klasöründeki Roslyn tabanlı doğrulama sunucusuna gönderilir; sunucu kodu ayrıştırır ve kontrollü bir yorumlayıcıyla değerlendirir. Öğrenci kodu hiçbir zaman işletim sistemi süreci olarak başlatılmaz.
+
+Sunucu yanıt verdiğinde oyun kod doğrulamasının bağlı olduğunu gösterir. Sunucuya ulaşılamazsa yalnızca kod yazma vakaları çalışmaz; dersler, sorular ve C bölümü etkilenmez.
 
 ### C — Bağlı listeler
 
@@ -115,6 +123,12 @@ Google girişi kullanılacaksa `NOIR_FIREBASE_CONFIG` değişkenini Netlify'ın 
 
 Manuel dağıtım için önce `npm run build` çalıştır; üretilen `assets/firebase-config.js` dahil klasörü yükle. Netlify'a yalnızca ZIP bırakmak build komutunu çalıştırmaz.
 
+### Kod yazma vakaları için .NET sunucusu
+
+Kod yazma vakaları, `backend/` klasöründeki .NET/Roslyn sunucusuna ihtiyaç duyar. Sunucu Render'da barındırılır; `render.yaml` Blueprint tanımı deponun kökündedir ve kurulum adımları `backend/DEPLOY-ADIMLARI.txt` dosyasındadır.
+
+Oyun göreli `/api/check` ve `/api/health` adreslerini kullanır. `netlify.toml` içindeki `/api/*` yönlendirmesi bu istekleri Render adresine geçirir, böylece tarayıcıda CORS ayarı gerekmez. Sunucu adresi değişirse yalnızca bu satırdaki hedefi güncelle ve yeniden yayınla.
+
 ## Proje yapısı
 
 | Dosya veya klasör                                              | Görevi                                                |
@@ -132,6 +146,10 @@ Manuel dağıtım için önce `npm run build` çalıştır; üretilen `assets/fi
 | `sw.js`, `manifest.webmanifest`                                | Önbellek ve uygulama olarak ekleme desteği            |
 | `docs/screenshots/`                                            | Güncel C# ve C ekran görüntüleri                      |
 | `tests/`, `scripts/validate-questions.mjs`, `tools/validator/` | Soru verisi testleri ve .NET doğrulaması              |
+| `backend/`                                                     | Kod yazma vakalarının C# doğrulama sunucusu (Roslyn)  |
+| `backend/server/`                                              | Derlenmiş sunucu ve Roslyn bağımlılıkları             |
+| `backend/source/`                                              | Sunucunun C# kaynak kodu                              |
+| `render.yaml`                                                  | Render Blueprint tanımı (sunucunun barındırma ayarı)  |
 
 ## Geliştirme kontrolleri
 

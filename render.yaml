@@ -1,0 +1,25 @@
+# ------------------------------------------------------------------
+#  Render Blueprint — Dedektif Nokta C# kod dogrulama sunucusu (Roslyn)
+#
+#  Oyunun /api/check ve /api/health cagrilarini karsilar.
+#  Kurulum: Render Dashboard -> New + -> Blueprint -> repoyu sec -> Apply
+#  Belgeler: https://render.com/docs/blueprint-spec
+#
+#  Onemli: dockerfilePath ve dockerContext ikisi de REPO KOKUNE gore yazilir.
+# ------------------------------------------------------------------
+
+services:
+  - type: web
+    name: dedektif-api
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_FORWARDEDHEADERS_ENABLED
+        value: "true"
