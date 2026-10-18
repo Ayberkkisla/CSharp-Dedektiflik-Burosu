@@ -159,6 +159,64 @@
     Char: 'char',
   };
 
+  /* Metot çağrısından sonra nokta yazılırsa: Console.ReadLine(). → metin. */
+  const RETURNS = {
+    ReadLine: 'string',
+    ReadKey: 'char',
+    ToString: 'string',
+    ToUpper: 'string',
+    ToLower: 'string',
+    Trim: 'string',
+    Substring: 'string',
+    Replace: 'string',
+    Concat: 'string',
+    Format: 'string',
+    Join: 'string',
+    Split: 'array',
+    ToCharArray: 'array',
+  };
+
+  /* Türü tanınamayan değişkende gösterilen genel üyeler: en sık gerekenler
+     önde olur, böylece öneri listesi hiçbir durumda boş kalmaz. */
+  const COMMON_ORDER = [
+    'Length',
+    'Count',
+    'ToString',
+    'Add',
+    'Remove',
+    'Substring',
+    'ToUpper',
+    'ToLower',
+    'Trim',
+    'Contains',
+    'Split',
+    'Replace',
+    'IndexOf',
+    'Sort',
+    'Clear',
+    'GetLength',
+    'Rank',
+    'StartsWith',
+    'EndsWith',
+    'CompareTo',
+    'Equals',
+    'GetType',
+    'ToCharArray',
+    'RemoveAt',
+    'Insert',
+  ];
+  const COMMON = (() => {
+    const known = new Map();
+    for (const list of Object.values(MEMBERS)) {
+      for (const item of list) if (!known.has(item.name)) known.set(item.name, item);
+    }
+    for (const item of UNIVERSAL) if (!known.has(item.name)) known.set(item.name, item);
+    return COMMON_ORDER.filter((name) => known.has(name)).map((name) => {
+      const item = known.get(name);
+      return { name: item.name, insert: item.insert, description: item.description + ' · tahminî', back: item.back };
+    });
+  })();
+
   /* Anahtar kelimeler ve hazır kalıplar; her editörde aynı liste önerilir. */
   const KEYWORDS = [
     entry('for', 'for (int i = 0; i < §; i++) {\n    \n}', 'Sayaçlı tekrar'),
@@ -239,7 +297,7 @@
       if (type) types.set(variable[0], type);
     }
     let m;
-    const arrays = /\b(int|long|double|decimal|bool|char|string|float)\s*\[\s*\]\s+([A-Za-z_]\w*)/g;
+    const arrays = /\b(int|long|double|decimal|bool|char|string|float)\s*\[[,\s]*\]\s+([A-Za-z_]\w*)/g;
     while ((m = arrays.exec(source))) types.set(m[2], 'array');
     const lists = /\bList\s*<[^>]*>\s+([A-Za-z_]\w*)/g;
     while ((m = lists.exec(source))) types.set(m[1], 'list');
@@ -302,16 +360,23 @@
 
   function splitContext(before) {
     const match = before.match(/(?:(\b[A-Za-z_]\w*)\s*\.\s*)?([A-Za-z_]\w*)?$/);
-    return { owner: match?.[1] || '', prefix: match?.[2] || '', matched: !!match };
+    const owner = match?.[1] || '';
+    const prefix = match?.[2] || '';
+    let methodType = '';
+    if (!owner) {
+      const call = before.match(/([A-Za-z_]\w*)\s*\(\s*[^()]*\)\s*\.\s*([A-Za-z_]\w*)?$/);
+      if (call) methodType = RETURNS[call[1]] || '';
+    }
+    return { owner, prefix, methodType, matched: !!match };
   }
 
-  function memberPool(owner, source, types) {
+  function memberPool(owner, source, types, methodType) {
     const staticName = ALIAS[owner];
     if (staticName) return STATICS[staticName] || [];
-    let type = types.get(owner) || inferFromUsage(source, owner);
+    let type = methodType || types.get(owner) || inferFromUsage(source, owner);
     if (type === 'int' || type === 'long' || type === 'double' || type === 'decimal' || type === 'float') type = 'number';
-    const members = type ? MEMBERS[type] || [] : [];
-    return members.concat(UNIVERSAL);
+    if (!type) return COMMON.slice();
+    return (MEMBERS[type] || []).concat(UNIVERSAL);
   }
 
   function keywordPool(source, types, variables) {
@@ -356,10 +421,14 @@
     const limit = options?.limit || LIMIT;
     const force = !!options?.force;
     if (insideStringOrComment(before)) return { entries: [], prefix: '' };
-    const { owner, prefix, matched } = splitContext(before);
-    if (!matched || (!owner && !prefix && !force)) return { entries: [], prefix };
+    const { owner, prefix, methodType, matched } = splitContext(before);
+    if (!matched || (!owner && !prefix && !methodType && !force)) return { entries: [], prefix };
     const types = declaredTypes(source, variables);
-    const pool = owner ? memberPool(owner, source, types) : keywordPool(source, types, variables);
+    const pool = owner
+      ? memberPool(owner, source, types)
+      : methodType
+        ? memberPool('', source, types, methodType)
+        : keywordPool(source, types, variables);
     return { entries: filterEntries(pool, prefix, limit), prefix };
   }
 
@@ -389,6 +458,8 @@
       let start = 0;
       let end = 0;
       let enabled = true;
+      let pageText = '';
+      let pageAt = 0;
 
       function hide() {
         menu.hidden = true;
@@ -432,7 +503,14 @@
         }
         const before = editor.value.slice(0, editor.selectionStart);
         const variables = typeof getVariables === 'function' ? getVariables() : [];
-        const result = suggest({ before, source: editor.value, variables, force, limit: LIMIT });
+        /* Verilen hazır satırlar editörün dışında gösterilse bile türleri
+           tanıyabilmek için sayfadaki metin ara sıra taranır. */
+        const now = Date.now();
+        if (now - pageAt > 2000) {
+          pageText = typeof document === 'undefined' ? '' : document.body.textContent || '';
+          pageAt = now;
+        }
+        const result = suggest({ before, source: editor.value + '\n' + pageText, variables, force, limit: LIMIT });
         if (!result.entries.length) {
           hide();
           return;

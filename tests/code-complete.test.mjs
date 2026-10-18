@@ -125,6 +125,49 @@ test("görev girdilerinin tipi kullanılır", () => {
   assert.ok(!list.includes("Length"));
 });
 
+test("iki boyutlu dizide de Length önerilir", () => {
+  const source = "int[,] m = { {1,2}, {3,4} };\n";
+  assert.equal(names({ before: "m.l", source })[0], "Length");
+  assert.ok(names({ before: "m.", source }).includes("GetLength"));
+  assert.equal(names({ before: "m.", source }).length, 6);
+});
+
+test("türü tanınmayan değişkende liste boş kalmaz", () => {
+  const list = names({ before: "bilinmeyen.", source: "" });
+  assert.equal(list.length, 10);
+  assert.equal(list[0], "Length");
+  assert.ok(list.includes("Count"));
+  assert.ok(names({ before: "bilinmeyen.l" }).includes("Length"));
+  assert.ok(
+    names({ before: "eskiKod.l", source: "eskiKod = 1;\n" }).includes("Length"),
+  );
+});
+
+test("türü tanınmayan değişkenin önerileri tahmini olarak işaretlenir", () => {
+  const guess = ask({ before: "bilinmeyen." }).entries;
+  assert.ok(guess.every((item) => item.description.includes("tahminî")));
+  const typed = ask({
+    before: "raf.",
+    source: "int[] raf = new int[3];\n",
+  }).entries;
+  assert.ok(typed.every((item) => !item.description.includes("tahminî")));
+});
+
+test("hazır satırlar editör dışında olsa da tür bulunur", () => {
+  const page = 'int[] rafNo = { 12, 7, 25 };\nstring[] ad = { "ali" };\n';
+  assert.equal(names({ before: "rafNo.l", source: page })[0], "Length");
+  assert.equal(names({ before: "ad.l", source: page })[0], "Length");
+});
+
+test("metot çağrısından sonra dönen tür bilinir", () => {
+  assert.ok(names({ before: "Console.ReadLine().T" }).includes("ToString"));
+  assert.ok(names({ before: "Console.ReadLine().S" }).includes("Substring"));
+  const source = 'string ad = "  x  ";\n';
+  assert.ok(names({ before: "ad.Trim().L", source }).includes("Length"));
+  assert.ok(names({ before: "ad.Split().L", source }).includes("Length"));
+  assert.ok(names({ before: "ad.ToUpper().L", source }).includes("Length"));
+});
+
 test("statik sınıf üyeleri listelenir", () => {
   assert.deepEqual(
     ["WriteLine", "ReadLine"].every((name) =>
@@ -185,6 +228,9 @@ test("hiçbir öneride imleç işareti kalmaz", () => {
     { before: "raf.", source: "int[] raf = new int[3];", limit: 500 },
     { before: "ad.", source: "string ad = Console.ReadLine();", limit: 500 },
     { before: "adet.", source: "int adet = 3;", limit: 500 },
+    { before: "m.", source: "int[,] m = { {1,2}, {3,4} };", limit: 500 },
+    { before: "bilinmeyen.", limit: 500 },
+    { before: "Console.ReadLine().", limit: 500 },
   ];
   let total = 0;
   for (const context of contexts) {
