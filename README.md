@@ -68,7 +68,9 @@ Görsel oynatıcıda düğümler, adresler ve bağlantılar kod satırlarıyla b
 
 ## Ekran Görüntüleri
 
-### Ana sayfa
+Aşağıdaki görseller oyunun ana akışını sırayla gösterir: giriş ekranı, vaka haritaları, vaka içi anlatım ve kod görevleri.
+
+### Giriş ve vaka seçimi
 
 ![Ana sayfa — C# ve C bölüm seçimi](docs/screenshots/01-ana-sayfa.png)
 
@@ -76,9 +78,23 @@ Görsel oynatıcıda düğümler, adresler ve bağlantılar kod satırlarıyla b
 | ----------------------------------------------------------------- | --------------------------------------------------------------- |
 | ![C# vaka haritası](docs/screenshots/02-csharp-vaka-haritasi.png) | ![C# vaka açılışı](docs/screenshots/03-csharp-vaka-acilisi.png) |
 
+### C bölümü: bağlı liste modülü
+
 | C bağlı liste haritası                                                    | C bağlı liste simülasyonu                                                       |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | ![C bağlı liste haritası](docs/screenshots/04-c-bagli-liste-haritasi.png) | ![C bağlı liste simülasyonu](docs/screenshots/05-c-bagli-liste-simulasyonu.png) |
+
+### Vaka içi çalışma ekranı
+
+Görev tanımı, örnek kod, adım adım izleme ve kod alanı aynı ekranda verilir. Gönderilen kod Roslyn tabanlı doğrulayıcıya gider; sonuç, girdi bazlı test tablosu ve Türkçe açıklamayla birlikte döner.
+
+![Vaka 1 — Kayıp Çanta Dosyası: görev tanımı, adım adım izleme, örnek kod ve kod alanı](docs/screenshots/06-csharp-vaka-calisma-ekrani.png)
+
+### Adım adım izleme
+
+Referans kod satır satır çalıştırılır; değişkenlerin aldığı değerler ve akış görsel animasyonla gösterilir.
+
+![Vaka 9 — takip bütçesi görevi: adım adım izleme, bütçe ve bilet görselleştirmesi](docs/screenshots/07-csharp-adim-adim-izleme.png)
 
 ## Yerelde çalıştırma
 
