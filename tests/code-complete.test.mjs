@@ -211,10 +211,24 @@ test("blok seçenekleri birlikte önerilir", () => {
   assert.ok(list.includes("else") && list.includes("else if"));
 });
 
-test("tam yazılmış değişken tekrar önerilmez", () => {
-  const variables = [["adet", "Kaç kez yazılacak?", "int"]];
-  assert.ok(!names({ before: "adet", variables }).includes("adet"));
-  assert.ok(names({ before: "ade", variables }).includes("adet"));
+test("görev değişkenleri önerilmez, koddan gelenler önerilir", () => {
+  const variables = [
+    ["adet", "Kaç kez yazılacak?", "int"],
+    ["butce", "Bütçe nedir?", "decimal"],
+  ];
+  assert.ok(!names({ before: "ade", variables }).includes("adet"));
+  assert.ok(!names({ before: "but", variables }).includes("butce"));
+  const source = "int adet = 3;\n";
+  assert.ok(names({ before: "ade", code: source, source }).includes("adet"));
+  assert.ok(!names({ before: "adet", code: source, source }).includes("adet"));
+});
+
+test("sayfadaki hazır satırlar değişken önermez ama türünü tanıtır", () => {
+  const page = "int adet = 3;\n";
+  assert.ok(!names({ before: "ade", code: "", source: page }).includes("adet"));
+  assert.ok(
+    names({ before: "adet.", code: "", source: page }).includes("ToString"),
+  );
 });
 
 test("hiçbir öneride imleç işareti kalmaz", () => {

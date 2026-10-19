@@ -444,7 +444,9 @@
     return pool.filter((item) => allowedIn(scope, item.name));
   }
 
-  function keywordPool(source, types, variables, scope) {
+  /* Yalnızca kullanıcının kendi kodunda tanımladığı değişkenler önerilir;
+     görevin hazır verdiği değişken adları listede gösterilmez. */
+  function keywordPool(types, scope) {
     const pool = KEYWORDS.filter((item) => allowedIn(scope, item.name));
     const seen = new Set(pool.map((item) => item.name.toLowerCase()));
     const add = (name, label) => {
@@ -452,10 +454,6 @@
       seen.add(name.toLowerCase());
       pool.push(entry(name, name, label || 'Kodundaki değişken'));
     };
-    for (const variable of variables || []) {
-      if (Array.isArray(variable)) add(variable[0], variable[1] || 'Görevdeki değer');
-      else if (typeof variable === 'string') add(variable, 'Görevdeki değer');
-    }
     for (const name of types.keys()) add(name, 'Kodundaki değişken');
     for (const name of Object.keys(ALIAS)) {
       if (!seen.has(name.toLowerCase()) && allowedIn(scope, name)) add(name, 'Hazır isim');
@@ -483,6 +481,7 @@
     const before = String(options?.before ?? '');
     const source = String(options?.source ?? '');
     const variables = options?.variables || [];
+    const code = typeof options?.code === 'string' ? options.code : source;
     const limit = options?.limit || LIMIT;
     const force = !!options?.force;
     const scope = options?.scope || '';
@@ -494,7 +493,7 @@
       ? memberPool(owner, source, types, '', scope)
       : methodType
         ? memberPool('', source, types, methodType, scope)
-        : keywordPool(source, types, variables, scope);
+        : keywordPool(declaredTypes(code, []), scope);
     return { entries: filterEntries(pool, prefix, limit), prefix };
   }
 
@@ -577,7 +576,15 @@
           pageText = typeof document === 'undefined' ? '' : document.body.textContent || '';
           pageAt = now;
         }
-        const result = suggest({ before, source: editor.value + '\n' + pageText, variables, force, limit: LIMIT, scope });
+        const result = suggest({
+          before,
+          code: editor.value,
+          source: editor.value + '\n' + pageText,
+          variables,
+          force,
+          limit: LIMIT,
+          scope,
+        });
         if (!result.entries.length) {
           hide();
           return;
