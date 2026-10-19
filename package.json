@@ -8,9 +8,12 @@
     "start": "npx --yes serve -l 8000 .",
     "validate": "node scripts/validate-questions.mjs",
     "test": "node --test tests/data.test.mjs tests/code-complete.test.mjs",
-    "format": "npx --yes prettier --write .",
-    "format:check": "npx --yes prettier --check \"**/*.{html,css,md,yml,yaml}\" \"sw.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"package.json\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check \"**/*.{html,css,md,yml,yaml}\" \"sw.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"package.json\"",
     "build": "node scripts/write-firebase-config.mjs",
     "prestart": "npm run build"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10"
   }
 }

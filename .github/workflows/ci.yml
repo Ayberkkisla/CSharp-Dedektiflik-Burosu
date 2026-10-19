@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Bagimliliklari kur (kilit dosyasina gore)
+        run: npm ci
       - name: Soru verisi butunluk testleri
         run: npm test
 
@@ -25,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Bagimliliklari kur (kilit dosyasina gore)
+        run: npm ci
       - name: KOD TAMAMLA sorularini dotnet ile dogrula
         run: npm run validate
 
@@ -35,5 +39,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Bagimliliklari kur (kilit dosyasina gore)
+        run: npm ci
       - name: Prettier kontrolu
         run: npm run format:check
