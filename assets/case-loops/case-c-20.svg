@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="210" viewBox="0 0 480 210" role="img" aria-labelledby="title desc">
+ <title id="title">Altıncı kayıt</title><desc id="desc">En az dokuz düğümlü listede 6. düğüm silinir; 5. ve 7. düğümler iki yönde bağlanır.</desc>
+ <style>
+  text{font-family:Consolas,monospace;fill:#ecdbb5}.link{fill:none;stroke:#89b8c7;stroke-width:3}.back{stroke:#bf95d7}.old,.target{animation:fade 7s infinite}.new{animation:appear 7s infinite}.new.back{stroke:#d8a8f3}.new.link{stroke-width:4}
+  @keyframes fade{0%,35%{opacity:1}55%,88%{opacity:0}100%{opacity:1}}@keyframes appear{0%,35%{opacity:0}55%,88%{opacity:1}100%{opacity:0}}@media(prefers-reduced-motion:reduce){.old,.target,.new{animation:none}.old{opacity:0}.new{opacity:1}.target{opacity:.18}}
+ </style>
+ <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10" fill="context-stroke"/></marker></defs>
+ <rect width="480" height="210" rx="16" fill="#191e24"/><path d="M0 170H480M0 172H480" stroke="#5d533e"/>
+ <text x="24" y="29" font-size="11" letter-spacing="2">SIRA: 5 ⇄ 6 ⇄ 7 / TOPLAM EN AZ 9 DÜĞÜM</text>
+ <g marker-end="url(#arrow)">
+  <path class="old link" d="M145 95H195"/><path class="old link back" d="M195 126H145"/>
+  <path class="old link" d="M285 95H335"/><path class="old link back" d="M335 126H285"/>
+  <path class="new link" d="M145 87C195 45 285 45 335 87"/><path class="new link back" d="M335 136C285 171 195 171 145 136"/>
+ </g>
+ <g fill="#29343d" stroke="#c3ab76"><rect x="55" y="83" width="90" height="54" rx="9"/><rect x="335" y="83" width="90" height="54" rx="9"/></g>
+ <g class="target"><rect x="195" y="83" width="90" height="54" rx="9" fill="#3a2930" stroke="#d69c8f"/><text x="229" y="118" font-size="25">60</text></g>
+ <text x="89" y="118" font-size="25">50</text><text x="369" y="118" font-size="25">70</text>
+ <text x="20" y="72" font-size="10">… ←</text><text x="402" y="72" font-size="10">→ …</text>
+ <text x="24" y="194" font-size="11">5.next = 7 · 7.prev = 5 · free(6. düğüm)</text>
+</svg>

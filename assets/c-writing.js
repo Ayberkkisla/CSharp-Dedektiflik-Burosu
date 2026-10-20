@@ -1,13 +1,13 @@
 (function(global) {
  'use strict';
  const structure = 'struct node {\n    int data;\n    struct node *next;\n};';
- function listText(values,circular=false){return values.length?values.join(' → ')+(circular?' ↩ head':' → NULL'):'Boş liste';}
+ function listText(values,circular=false,doubly=false){if(doubly)return values.length?'NULL ← '+values.join(' ⇄ ')+' → NULL':'Boş liste';return values.length?values.join(' → ')+(circular?' ↩ head':' → NULL'):'Boş liste';}
  function makeProgram(task,code){
   const helpers=`#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
-${structure}
+${task.structure||structure}
 
 /* Liste düğümleri malloc ile ayrılır. */
 static struct node *listeKur(const int *a, size_t n, int daire) {
@@ -16,7 +16,7 @@ static struct node *listeKur(const int *a, size_t n, int daire) {
         struct node *yeni = malloc(sizeof *yeni);
         assert(yeni != NULL);
         yeni->data = a[i];
-        yeni->next = NULL;
+        yeni->next = NULL;${task.doubly?'\n        yeni->prev = son;':''}
         if (head == NULL) head = yeni;
         else son->next = yeni;
         son = yeni;
@@ -26,10 +26,10 @@ static struct node *listeKur(const int *a, size_t n, int daire) {
 }
 
 static int ayni(struct node *head, const int *beklenen, size_t n, int daire) {
-    struct node *p = head;
+    struct node *p = head;${task.doubly?'\n    struct node *onceki = NULL;':''}
     for (size_t i = 0; i < n; ++i) {
         if (p == NULL || (i > 0 && p == head) || p->data != beklenen[i]) return 0;
-        p = p->next;
+        ${task.doubly?'if (p->prev != onceki) return 0;\n        onceki = p;\n        ':''}p = p->next;
     }
     if (n == 0) return head == NULL;
     return daire ? p == head : p == NULL;

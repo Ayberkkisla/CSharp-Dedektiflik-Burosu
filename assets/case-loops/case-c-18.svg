@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="210" viewBox="0 0 480 210" role="img" aria-labelledby="title desc">
+ <title id="title">Yeni baş delil</title><desc id="desc">Yeni 7 düğümü listenin başına gelir. next eski başa, eski başın prev bağlantısı yeni düğüme gider.</desc>
+ <style>
+  text{font-family:Consolas,monospace;fill:#ecdbb5}.link{fill:none;stroke:#89b8c7;stroke-width:3}.back{stroke:#bf95d7}.incoming{animation:arrive 7s infinite}.forward{animation:forward 7s infinite}.reverse{animation:reverse 7s infinite}
+  @keyframes arrive{0%,12%{opacity:0;transform:translateY(45px)}28%,88%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(45px)}}@keyframes forward{0%,30%{opacity:0}45%,88%{opacity:1}100%{opacity:0}}@keyframes reverse{0%,48%{opacity:0}64%,88%{opacity:1}100%{opacity:0}}@media(prefers-reduced-motion:reduce){.incoming,.forward,.reverse{animation:none}}
+ </style>
+ <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10" fill="context-stroke"/></marker></defs>
+ <rect width="480" height="210" rx="16" fill="#191e24"/>
+ <text x="24" y="29" font-size="11" letter-spacing="2">BELLEK RIHTIMI / İLK DELİL KAPISI</text>
+ <g marker-end="url(#arrow)"><path class="link" d="M285 100H335"/><path class="link back" d="M335 125H285"/><path class="link forward" d="M145 100H195"/><path class="link back reverse" d="M195 125H145"/></g>
+ <g fill="#29343d" stroke="#c3ab76"><rect x="195" y="83" width="90" height="54" rx="9"/><rect x="335" y="83" width="90" height="54" rx="9"/></g>
+ <text x="227" y="118" font-size="25">10</text><text x="369" y="118" font-size="25">20</text>
+ <g class="incoming"><rect x="55" y="83" width="90" height="54" rx="9" fill="#264037" stroke="#94d2b0"/><text x="91" y="118" font-size="25">7</text><text x="57" y="69" font-size="11">yeni / head</text><text x="19" y="157" font-size="10">NULL ← prev</text></g>
+ <text x="353" y="157" font-size="10">next → NULL</text><path d="M0 170H480" stroke="#5d533e"/>
+ <text x="24" y="194" font-size="11">prev = NULL · next = head · head.prev = yeni</text>
+</svg>

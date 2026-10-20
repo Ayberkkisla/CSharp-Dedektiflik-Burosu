@@ -1,6 +1,7 @@
 (function(g){
 'use strict';
 function frames(t,input,position){
+ if(t.doubly)return g.CDoubly.frames(t,input);
  position=position||t.position||5; t={...t,id:t.baseId||t.id};
  const nodes=input.a.map((value,i)=>({id:'a'+i,value,alive:true})),edges={},pointers={};let head=nodes[0]?.id||null,second=null;const out=[];
  nodes.forEach((n,i)=>edges[n.id]=nodes[i+1]?.id||(t.circular?head:null));
@@ -73,7 +74,13 @@ function svg(frame,viewport){
   }else if(to===null){d=`M ${a.x+112} ${a.y+28} C ${a.x+117} ${a.y+28}, ${a.x+121} ${a.y+28}, ${a.x+126} ${a.y+28}`;text(a.x+115,a.y+81,'NULL','cv-null');}else{text(a.x+114,a.y+25,'?','cv-null');return;}
   const path=S('path',{d,'data-edge':from,fill:'none',stroke:changed?'#69e1b6':'#7c8cab','stroke-width':changed?4:2.5,'marker-end':`url(#${markerId})`});root.append(path);if(changed)root._cvEdges.push(path);
  });
- frame.nodes.forEach(n=>{const a=positions[n.id],focus=frame.focus.includes(n.id);const group=S('g',{class:'cv-node'+(!n.alive?' cv-freed':'')+(focus?' cv-focus':''),'data-node':n.id,opacity:n.alive?1:.06});group.append(S('rect',{x:a.x,y:a.y,width:112,height:58,rx:12}),S('line',{x1:a.x+66,y1:a.y,x2:a.x+66,y2:a.y+58}),S('text',{x:a.x+33,y:a.y+37,'text-anchor':'middle',class:'cv-value'},String(n.value)),S('text',{x:a.x+88,y:a.y+35,'text-anchor':'middle',class:'cv-next'},'●'),S('text',{x:a.x+7,y:a.y-10,class:'cv-field'},'data       next'),S('text',{x:a.x+6,y:a.y+77,class:'cv-address'},'@'+n.id.toUpperCase()));root.append(group);root._cvParts['node:'+n.id]=group;root._cvPositions['node:'+n.id]=a;if(!n.alive){group.append(S('path',{d:`M ${a.x+10} ${a.y+9} L ${a.x+101} ${a.y+49} M ${a.x+101} ${a.y+9} L ${a.x+10} ${a.y+49}`,stroke:'#ff7c8c','stroke-width':3}),S('text',{x:a.x,y:a.y+80,class:'cv-null'},'free · kullanılamaz'));}});
+ if(frame.doubly)Object.entries(frame.prev).forEach(([from,to])=>{
+  const a=positions[from];if(!a)return;if(to==='unset'){text(a.x-18,a.y+48,'?','cv-null');return;}const changed=frame.changedPrev.includes(from);let d;
+  if(to&&positions[to]){const b=positions[to];d=`M ${a.x+4} ${a.y+46} C ${a.x-25} ${Math.max(a.y,b.y)+98}, ${b.x+140} ${Math.max(a.y,b.y)+98}, ${b.x+108} ${b.y+48}`;}
+  else{d=`M ${a.x+4} ${a.y+46} L ${a.x-18} ${a.y+46}`;text(a.x-30,a.y+100,'NULL','cv-null');}
+  const path=S('path',{d,'data-edge':'prev:'+from,fill:'none',stroke:changed?'#e2b5ff':'#b593d2','stroke-width':changed?4:2.5,'marker-end':`url(#${markerId})`});root.append(path);if(changed)root._cvEdges.push(path);
+ });
+ frame.nodes.forEach(n=>{const a=positions[n.id],focus=frame.focus.includes(n.id);const group=S('g',{class:'cv-node'+(!n.alive?' cv-freed':'')+(focus?' cv-focus':''),'data-node':n.id,opacity:n.alive?1:.06});group.append(S('rect',{x:a.x,y:a.y,width:112,height:58,rx:12}),S('line',{x1:a.x+(frame.doubly?80:66),y1:a.y,x2:a.x+(frame.doubly?80:66),y2:a.y+58}),S('text',{x:a.x+(frame.doubly?56:33),y:a.y+37,'text-anchor':'middle',class:'cv-value'},String(n.value)),S('text',{x:a.x+88,y:a.y+35,'text-anchor':'middle',class:'cv-next'},'●'),S('text',{x:a.x+7,y:a.y-10,class:'cv-field'},frame.doubly?'prev  data  next':'data       next'),S('text',{x:a.x+6,y:a.y+77,class:'cv-address'},'@'+n.id.toUpperCase()));if(frame.doubly)group.append(S('line',{x1:a.x+32,y1:a.y,x2:a.x+32,y2:a.y+58}),S('text',{x:a.x+16,y:a.y+35,'text-anchor':'middle',class:'cv-next'},'●'));root.append(group);root._cvParts['node:'+n.id]=group;root._cvPositions['node:'+n.id]=a;if(!n.alive){group.append(S('path',{d:`M ${a.x+10} ${a.y+9} L ${a.x+101} ${a.y+49} M ${a.x+101} ${a.y+9} L ${a.x+10} ${a.y+49}`,stroke:'#ff7c8c','stroke-width':3}),S('text',{x:a.x,y:a.y+80,class:'cv-null'},'free · kullanılamaz'));}});
  const labels={...frame.pointers,[frame.headName||'head']:frame.head,...(frame.second?{[frame.secondName||'head2']:frame.second}:{})};const count={};Object.entries(labels).forEach(([name,id])=>{if(!id||!positions[id])return;const a=positions[id],row=count[id]||0;count[id]=row+1;const y=a.y-40-row*24,part=S('g',{'data-pointer':name});part.append(S('text',{x:a.x,y,class:'cv-pointer'},name),S('path',{d:`M ${a.x+30} ${y+10} L ${a.x+30} ${a.y-15}`,stroke:'#ffc46d','stroke-width':2,'marker-end':`url(#${markerId})`}));root.append(part);root._cvParts['pointer:'+name]=part;root._cvPositions['pointer:'+name]={x:a.x,y};});return root;
 }
 const players=new Set();
@@ -102,7 +109,7 @@ function morph(scene,target){
  return {step:p=>jobs.forEach(job=>job(p)),finish:()=>{jobs.forEach(job=>job(1));cleanup.forEach(fn=>fn());}};
 }
 function mountGsap(parent,t,input,options={}){
- const all=frames(t,input,options.position||t.position||5),box=E('section',undefined,'cv-board cv-gsap-board');
+ const all=options.frames||frames(t,input,options.position||t.position||5),box=E('section',undefined,'cv-board cv-gsap-board');
  all.forEach(f=>{f.headName=t.id==='birlestir'?'head1':'head';if(options.renamed){f.headName=t.id==='birlestir'?'bas1':'bas';f.secondName='bas2';const renamed={};Object.entries(f.pointers).forEach(([name,id])=>renamed[g.CCaseTools.rename(name)]=id);f.pointers=renamed;}});
  const reduced=!!g.matchMedia?.('(prefers-reduced-motion: reduce)').matches,viewport=Math.max(600,...all.map(f=>70+f.nodes.length*136)),head=E('div',undefined,'cv-board-head'),title=E('b'),canvas=E('div',undefined,'cv-canvas'),caption=E('p',undefined,'cv-caption'),code=E('pre',undefined,'cv-active-code');
  head.append(E('span',options.static?'SORUNUN BAŞLANGIÇ LİSTESİ':'CANLI BAĞLANTI SİMÜLASYONU','cw-meta'),title);const scene=svg(all[0],viewport);canvas.append(scene);
@@ -127,7 +134,7 @@ function mountGsap(parent,t,input,options={}){
 }
 function mount(parent,t,input,options={}){
  if(g.gsap)return mountGsap(parent,t,input,options);
- const all=frames(t,input,options.position||t.position||5),box=E('section',undefined,'cv-board');
+ const all=options.frames||frames(t,input,options.position||t.position||5),box=E('section',undefined,'cv-board');
  all.forEach(f=>{f.headName=t.id==='birlestir'?'head1':'head';if(options.renamed){f.headName=t.id==='birlestir'?'bas1':'bas';f.secondName='bas2';const renamed={};Object.entries(f.pointers).forEach(([name,id])=>renamed[g.CCaseTools.rename(name)]=id);f.pointers=renamed;}});parent.append(box);
  const reduced=!!g.matchMedia?.('(prefers-reduced-motion: reduce)').matches,viewport=Math.max(600,...all.map(f=>70+f.nodes.length*136));
  const head=E('div',undefined,'cv-board-head'),title=E('b'),canvas=E('div',undefined,'cv-canvas'),caption=E('p',undefined,'cv-caption'),code=E('pre',undefined,'cv-active-code');

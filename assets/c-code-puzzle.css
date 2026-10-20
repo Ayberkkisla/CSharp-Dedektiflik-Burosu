@@ -3,3 +3,10 @@
 .cp-slot.is-correct{border-color:#69cc96;background:#193b2d;color:#d3ffe2;box-shadow:inset 0 0 14px #63dd9520,0 0 13px #65d99640;animation:cp-green-glow .42s ease-out}.cp-slot.is-wrong{border-color:#ed7c89;background:#42232e;color:#ffe0e5;box-shadow:inset 0 0 14px #fb748220,0 0 13px #f1748540;animation:cp-red-glow .42s ease-out}.cp-slot.is-correct:hover{background:#224c38;border-color:#9be4b9}.cp-slot.is-wrong:hover{background:#512a36;border-color:#ffabb5}@keyframes cp-green-glow{from{box-shadow:0 0 28px #67edaa99}to{box-shadow:inset 0 0 14px #63dd9520,0 0 13px #65d99640}}@keyframes cp-red-glow{from{box-shadow:0 0 28px #ff6b8199}to{box-shadow:inset 0 0 14px #fb748220,0 0 13px #f1748540}}@media(prefers-reduced-motion:reduce){.cp-slot.is-correct,.cp-slot.is-wrong{animation:none}}
 
 .cf-card .cf-gap.is-correct{border:2px solid #69cc96;background:#193b2d;color:#d3ffe2;box-shadow:inset 0 0 14px #63dd9520,0 0 13px #65d99640;animation:cp-green-glow .42s ease-out}.cf-card .cf-gap.is-wrong{border:2px solid #ed7c89;background:#42232e;color:#ffe0e5;box-shadow:inset 0 0 14px #fb748220,0 0 13px #f1748540;animation:cp-red-glow .42s ease-out}.cf-card .cf-gap.is-correct:hover{background:#224c38}.cf-card .cf-gap.is-wrong:hover{background:#512a36}@media(prefers-reduced-motion:reduce){.cf-card .cf-gap.is-correct,.cf-card .cf-gap.is-wrong{animation:none}}
+
+/* Keep feedback visible while a piece is selected and under the lesson theme. */
+.linked-list-page .cp-workshop .cp-slot.is-wrong,.linked-list-page .cf-card .cf-gap.is-wrong{border:2px solid #ff8293;background:#42232e;color:#ffe0e5}
+.linked-list-page .cp-workshop .cp-slot.is-correct,.linked-list-page .cf-card .cf-gap.is-correct{border:2px solid #69cc96;background:#193b2d;color:#d3ffe2}
+.cp-slot-status{display:block;margin-top:6px;font:700 12px/1.6 system-ui,sans-serif;letter-spacing:.02em;white-space:normal}
+.cp-slot.is-wrong .cp-slot-status,.cf-gap.is-wrong .cp-slot-status{color:#ffb6c0}
+.cp-slot.is-correct .cp-slot-status,.cf-gap.is-correct .cp-slot-status{color:#a0efbd}

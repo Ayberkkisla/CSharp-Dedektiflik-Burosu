@@ -6,10 +6,10 @@ Bir vaka seçer, konu açıklamasını okur, kodun nasıl çalıştığını inc
 
 ## İki bölüm, iki öğrenme yolu
 
-| Bölüm                  | Kapsam                              | İçerik                                                                                               |
-| ---------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **C# — Arşiv Sokağı**  | Programlamanın temelleri            | 33 vaka, 4 ünite; konu kartları, mini dersler, kanıt soruları, kod tamamlama, kod yazma ve yapbozlar |
-| **C — Bellek Rıhtımı** | Doğrusal ve dairesel bağlı listeler | 16 vaka; satır açıklamaları, görsel bağlantı simülasyonları, çözümlü örnekler ve uygulama soruları   |
+| Bölüm                  | Kapsam                                             | İçerik                                                                                               |
+| ---------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **C# — Arşiv Sokağı**  | Programlamanın temelleri                           | 33 vaka, 4 ünite; konu kartları, mini dersler, kanıt soruları, kod tamamlama, kod yazma ve yapbozlar |
+| **C — Bellek Rıhtımı** | Doğrusal, dairesel ve çift bağlı doğrusal listeler | 20 vaka; satır açıklamaları, görsel bağlantı simülasyonları, çözümlü örnekler ve uygulama soruları   |
 
 ### C# — Programlamanın temelleri
 
@@ -36,13 +36,17 @@ Sunucu yanıt verdiğinde oyun kod doğrulamasının bağlı olduğunu gösterir
 
 C bölümü, **bağlı listeler ve işaretçiler** üzerine odaklanır. `struct node`, `data`, `next`, `head`, `NULL`, `malloc` ve `free` gibi kavramlar, düğümlerin ve bağlantıların değişimini gösteren örneklerle açıklanır.
 
-16 vaka boyunca şu işlemler çalışılır:
+20 vaka boyunca şu işlemler çalışılır:
 
 - Doğrusal listenin başına ve sonuna düğüm ekleme.
 - Düğümleri gezme ve yazdırma.
 - İlk, son, belirli sıradaki veya ilk eşleşen düğümü silme.
 - İki doğrusal listeyi birleştirme.
 - Dairesel listeye ekleme ve dairesel listeden silme.
+- Çift bağlı doğrusal listede ilk eşleşmeyi silme: `prev` ve `next` oklarının animasyonu, kod tamamlama ve yapboz (17. vaka).
+- Çift bağlı doğrusal listenin başına ekleme: yeni düğümün geliş animasyonu, boş liste kontrolü, `malloc` başarısızlığı ve eski başın `prev` bağlantısı (18. vaka).
+- Çift bağlı doğrusal listenin son düğümünü silme: son düğümü bulma, önceki düğümün `next` alanını NULL yapma, boş ve tek düğüm durumları (19. vaka).
+- En az 9 düğümlü çift bağlı doğrusal listede 6. düğümü silme: beş next hareketi, 5. ve 7. düğümün iki yönde bağlanması ve sıra/veri ayrımı (20. vaka).
 - Boş liste, tek düğüm, bulunamayan hedef ve tekrar eden değerler gibi özel durumlar.
 
 Her vaka **dokuz adımlık** bir öğrenme akışı izler:
@@ -57,7 +61,47 @@ Her vaka **dokuz adımlık** bir öğrenme akışı izler:
 8. Kod parçalarını doğru sıraya koy.
 9. Vakayı tamamla ve sonraki dosyaya geç.
 
-Görsel oynatıcıda düğümler, adresler ve bağlantılar kod satırlarıyla birlikte takip edilir. Oynat/duraklat, adım adım ilerleme, geri sarma ve hız ayarları bulunur. Vaka sonunda isteğe bağlı serbest kod alanı ve C dosyası indirme seçeneği vardır; indirilen kod yerel bir C ortamında çalıştırılabilir.
+Görsel oynatıcıda düğümler, adresler ve bağlantılar kod satırlarıyla birlikte takip edilir. Oynat/duraklat, adım adım ilerleme, geri sarma ve hız ayarları bulunur.
+
+### C — Animasyonlu kod görevleri
+
+Her C vakasının son adımında, kutlama bölümünün hemen altında o vakaya ait kod yazma sorusu doğrudan görünür. Ayrı görev ekranı veya soru listesi açılmaz. Kod doğru çalıştığında sorunun altından sonraki vakaya geçilebilir. Her soruda ayrı sahne başlığı, işlem animasyonu, örnek liste, aşamalı ipuçları, çözüm planı ve satır açıklamaları bulunur.
+
+Öğrenci yalnızca istenen C fonksiyonunu yazar. Editör değişken, komut ve `->` sonrasında `data` / `next` / `prev` alan önerileri sunar. **Ctrl + Boşluk** önerileri açar, **Tab** öneriyi ekler, **Ctrl + Enter** kodu kontrol eder. Taslaklar ve başarılı çözümler mevcut ilerleme deposunda saklanır; önceki serbest editör taslakları da alınır.
+
+`assets/c-lab-engine.js`, kodu metin eşleştirmek yerine ayrıştırıp sınırlandırılmış bir yorumlayıcıda çalıştırır. Her soru 8–24 girdiyle sınanır: özgün örnekler, farklı pozitif/negatif sayılar ve ekleme görevlerinde bellek ayırma başarısızlığı. Testler çıktı/liste sırasını, dairesel kapanışı, çift bağlı listede `prev` oklarını, NULL ve serbest bırakılmış belleğe erişimi, kopan düğümlerin serbest bırakılmasını ve döngü sınırını kontrol eder. **Testi izle** düğmesi öğrencinin kodundan kaydedilmiş en fazla 100 adımı oynatır; bu görünüm örnek çözümün animasyonundan ayrıdır.
+
+Bu motor tam C derleyicisi değildir. Düğüm işaretçileri, `int`, koşullar, `while` / `for` / `do…while`, `break` / `continue`, temel ifadeler, `malloc`, `sizeof`, `free` ve temel `printf` kullanımları desteklenir. Yardımcı fonksiyonlar, diziler ve özyineleme desteklenmez. İşaretçi ve `sizeof` işlemleri öğretim amaçlı bellek modeliyle değerlendirilir. Öğrenci kodu işletim sistemi süreci veya JavaScript olarak çalıştırılmaz. Daha geniş C çözümleri için **Testli C dosyasını indir** seçeneği korunur.
+
+`tests/c-lab.test.mjs` motorun doğru ve hatalı çözümlerini; `tests/c-lab-ui.test.mjs` görev açma, kod yazma, öneri, test sonucu, gerçek kod adımlarını oynatma ve taslak koruma olaylarını kontrol eder. DOM sözleşme testleri tarayıcıdaki görsel yerleşim doğrulamasının yerini tutmaz.
+
+### C — Hikâyeli final vakaları
+
+Haritada 20 öğretim vakasından sonra **Vaka 21 — Tek Yönlü Listeler** (10 soru) ve **Vaka 22 — Çift Yönlü Listeler** (5 soru) bulunur. Final kartları diğer vakalarla aynı küçük boyuttadır ve bağlantı işlemlerini gösteren animasyonlu kapaklar taşır. Toplam 22 vaka vardır.
+
+Sorular kısa, somut kayıt durumlarıyla anlatılır; dekoratif emojiler ve ilgisiz sahneler kullanılmaz. Örneğin müzayede sorusunda sekiz eserin QR kaydından altıncısı hatalıdır; öğrenciden bu düğümü sırayı bozmadan silmesi istenir.
+
+Her sorunun ayrı bir tam sayfa renk paleti vardır. Soru değişince sayfa arka planı, menüler, soru ve yardım panelleri, editör ve bağlantı animasyonu birlikte renk değiştirir. Finalden çıkınca normal vaka görünümü geri gelir. Renkler `assets/c-final-theme.css` içinde ortak CSS değişkenleriyle uygulanır.
+
+| Grup         | Soru                        | Sayfa rengi | İşlem                                         |
+| ------------ | --------------------------- | ----------- | --------------------------------------------- |
+| Tek yönlü 1  | Öncelikli iki hasta         | Mavi        | Başa iki kayıt ekle                           |
+| Tek yönlü 2  | Sırasını kaçıran müşteri    | Yeşil       | İlk kaydı sona taşı                           |
+| Tek yönlü 3  | İptal edilen iki gönderi    | Turuncu     | İlk iki gönderiyi sil                         |
+| Tek yönlü 4  | Hatalı sınav kaydı          | Mor         | İlk hedefin hemen arkasındaki kaydı sil       |
+| Tek yönlü 5  | İki şubenin siparişleri     | Turkuaz     | Birinci listeyi ikinci listenin sonuna bağla  |
+| Tek yönlü 6  | Müzayedede hatalı QR kaydı  | Bordo       | Sekiz QR kaydından altıncısını çıkar          |
+| Tek yönlü 7  | Kapanan kurs kontenjanı     | Kehribar    | İlk hedefin arkasındaki bütün kayıtları sil   |
+| Tek yönlü 8  | Otoparkta ek araç kaydı     | Camgöbeği   | İlk kaydın hemen sonrasına ekle               |
+| Tek yönlü 9  | İptal edilen yazdırma işi   | İndigo      | Yalnızca ilk iş hedefle eşleşiyorsa sil       |
+| Tek yönlü 10 | Son paketin yanlış etiketi  | Bakır       | Son kaydı yeni bir düğümle değiştir           |
+| Çift yönlü 1 | Geçersiz ilk sayfa          | Petrol      | İlk kaydı sil, yeni başın prev alanını düzelt |
+| Çift yönlü 2 | Acil reçeteyi öne alma      | Zeytin      | Son kaydı başa taşı                           |
+| Çift yönlü 3 | Eksik koltuk kaydı          | Gül         | İkinci sıraya ekle, iki yönü bağla            |
+| Çift yönlü 4 | Servis dışı üçüncü makine   | Kiremit     | Üçüncü makine kaydını çıkar                   |
+| Çift yönlü 5 | Deneme duraklarını kaldırma | Erik        | İlk ve son deneme durağını sil                |
+
+Kod önerileri, üç aşamalı ipuçları, örnek çözümler, taslak kaydı ve test sonuçları korunur. Animasyonlar örnek çözümün gerçek yürütmesinden oluşturulur; öğrencinin kendi kodunun adımları ayrıca izlenebilir. Boş/kısa listeler, bellek ayırma başarısızlığı ve çift bağlı listede geri bağlantılar sınanır. İçerik `assets/c-final-data.js`, gezinme `assets/c-finals.js` dosyasındadır. Tarayıcı motoru bağlı liste alıştırmaları için sınırlı bir C yorumlayıcısıdır; tam C derleyicisi değildir.
 
 ## İlerleme ve kullanım
 
